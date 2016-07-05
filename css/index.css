@@ -18,7 +18,7 @@ body {
 }
 
 h1.title {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: bold;
   margin: 0;
   display: block;
@@ -63,6 +63,22 @@ h1.title {
   -moz-animation: move-up 600ms ease-in;
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
+}
+
+.restart-container {
+  position: relative;
+  float: right;
+  background: #27aae0;
+  padding: 12px 5px;
+  font-size: 25px;
+  border-radius: 3px;
+  color: white;
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+.restart-container:before {
+  content:url("../img/reload-arrow.png");
 }
 
 p {
