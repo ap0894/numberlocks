@@ -11,16 +11,20 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 	$('.grid-container').html(grid);
 	$("#level1").on('click', function() {
 		$('.tile-container').html(level1);
+		addSwipeTo('.tile');
 	});
 	
 	$("#level2").on('click', function() {
 		$('.tile-container').html(level2);
+		addSwipeTo('.tile');
 	});
 	$('.restart-container').on('click', function() {
 		location.reload();
 	});     
       //Enable swiping...
-      $(".tile").swipe( {
+      var addSwipeTo = function(selector) {
+      $(selector).swipe("destroy");
+      $(selector).swipe( {
         //Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
           //$(this).text("x"); 
@@ -38,13 +42,19 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 					if ($('.'+newClassIndex).text()) {
 						newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 						$('.'+newClassIndex).remove();
-						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 						$(this).removeClass(classIndex);
-						//$('.'+classIndex).css('box-shadow','');
-						$('.'+classIndex).removeClass('tile-new');
 						$(this).addClass(newClassIndex);
 						$(this).addClass('tile-merged');
-						$(this).text(newValue);
+						$('.'+classIndex).removeClass('tile-new');
+						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+						if(newValue !=0){
+							$(this).text(newValue);
+							//$(this).addClass(newClassIndex);
+							//$(this).addClass('tile-merged');
+						} else {
+							$('.'+newClassIndex).remove();
+							$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+						}
 						$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
 					}
 				}
@@ -62,12 +72,19 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 					if ($('.'+newClassIndex).text()) {
 						newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 						$('.'+newClassIndex).remove();
-						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 						$(this).removeClass(classIndex);
-						$('.'+classIndex).removeClass('tile-new');
 						$(this).addClass(newClassIndex);
 						$(this).addClass('tile-merged');
-						$(this).text(newValue);
+						$('.'+classIndex).removeClass('tile-new');
+						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+						if(newValue !=0){
+							$(this).text(newValue);
+							//$(this).addClass(newClassIndex);
+							//$(this).addClass('tile-merged');
+						} else {
+							$('.'+newClassIndex).remove();
+							$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+						}
 						$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
 					}
 				}
@@ -85,12 +102,19 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 					if ($('.'+newClassIndex).text()) {
 						newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 						$('.'+newClassIndex).remove();
-						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 						$(this).removeClass(classIndex);
-						$('.'+classIndex).removeClass('tile-new');
 						$(this).addClass(newClassIndex);
 						$(this).addClass('tile-merged');
-						$(this).text(newValue);
+						$('.'+classIndex).removeClass('tile-new');
+						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+						if(newValue !=0){
+							$(this).text(newValue);
+							//$(this).addClass(newClassIndex);
+							//$(this).addClass('tile-merged');
+						} else {
+							$('.'+newClassIndex).remove();
+							$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+						}
 						$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
 					}
 				}
@@ -108,12 +132,19 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 					if ($('.'+newClassIndex).text()) {
 						newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 						$('.'+newClassIndex).remove();
-						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 						$(this).removeClass(classIndex);
-						$('.'+classIndex).removeClass('tile-new');
 						$(this).addClass(newClassIndex);
 						$(this).addClass('tile-merged');
-						$(this).text(newValue);
+						$('.'+classIndex).removeClass('tile-new');
+						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+						if(newValue !=0){
+							$(this).text(newValue);
+							//$(this).addClass(newClassIndex);
+							//$(this).addClass('tile-merged');
+						} else {
+							$('.'+newClassIndex).remove();
+							$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+						}
 						$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
 					}
 				}
@@ -123,4 +154,5 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
         },
          threshold:5
       });
+      };
     });
