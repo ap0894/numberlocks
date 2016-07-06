@@ -9,7 +9,7 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
     $(function() { 
 	$('.game-explanation').html(gameExplanation);
 	$('.grid-container').html(grid);
-	$("#level1").on('click', function() {
+	$("#level1").click(function() {
 		$('.tile-container').html(level1);
 		addSwipeTo('.tile');
 	});
