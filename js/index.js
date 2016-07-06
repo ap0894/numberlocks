@@ -6,7 +6,7 @@ var grid = "<div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
-    $(function() { 
+    $(document).ready(function() { 
 	$('.game-explanation').html(gameExplanation);
 	$('.grid-container').html(grid);
 	$("#level1").click(function() {
