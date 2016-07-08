@@ -11,7 +11,6 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 	$('.grid-container').html(grid);
 	$("#level1").on('click', function(e) {
 		e.preventDefault();
-		alert('hello');
 		$('.tile-container').html(level1);
 		addSwipeTo('.tile');
 	});
