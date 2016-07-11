@@ -6,21 +6,31 @@ var grid = "<div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
+var activeGame;
+
     $(function() { 
 	$('.game-explanation').html(gameExplanation);
 	$('.grid-container').html(grid);
 	$("#level1").on('click', function(e) {
 		e.preventDefault();
-		$('.tile-container').html(level1);
+		activeGame = "level1";
+		$('.score-container').html('0');
+		$('.tile-container').html(eval(activeGame));
 		addSwipeTo('.tile');
 	});
 	
-	$("#level2").on('click', function() {
-		$('.tile-container').html(level2);
+	$("#level2").on('click', function(e) {
+		e.preventDefault();
+		activeGame = "level2";
+		$('.score-container').html('0');
+		$('.tile-container').html(eval(activeGame));
 		addSwipeTo('.tile');
 	});
-	$('.restart-container').on('click', function() {
-		location.reload();
+	$('.restart-container').on('click', function(e) {
+		e.preventDefault();
+		$('.score-container').html('0');
+		$('.tile-container').html(eval(activeGame));
+		addSwipeTo('.tile');
 	});     
       //Enable swiping...
       var addSwipeTo = function(selector) {
