@@ -1,14 +1,18 @@
-html, body {
+body {
   margin: 0;
   padding: 0;
-  background: #faf8ef;
+  //background: #faf8ef;
   color: #776E65;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
+  margin: 10px 0;
 }
 
-body {
-  margin: 50px 0;
+
+
+.container {
+  width: 50%;
+  margin: 0 auto;
 }
 
 .heading:after {
@@ -25,59 +29,35 @@ h1.title {
   float: left;
 }
 
+.controller {
+  background: #27aae0;
+  width: 15%;
+  margin: 10px;
+  height: 32px;
+  color: white;
+  display: inline-block;
+  border-radius:3px;
+  text-align:center;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 15px 0px;
+}
 .score-container {
   position: relative;
-  float: right;
-  background: #27aae0;
-  padding: 15px 25px;
-  font-size: 25px;
-  height: 32px;
-  line-height: 52px;
-  font-weight: bold;
-  border-radius: 3px;
-  color: white;
   margin-top: 8px;
 }
+
 .score-container:after {
   position: absolute;
-  width: 100%;
-  top: 10px;
-  left: 0;
+  top: 4px;
+  left: 15px;
   content: "Moves";
   text-transform: uppercase;
   font-size: 13px;
-  line-height: 13px;
-  text-align: center;
-  color: white;
-}
-.score-container .score-addition {
-  position: absolute;
-  right: 30px;
-  color: red;
-  font-size: 25px;
-  line-height: 25px;
-  font-weight: bold;
-  color: rgba(119, 110, 101, 0.9);
-  z-index: 100;
-  -webkit-animation: move-up 600ms ease-in;
-  -moz-animation: move-up 600ms ease-in;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-}
-
-.restart-container {
-  position: relative;
-  float: right;
-  background: #27aae0;
-  padding: 12px 5px;
-  font-size: 25px;
-  border-radius: 3px;
-  color: white;
-  margin-top: 8px;
-  margin-left: 8px;
 }
 
 .restart-container:before {
+
   content:url("../img/reload-arrow.png");
 }
 
@@ -105,13 +85,8 @@ hr {
   margin-bottom: 22px;
 }
 
-.container {
-  width: 350px;
-  margin: 0 auto;
-}
-
 .game-container {
-  margin-top: 22px;
+  margin-top: 8px;
   position: relative;
   padding: 15px;
   cursor: default;
@@ -125,51 +100,6 @@ hr {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-.game-container .game-message {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(238, 228, 218, 0.5);
-  z-index: 100;
-  text-align: center;
-  -webkit-animation: fade-in 800ms ease 1200ms;
-  -moz-animation: fade-in 800ms ease 1200ms;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-}
-.game-container .game-message p {
-  font-size: 60px;
-  font-weight: bold;
-  height: 60px;
-  line-height: 60px;
-  margin-top: 222px;
-}
-.game-container .game-message .lower {
-  display: block;
-  margin-top: 59px;
-}
-.game-container .game-message a {
-  display: inline-block;
-  background: #8f7a66;
-  border-radius: 3px;
-  padding: 0 20px;
-  text-decoration: none;
-  color: #f9f6f2;
-  height: 40px;
-  line-height: 42px;
-  margin-left: 9px;
-}
-.game-container .game-message.game-won {
-  background: rgba(237, 194, 46, 0.5);
-  color: #f9f6f2;
-}
-.game-container .game-message.game-won, .game-container .game-message.game-over {
-  display: block;
 }
 
 .grid-container {
@@ -348,14 +278,6 @@ hr {
   -webkit-transition-property: top, left;
   -moz-transition-property: top, left;
 }
-.tile.tile-2 {
-  background: #eee4da;
-  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
-}
-.tile.tile-4 {
-  background: #eee1c9;
-  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
-}
 
 .tile-merged {
   z-index: 20;
@@ -363,11 +285,6 @@ hr {
   -moz-animation: pop 200ms ease 100ms;
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;*/
-}
-
-.game-intro {
-  margin-bottom: 0;
-  font-size: 14px;
 }
 
 .game-explanation {
@@ -380,14 +297,6 @@ hr {
 
 .tile-complete{
 	background: #F3FFFF;
-}
-
-.tile-new {
-  -webkit-animation: appear 200ms ease 100ms;
-  -moz-animation: appear 200ms ease 100ms;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  box-shadow: inset 0 -5px 1px #0077AD;
 }
 
 

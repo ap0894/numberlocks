@@ -1,6 +1,6 @@
-var level2 = "<div class=\"tile tile-position-1-1 tile-new\">66</div><div class=\"tile tile-position-1-2 tile-new\">7</div><div class=\"tile tile-position-1-3 tile-new\">36</div><div class=\"tile tile-position-1-4 tile-new\">2</div><div class=\"tile tile-position-1-5 tile-new\">13</div><div class=\"tile tile-position-2-1 tile-new\">21</div><div class=\"tile tile-position-2-2 tile-new\">19</div><div class=\"tile tile-position-2-3 tile-new\">5</div><div class=\"tile tile-position-2-4 tile-new\">58</div><div class=\"tile tile-position-2-5 tile-new\">1</div><div class=\"tile tile-position-3-1 tile-new\">5</div><div class=\"tile tile-position-3-2 tile-new\">9</div><div class=\"tile tile-position-3-3 tile-new\">8</div><div class=\"tile tile-position-3-4 tile-new\">17</div><div class=\"tile tile-position-3-5 tile-new\">3</div><div class=\"tile tile-position-4-1 tile-new\">18</div><div class=\"tile tile-position-4-2 tile-new\">6</div><div class=\"tile tile-position-4-3 tile-new\">45</div><div class=\"tile tile-position-4-4 tile-new\">29</div><div class=\"tile tile-position-4-5 tile-new\">72</div><div class=\"tile tile-position-5-1 tile-new\">12</div><div class=\"tile tile-position-5-2 tile-new\">88</div><div class=\"tile tile-position-5-3 tile-new\">4</div><div class=\"tile tile-position-5-4 tile-new\">22</div><div class=\"tile tile-position-5-5 tile-new\">10</div>";
+var level2 = "<div class=\"tile tile-position-1-1 \">66</div><div class=\"tile tile-position-1-2 \">7</div><div class=\"tile tile-position-1-3 \">36</div><div class=\"tile tile-position-1-4 \">2</div><div class=\"tile tile-position-1-5 \">13</div><div class=\"tile tile-position-2-1 \">21</div><div class=\"tile tile-position-2-2 \">19</div><div class=\"tile tile-position-2-3 \">5</div><div class=\"tile tile-position-2-4 \">58</div><div class=\"tile tile-position-2-5 \">1</div><div class=\"tile tile-position-3-1 \">5</div><div class=\"tile tile-position-3-2 \">9</div><div class=\"tile tile-position-3-3 \">8</div><div class=\"tile tile-position-3-4 \">17</div><div class=\"tile tile-position-3-5 \">3</div><div class=\"tile tile-position-4-1 \">18</div><div class=\"tile tile-position-4-2 \">6</div><div class=\"tile tile-position-4-3 \">45</div><div class=\"tile tile-position-4-4 \">29</div><div class=\"tile tile-position-4-5 \">72</div><div class=\"tile tile-position-5-1 \">12</div><div class=\"tile tile-position-5-2 \">88</div><div class=\"tile tile-position-5-3 \">4</div><div class=\"tile tile-position-5-4 \">22</div><div class=\"tile tile-position-5-5 \">10</div>";
 
-var level1 = "<div class=\"tile tile-position-1-1 tile-new\">5</div><div class=\"tile tile-position-1-2 tile-new\">7</div><div class=\"tile tile-position-1-3 tile-new\">1</div><div class=\"tile tile-position-1-4 tile-new\">6</div><div class=\"tile tile-position-2-1 tile-new\">9</div><div class=\"tile tile-position-2-2 tile-new\">3</div><div class=\"tile tile-position-2-3 tile-new\">4</div><div class=\"tile tile-position-2-4 tile-new\">1</div><div class=\"tile tile-position-3-1 tile-new\">4</div><div class=\"tile tile-position-3-2 tile-new\">6</div><div class=\"tile tile-position-3-3 tile-new\">3</div><div class=\"tile tile-position-3-4 tile-new\">7</div><div class=\"tile tile-position-4-1 tile-new\">8</div><div class=\"tile tile-position-4-2 tile-new\">5</div><div class=\"tile tile-position-4-3 tile-new\">9</div><div class=\"tile tile-position-4-4 tile-new\">2</div>";
+var level1 = "<div class=\"tile tile-position-1-1 \">5</div><div class=\"tile tile-position-1-2 \">7</div><div class=\"tile tile-position-1-3 \">1</div><div class=\"tile tile-position-1-4 \">6</div><div class=\"tile tile-position-2-1 \">9</div><div class=\"tile tile-position-2-2 \">3</div><div class=\"tile tile-position-2-3 \">4</div><div class=\"tile tile-position-2-4 \">1</div><div class=\"tile tile-position-3-1 \">4</div><div class=\"tile tile-position-3-2 \">6</div><div class=\"tile tile-position-3-3 \">3</div><div class=\"tile tile-position-3-4 \">7</div><div class=\"tile tile-position-4-1 \">8</div><div class=\"tile tile-position-4-2 \">5</div><div class=\"tile tile-position-4-3 \">9</div><div class=\"tile tile-position-4-4 \">2</div>";
 
 var grid = "<div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div> <div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div><div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div><div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div><div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div></div>";
 
@@ -56,7 +56,6 @@ var activeGame;
 						$(this).removeClass(classIndex);
 						$(this).addClass(newClassIndex);
 						$(this).addClass('tile-merged');
-						$('.'+classIndex).removeClass('tile-new');
 						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 						if(newValue !=0){
 							$(this).text(newValue);
@@ -86,7 +85,6 @@ var activeGame;
 						$(this).removeClass(classIndex);
 						$(this).addClass(newClassIndex);
 						$(this).addClass('tile-merged');
-						$('.'+classIndex).removeClass('tile-new');
 						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 						if(newValue !=0){
 							$(this).text(newValue);
@@ -116,7 +114,6 @@ var activeGame;
 						$(this).removeClass(classIndex);
 						$(this).addClass(newClassIndex);
 						$(this).addClass('tile-merged');
-						$('.'+classIndex).removeClass('tile-new');
 						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 						if(newValue !=0){
 							$(this).text(newValue);
@@ -146,7 +143,6 @@ var activeGame;
 						$(this).removeClass(classIndex);
 						$(this).addClass(newClassIndex);
 						$(this).addClass('tile-merged');
-						$('.'+classIndex).removeClass('tile-new');
 						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 						if(newValue !=0){
 							$(this).text(newValue);
