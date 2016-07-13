@@ -8,7 +8,6 @@ body {
 
 .container {
   margin: 15px ;
-  display:none;
 }
 
 .levels {
@@ -32,6 +31,10 @@ h1.title {
   margin: 0;
   display: block;
   float: left;
+}
+
+.control-container {
+	display: none;
 }
 
 .controller {
@@ -91,6 +94,7 @@ hr {
 }
 
 .game-container {
+  display: none;
   position: relative;
   padding: 12px;
   cursor: default;
