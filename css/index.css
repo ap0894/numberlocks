@@ -8,12 +8,22 @@ body {
 
 .container {
   margin: 15px ;
+  display:none;
+}
+
+.levels {
+	width: 50%;
+	margin: 0px auto;
 }
 
 .heading:after {
   content: "";
   display: block;
   clear: both;
+}
+
+.level-selector {
+	display : inline-block;
 }
 
 h1.title {
