@@ -1,6 +1,6 @@
 var level1 = "<div class=\"tile tile-position-1-1 \">5</div><div class=\"tile tile-position-1-2 \">7</div><div class=\"tile tile-position-2-1 \">9</div><div class=\"tile tile-position-2-2 \">3</div>";
 
-var level2 = "<div class=\"tile tile-position-1-1 \">5</div><div class=\"tile tile-position-1-2 \">7</div><div class=\"tile tile-position-1-3 \">1</div><div class=\"tile tile-position-2-1 \">9</div><div class=\"tile tile-position-2-2 \">3</div><div class=\"tile tile-position-2-3 \">4</div><div class=\"tile tile-position-3-1 \">4</div><div class=\"tile tile-position-3-2 \">6</div><div class=\"tile tile-position-3-3 \">3</div>";
+var level2 = "<div class=\"tile tile-position-1-1 \">3</div><div class=\"tile tile-position-1-2 \">2</div><div class=\"tile tile-position-1-3 \">1</div><div class=\"tile tile-position-2-1 \">5</div><div class=\"tile tile-position-2-2 \">4</div><div class=\"tile tile-position-2-3 \">3</div><div class=\"tile tile-position-3-1 \">2</div><div class=\"tile tile-position-3-2 \">1</div><div class=\"tile tile-position-3-3 \">4</div>";
 
 var level3 = "<div class=\"tile tile-position-1-1 \">5</div><div class=\"tile tile-position-1-2 \">7</div><div class=\"tile tile-position-1-3 \">1</div><div class=\"tile tile-position-1-4 \">6</div><div class=\"tile tile-position-2-1 \">9</div><div class=\"tile tile-position-2-2 \">3</div><div class=\"tile tile-position-2-3 \">4</div><div class=\"tile tile-position-2-4 \">1</div><div class=\"tile tile-position-3-1 \">4</div><div class=\"tile tile-position-3-2 \">6</div><div class=\"tile tile-position-3-3 \">3</div><div class=\"tile tile-position-3-4 \">7</div><div class=\"tile tile-position-4-1 \">8</div><div class=\"tile tile-position-4-2 \">5</div><div class=\"tile tile-position-4-3 \">9</div><div class=\"tile tile-position-4-4 \">2</div>";
 
@@ -8,7 +8,7 @@ var level4 = "<div class=\"tile tile-position-1-1 \">66</div><div class=\"tile t
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
-var activeGame;
+var currentLevel;
 
 function createGrid(size) {
 	var grid = "";
@@ -20,8 +20,36 @@ function createGrid(size) {
 		grid += "</div>";
 	}
 	return grid;
-	//grid = "<div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div> <div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div><div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div><div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div><div class=\"grid-row\"><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div><div class=\"grid-cell\"></div></div></div>";
+}
 
+function slide (direction) {	
+	var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
+		return v.indexOf("tile-position") === 0;
+	}).join();
+	var x = parseInt(classIndex.slice(-3, -2), 10);
+	var y = classIndex.slice(-1);
+	console.log("x: "+x + " y:" + y);
+	if(x>1) {
+		x--;
+		newClassIndex = 'tile-position-'+x+'-'+y;
+		if ($('.'+newClassIndex).text()) {
+			newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
+			$('.'+newClassIndex).remove();
+			$(this).removeClass(classIndex);
+			$(this).addClass(newClassIndex);
+			$(this).addClass('tile-merged');
+			$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+			if(newValue !=0){
+				$(this).text(newValue);
+				//$(this).addClass(newClassIndex);
+				//$(this).addClass('tile-merged');
+			} else {
+				$('.'+newClassIndex).remove();
+				$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+			}
+			$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
+		}
+	}
 }
 
     $(function() { 
@@ -41,9 +69,9 @@ function createGrid(size) {
 		$('.game-container').css('width','128px');
 		$('.game-container').css('height','128px');
 		$('.grid-container').html(createGrid(2));
-		activeGame = "level1";
+		currentLevel = "level1";
 		$('.score-container').html('0');
-		$('.tile-container').html(eval(activeGame));
+		$('.tile-container').html(eval(currentLevel));
 		addSwipeTo('.tile');
 	});
 	
@@ -54,9 +82,9 @@ function createGrid(size) {
 		$('.game-container').css('width','186px');
 		$('.game-container').css('height','186px');
 		$('.grid-container').html(createGrid(3));
-		activeGame = "level2";
+		currentLevel = "level2";
 		$('.score-container').html('0');
-		$('.tile-container').html(eval(activeGame));
+		$('.tile-container').html(eval(currentLevel));
 		addSwipeTo('.tile');
 	});
 	
@@ -67,9 +95,9 @@ function createGrid(size) {
 		$('.game-container').css('width','244px');
 		$('.game-container').css('height','244px');
 		$('.grid-container').html(createGrid(4));
-		activeGame = "level3";
+		currentLevel = "level3";
 		$('.score-container').html('0');
-		$('.tile-container').html(eval(activeGame));
+		$('.tile-container').html(eval(currentLevel));
 		addSwipeTo('.tile');
 	});
 	
@@ -80,9 +108,9 @@ function createGrid(size) {
 		$('.game-container').css('width','302px');
 		$('.game-container').css('height','302px');
 		$('.grid-container').html(createGrid(5));
-		activeGame = "level4";
+		currentLevel = "level4";
 		$('.score-container').html('0');
-		$('.tile-container').html(eval(activeGame));
+		$('.tile-container').html(eval(currentLevel));
 		addSwipeTo('.tile');
 	});
 	
@@ -91,7 +119,7 @@ function createGrid(size) {
 	$('.restart-container').on('click', function(e) {
 		e.preventDefault();
 		$('.score-container').html('0');
-		$('.tile-container').html(eval(activeGame));
+		$('.tile-container').html(eval(currentLevel));
 		addSwipeTo('.tile');
 	});     
       //Enable swiping...
@@ -100,12 +128,14 @@ function createGrid(size) {
       $(selector).swipe( {
         //Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-          //$(this).text("x"); 
-          switch (direction) { 
-			case 'left':
-				var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
+        
+        var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 					return v.indexOf("tile-position") === 0;
 				}).join();
+        
+          switch (direction) { 
+			case 'left':
+				
 				var x = parseInt(classIndex.slice(-3, -2), 10);
 				var y = classIndex.slice(-1);
 				console.log("x: "+x + " y:" + y);
@@ -132,9 +162,9 @@ function createGrid(size) {
 				}
 			break;
 			case 'right':
-				var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
+				/*var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 					return v.indexOf("tile-position") === 0;
-				}).join();
+				}).join();*/
 				var x = parseInt(classIndex.slice(-3, -2), 10);
 				var y = classIndex.slice(-1);
 				console.log("x: "+x + " y:" + y);
@@ -161,9 +191,9 @@ function createGrid(size) {
 				}
 			break;
 			case 'up':  
-				var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
+				/*var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 					return v.indexOf("tile-position") === 0;
-				}).join();
+				}).join();*/
 				var x = classIndex.slice(-3, -2);
 				var y = parseInt(classIndex.slice(-1), 10);
 				console.log("x: "+x + " y:" + y);
@@ -190,9 +220,9 @@ function createGrid(size) {
 				}
 			break;		
 			case 'down': 
-				var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
+				/*var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 					return v.indexOf("tile-position") === 0;
-				}).join();
+				}).join();*/
 				var x = classIndex.slice(-3, -2);
 				var y = parseInt(classIndex.slice(-1), 10);
 				console.log("x: "+x + " y:" + y);
