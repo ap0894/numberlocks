@@ -28,6 +28,12 @@ function addBoard() {
 	$('.game-container').css('display','block');
 	$('.score-container').html('0');
 	$('.tile-container').html(eval(currentLevel));
+	var size = parseInt(currentLevel.slice(-1),10)+1;
+	$('.grid-container').html(createGrid(size));
+	var dimension = (12*(size+1))+(size*46);
+	dimension = dimension.toString() + 'px';
+	$('.game-container').css('width',dimension);
+	$('.game-container').css('height',dimension);
 }
 
     $(function() { 
@@ -41,43 +47,10 @@ function addBoard() {
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$("#level1").on('click', function(e) {
+	$("#level1, #level2, #level3, #level4").on('click', function(e) {
 		e.preventDefault();
-		currentLevel = "level1";
+		currentLevel = $(this).attr('id');
 		addBoard();	
-		$('.game-container').css('width','128px');
-		$('.game-container').css('height','128px');
-		$('.grid-container').html(createGrid(2));
-		addSwipeTo('.tile');
-	});
-	
-	$("#level2").on('click', function(e) {
-		e.preventDefault();
-		currentLevel = "level2";
-		addBoard();	
-		$('.game-container').css('width','186px');
-		$('.game-container').css('height','186px');
-		$('.grid-container').html(createGrid(3));
-		addSwipeTo('.tile');
-	});
-	
-	$("#level3").on('click', function(e) {
-		e.preventDefault();
-		currentLevel = "level3";
-		addBoard();	
-		$('.game-container').css('width','244px');
-		$('.game-container').css('height','244px');
-		$('.grid-container').html(createGrid(4));
-		addSwipeTo('.tile');
-	});
-	
-	$("#level4").on('click', function(e) {
-		e.preventDefault();
-		currentLevel = "level4";
-		addBoard();	
-		$('.game-container').css('width','302px');
-		$('.game-container').css('height','302px');
-		$('.grid-container').html(createGrid(5));
 		addSwipeTo('.tile');
 	});
 	
@@ -102,97 +75,45 @@ function addBoard() {
 		var y = classIndex.slice(-1);
 		console.log("x: "+x + " y:" + y);
         
-        function moveTile() {
-        
-        }
-        
           switch (direction) { 
 			case 'left':
 				if(x>1) {
 					x--;
-					newClassIndex = 'tile-position-'+x+'-'+y;
-					if ($('.'+newClassIndex).text()) {
-						newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
-						$('.'+newClassIndex).remove();
-						$(this).removeClass(classIndex);
-						$(this).addClass(newClassIndex);
-						$(this).addClass('tile-merged');
-						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
-						if(newValue !=0){
-							$(this).text(newValue);
-						} else {
-							$('.'+newClassIndex).remove();
-							$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
-						}
-						$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
-					}
 				}
 			break;
 			case 'right':
 				if(x<5) {
 					x++	;
-					newClassIndex = 'tile-position-'+x+'-'+y;
-					if ($('.'+newClassIndex).text()) {
-						newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
-						$('.'+newClassIndex).remove();
-						$(this).removeClass(classIndex);
-						$(this).addClass(newClassIndex);
-						$(this).addClass('tile-merged');
-						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
-						if(newValue !=0){
-							$(this).text(newValue);
-						} else {
-							$('.'+newClassIndex).remove();
-							$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
-						}
-						$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
-					}
 				}
 			break;
 			case 'up':  
 				if (y>1) {
 					y--;
-					newClassIndex = 'tile-position-'+x+'-'+y;
-					if ($('.'+newClassIndex).text()) {
-						newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
-						$('.'+newClassIndex).remove();
-						$(this).removeClass(classIndex);
-						$(this).addClass(newClassIndex);
-						$(this).addClass('tile-merged');
-						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
-						if(newValue !=0){
-							$(this).text(newValue);
-						} else {
-							$('.'+newClassIndex).remove();
-							$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
-						}
-						$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
-					}
 				}
 			break;		
 			case 'down': 
 				if (y<5) {
 					y++;
-					newClassIndex = 'tile-position-'+x+'-'+y;
-					if ($('.'+newClassIndex).text()) {
-						newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
-						$('.'+newClassIndex).remove();
-						$(this).removeClass(classIndex);
-						$(this).addClass(newClassIndex);
-						$(this).addClass('tile-merged');
-						$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
-						if(newValue !=0){
-							$(this).text(newValue);
-						} else {
-							$('.'+newClassIndex).remove();
-							$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
-						}
-						$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
-					}
 				}
 			break;
 			default:
-			} 
+			} 			
+			newClassIndex = 'tile-position-'+x+'-'+y;
+			if ($('.'+newClassIndex).text()) {
+				newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
+				$('.'+newClassIndex).remove();
+				$(this).removeClass(classIndex);
+				$(this).addClass(newClassIndex);
+				$(this).addClass('tile-merged');
+				$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+				if(newValue !=0){
+					$(this).text(newValue);
+				} else {
+					$('.'+newClassIndex).remove();
+					$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+				}
+				$('.score-container').html(parseInt($('.score-container').html(), 10)+1);
+			}
         },
          threshold:5
       });
