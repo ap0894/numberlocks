@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   color: #776E65;
+  background-color: #e4eff9;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
 }
@@ -20,6 +21,14 @@ body {
 	display : inline-block;
 }
 
+.level-selector span{
+  position: relative;
+  top: -20px;
+  font-size: 14px;
+  line-height: 85px
+}
+
+
 h1.title {
   font-size: 32px;
   font-weight: bold;
@@ -33,34 +42,39 @@ h1.title {
 
 .controller {
   background: #27aae0;
-  width: 74px;
-  margin: 10px;
-  height: 32px;
+  width: 46px;
+  height: 46px;
+  margin: 2px;
   color: white;
   display: inline-block;
   border-radius:3px;
   text-align:center;
-  font-size: 32px;
   font-weight: bold;
-  padding: 15px 0px;
 }
 .score-container {
   position: relative;
-  margin-top: 8px;
 }
 
-.score-container:after {
+.score-container span{
+  position: relative;
+  top: -8px;
+  font-size: 24px;
+  line-height: 78px
+}
+
+.score-container:before {
   position: absolute;
   top: 4px;
-  left: 15px;
+  left: 5px;
   content: "Moves";
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 10px;
 }
 
-.restart-container:before {
-
-  content:url("../img/reload-arrow.png");
+.restart-container {
+  background-image: url("../img/reload-arrow.png") ;
+  background-repeat: no-repeat;
+  background-position: 6px;
 }
 
 p {
@@ -280,6 +294,22 @@ hr {
   -moz-transition: 250ms ease-in-out;
   -webkit-transition-property: top, left;
   -moz-transition-property: top, left;
+}
+
+.title-tile {
+    width: 30px;
+    height: 24px;
+    line-height: 23px;
+    border-radius: 3px;
+    background-color: #27aae0;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    z-index: 10;
+    font-size: 24px;
+    display: inline-block;
+    position: relative;
+    top: -4px;
 }
 
 .tile-merged {
