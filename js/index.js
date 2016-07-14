@@ -1,3 +1,4 @@
+
 var level1 = "<div class=\"tile tile-position-1-1 \">5</div><div class=\"tile tile-position-1-2 \">7</div><div class=\"tile tile-position-2-1 \">9</div><div class=\"tile tile-position-2-2 \">3</div>";
 
 var level2 = "<div class=\"tile tile-position-1-1 \">3</div><div class=\"tile tile-position-1-2 \">2</div><div class=\"tile tile-position-1-3 \">1</div><div class=\"tile tile-position-2-1 \">5</div><div class=\"tile tile-position-2-2 \">4</div><div class=\"tile tile-position-2-3 \">3</div><div class=\"tile tile-position-3-1 \">2</div><div class=\"tile tile-position-3-2 \">1</div><div class=\"tile tile-position-3-3 \">5</div>";
@@ -27,13 +28,26 @@ function addBoard() {
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
 	$('.score-container').html('0');
-	$('.tile-container').html(eval(currentLevel));
-	var size = parseInt(currentLevel.slice(-1),10)+1;
+	
+	var size = Math.sqrt(levels[currentLevel].length); 
+	
+	//$('.tile-container').html(eval(currentLevel));
+	$('.tile-container').html(generateLevel(size));
+	
+	 //parseInt(currentLevel.slice(-1),10)+1;
 	$('.grid-container').html(createGrid(size));
 	var dimension = (12*(size+1))+(size*46);
 	dimension = dimension.toString() + 'px';
 	$('.game-container').css('width',dimension);
 	$('.game-container').css('height',dimension);
+}
+
+function generateLevel(size) {
+	var output = "";
+	for (i=0; i<levels[currentLevel].length; i++) {
+		output += "<div class=\"tile tile-position-" + (Math.floor(i/size)+1)+ "-" + ((i%size)+1) + "\">" + levels[currentLevel][i] + "</div>";
+	}
+	return output;
 }
 
     $(function() { 
@@ -47,7 +61,7 @@ function addBoard() {
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$("#level1, #level2, #level3, #level4").on('click', function(e) {
+	$("#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10").on('click', function(e) {
 		e.preventDefault();
 		currentLevel = $(this).attr('id');
 		addBoard();	
