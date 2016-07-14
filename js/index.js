@@ -71,7 +71,8 @@ function generateLevel(size) {
 	$('.restart-container').on('click', function(e) {
 		e.preventDefault();
 		$('.score-container').html('0');
-		$('.tile-container').html(eval(currentLevel));
+		var size = Math.sqrt(levels[currentLevel].length);
+		$('.tile-container').html(generateLevel(size));
 		addSwipeTo('.tile');
 	});     
       //Enable swiping...
