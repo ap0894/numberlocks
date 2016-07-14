@@ -79,46 +79,53 @@ function generateLevel(size) {
 				
 		var x = parseInt(classIndex.slice(-3, -2), 10);
 		var y = classIndex.slice(-1);
+		var move = false;
 		console.log("x: "+x + " y:" + y);
         
           switch (direction) { 
 			case 'left':
 				if(x>1) {
 					x--;
+					move = true;
 				}
 			break;
 			case 'right':
 				if(x<5) {
 					x++	;
+					move = true;
 				}
 			break;
 			case 'up':  
 				if (y>1) {
 					y--;
+					move = true;
 				}
 			break;		
 			case 'down': 
 				if (y<5) {
 					y++;
+					move = true;
 				}
 			break;
 			default:
-			} 			
+			} 
+			if(move) {			
 			newClassIndex = 'tile-position-'+x+'-'+y;
-			if ($('.'+newClassIndex).text()) {
-				newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
-				$('.'+newClassIndex).remove();
-				$(this).removeClass(classIndex);
-				$(this).addClass(newClassIndex);
-				$(this).addClass('tile-merged');
-				$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
-				if(newValue !=0){
-					$(this).text(newValue);
-				} else {
+				if ($('.'+newClassIndex).text()) {
+					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 					$('.'+newClassIndex).remove();
-					$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+					$(this).removeClass(classIndex);
+					$(this).addClass(newClassIndex);
+					$(this).addClass('tile-merged');
+					$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+					if(newValue !=0){
+						$(this).text(newValue);
+					} else {
+						$('.'+newClassIndex).remove();
+						$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+					}
+					$('.score-container span').html(parseInt($('.score-container span').html(), 10)+1);
 				}
-				$('.score-container span').html(parseInt($('.score-container span').html(), 10)+1);
 			}
         },
          threshold:5
