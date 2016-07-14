@@ -17,30 +17,56 @@ function createGrid(size) {
 	return grid;
 }
 
+function createLine(size) {
+	var grid = "";
+	grid += "<div class=\"grid-row\">";
+	for(i=0; i<size; i++) {
+		grid += "<div class=\"grid-cell\"></div>";
+	}
+	grid += "</div>";
+	return grid;
+}
+
 function addBoard() {
 	moves = 0;
 	$('.levels').css('display','none');
+	var size;
+	if(levels[currentLevel].length<4) {
+		size = levels[currentLevel].length; 
+		$('.grid-container').html(createLine(size));
+		$('.tile-container').html(generateStraightLevel(size));
+		var width = (12*(size+1))+(size*46);
+		width = width.toString() + 'px';
+		var height = (46) + (12*2);
+		height = height.toString() + 'px';
+		$('.game-container').css('width',width);
+		$('.game-container').css('height',height);
+	} else {
+		size = Math.sqrt(levels[currentLevel].length); 
+		$('.grid-container').html(createGrid(size));
+		$('.tile-container').html(generateLevel(size));
+		var dimension = (12*(size+1))+(size*46);
+		dimension = dimension.toString() + 'px';
+		$('.game-container').css('width',dimension);
+		$('.game-container').css('height',dimension);
+	}
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
 	$('.moves-container span').html(moves);
-	
-	var size = Math.sqrt(levels[currentLevel].length); 
-	
-	//$('.tile-container').html(eval(currentLevel));
-	$('.tile-container').html(generateLevel(size));
-	
-	 //parseInt(currentLevel.slice(-1),10)+1;
-	$('.grid-container').html(createGrid(size));
-	var dimension = (12*(size+1))+(size*46);
-	dimension = dimension.toString() + 'px';
-	$('.game-container').css('width',dimension);
-	$('.game-container').css('height',dimension);
 }
 
 function generateLevel(size) {
 	var output = "";
 	for (i=0; i<levels[currentLevel].length; i++) {
 		output += "<div class=\"tile tile-position-" + (Math.floor(i/size)+1)+ "-" + ((i%size)+1) + "\">" + levels[currentLevel][i] + "</div>";
+	}
+	return output;
+}
+
+function generateStraightLevel(size) {
+	var output = "";
+	for (i=0; i<levels[currentLevel].length; i++) {
+		output += "<div class=\"tile tile-position-" + ((i%size)+1) + "-" + (Math.floor(i/size)+1) + "\">" + levels[currentLevel][i] + "</div>";
 	}
 	return output;
 }
@@ -83,9 +109,15 @@ function incrementLevel() {
 	
 	$('.restart-container').on('click', function(e) {
 		e.preventDefault();
-		var size = Math.sqrt(levels[currentLevel].length);
+		var size;
+		if(levels[currentLevel].length<4) {
+			size = levels[currentLevel].length;
+			$('.tile-container').html(generateStraightLevel(size));
+		} else {
+			size = Math.sqrt(levels[currentLevel].length);
+			$('.tile-container').html(generateLevel(size));
+		}
 		remainingTiles = levels[currentLevel].length;
-		$('.tile-container').html(generateLevel(size));
 		addSwipeTo('.tile');
 		moves=0;
 		$('.moves-container span').html(moves);
