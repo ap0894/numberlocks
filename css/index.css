@@ -25,7 +25,7 @@ body {
   position: relative;
   top: -20px;
   font-size: 14px;
-  line-height: 85px
+  line-height: 86px
 }
 
 
@@ -48,24 +48,23 @@ h1.title {
   color: white;
   display: inline-block;
   border-radius:3px;
-  text-align:center;
   font-weight: bold;
 }
-.score-container {
+.moves-container {
   position: relative;
 }
 
-.score-container span{
+.moves-container span{
   position: relative;
   top: -8px;
   font-size: 24px;
   line-height: 78px
 }
 
-.score-container:before {
+.moves-container:before {
   position: absolute;
   top: 4px;
-  left: 5px;
+  left: 6px;
   content: "Moves";
   text-transform: uppercase;
   font-size: 10px;
@@ -336,4 +335,65 @@ table {
 	margin: 0px auto;
 }
 
+.modal {
+	display:none;
+	position:fixed;
+	z-index: 2;
+	padding-top: 75px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.modal-content {
+	position: relative;
+	background-color: #64cdff;
+	margin: auto;
+	padding: 20px;
+	border-radius: 10px;
+	color: white;
+	text-align: center;
+	width: 250px;
+	height: 160px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.score-container{
+	position: relative;
+	top: 60px;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	position: relative;
+	top: -26px;
+	left: 12px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
