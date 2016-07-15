@@ -3,7 +3,10 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 var currentLevel;
 var remainingTiles;
 var completeBonus = 500;
+var remainderBonus = 1000;
 var moves = 0;
+
+document.addEventListener("deviceready", onDeviceReady, false);
 
 function createGrid(size) {
 	var grid = "";
@@ -71,9 +74,9 @@ function generateStraightLevel(size) {
 	return output;
 }
 
-function calculateScore() {
-	var score = 1000 + completeBonus + (((levels[currentLevel].length-1)-moves) * 75);
-	return score;
+function calculateTotal() {
+	var total = remainderBonus + completeBonus + (((levels[currentLevel].length-1)-moves) * 75);
+	return total;
 }
 
 function incrementLevel() {
@@ -81,7 +84,11 @@ function incrementLevel() {
 	return "level"+newNum;
 }
 
-    $(function() { 
+function onDeviceReady() {
+	AndroidFullScreen.immersiveMode();
+}
+
+$(function() { 
     
     $(".close").on('click', function(e) {
     	gameOverModal.style.display = "none";
@@ -189,9 +196,22 @@ function incrementLevel() {
 					$('.moves-container span').html(moves);
 				}
 				if(remainingTiles === 0) {
-					var score = calculateScore();
+					var total = calculateTotal();
 					gameOverModal.style.display = "block";
-					$('#score').html(score);
+					$('#complete').html(completeBonus);
+					$('#remainder').html(remainderBonus);
+					$('#moves').html(((levels[currentLevel].length-1)-moves) * 75);
+					$('#total').html(total);
+					$('.count').each(function () {
+					  var $this = $(this);
+					  jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+						duration: 2000,
+						easing: 'swing',
+						step: function () {
+						  $this.text(Math.ceil(this.Counter));
+						}
+					  });
+					});
 					currentLevel = incrementLevel();
 				}
 			}
