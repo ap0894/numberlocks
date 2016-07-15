@@ -108,7 +108,8 @@ hr {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  background: #00002E;
+  //background: #00002E;
+  background : white;
   border-radius: 6px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -139,7 +140,8 @@ hr {
   margin-right: 12px;
   float: left;
   border-radius: 3px;
-  background: rgba(238, 228, 218, 0.35);
+  //background: rgba(238, 228, 218, 0.35);
+  background: rgba(129, 99, 70, 0.25);
 }
 .grid-cell:last-child {
   margin-right: 0;
@@ -326,7 +328,7 @@ hr {
 }
 
 .tile-complete{
-	background: #F3FFFF;
+	background: #EBEBEB;
 }
 
 table {
@@ -392,5 +394,9 @@ table {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.count {
+	font-weight: bold;
 }
 
