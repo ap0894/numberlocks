@@ -144,16 +144,11 @@ function onReady() {
 		//var remainingTiles = levels[currentLevel].length;
       //Enable swiping...
       
-      //var hammer = new Hammer(myElement, myOptions);
-      //var mc = $('.tile-container').hammer.set('pan').set({prevent_default: true, domEvents:true, direction:Hammer.DIRECTION_ALL });
-      var $mc = $('.tile-container').hammer();
+      /*var $mc = $('.tile-container').hammer();
       $mc.data("hammer").get('pan').set({ prevent_default: true, domEvents:true, direction:Hammer.DIRECTION_ALL  });	
       $mc.bind("pan", function(event) {
 		alert("pan! " + event.gesture.additionalEvent); 
-      });
-      /*$('.tile-container').hammer({prevent_default: true, domEvents:true, direction:Hammer.DIRECTION_ALL }).on("swipe", ".tile", function(event) {
-		alert("swipe! " + event.direction); 
-      }); */
+      });*/
       var addSwipeTo = function(selector) {
       $(selector).swipe("destroy");
       $(selector).swipe( {
