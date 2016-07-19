@@ -148,6 +148,17 @@ function onReady() {
 	
 		//var remainingTiles = levels[currentLevel].length;
       //Enable swiping...
+		
+
+		var hammertime = $('.tile-container').hammer({prevent_default:true, domEvents:true});
+		$('.tile-container').data("hammer").get('pan').set({ direction: Hammer.DIRECTION_ALL });
+		hammertime.on("panleft panright panup pandown", ".tile", function(ev) {
+			var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
+				return v.indexOf("tile-position") === 0;
+			}).join();
+    		alert(ev.type + " " + classIndex); 
+		});
+		
       var addSwipeTo = function(selector) {
       $(selector).swipe("destroy");
       $(selector).swipe( {
