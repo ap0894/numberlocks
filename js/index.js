@@ -6,7 +6,19 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves = 0;
 
-document.addEventListener("deviceready", onDeviceReady, false);
+if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
+    document.addEventListener('deviceready', onDeviceReady, false);
+} else {
+    onReady();
+}
+
+
+function onDeviceReady () {
+	AndroidFullScreen.immersiveMode();
+	initAds();
+	onReady();
+}
+
 
 function createGrid(size) {
 	var grid = "";
@@ -84,14 +96,13 @@ function incrementLevel() {
 	return "level"+newNum;
 }
 
-function onDeviceReady() {
-	AndroidFullScreen.immersiveMode();
-}
 
-$(function() { 
+
+function onReady() {
     
     $(".close").on('click', function(e) {
     	gameOverModal.style.display = "none";
+    	if(AdMob) AdMob.showInterstitial();
 		remainingTiles = levels[currentLevel].length;
 		addBoard();	
 		addSwipeTo('.tile');
@@ -132,6 +143,17 @@ $(function() {
 	
 		//var remainingTiles = levels[currentLevel].length;
       //Enable swiping...
+      
+      //var hammer = new Hammer(myElement, myOptions);
+      //var mc = $('.tile-container').hammer.set('pan').set({prevent_default: true, domEvents:true, direction:Hammer.DIRECTION_ALL });
+      var $mc = $('.tile-container').hammer();
+      $mc.data("hammer").get('pan').set({ prevent_default: true, domEvents:true, direction:Hammer.DIRECTION_ALL  });	
+      $mc.bind("pan", function(event) {
+		alert("pan! " + event.gesture.additionalEvent); 
+      });
+      /*$('.tile-container').hammer({prevent_default: true, domEvents:true, direction:Hammer.DIRECTION_ALL }).on("swipe", ".tile", function(event) {
+		alert("swipe! " + event.direction); 
+      }); */
       var addSwipeTo = function(selector) {
       $(selector).swipe("destroy");
       $(selector).swipe( {
@@ -219,4 +241,4 @@ $(function() {
          threshold:5
       });
       };
-    });
+    }
