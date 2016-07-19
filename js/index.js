@@ -149,8 +149,8 @@ function onReady() {
 		//var remainingTiles = levels[currentLevel].length;
       //Enable swiping...
 		var hammertime = $('.tile-container').hammer({prevent_default:true, domEvents:true});
-		$('.tile-container').data("hammer").get('pan').set({ direction: Hammer.DIRECTION_ALL, threshold: 0 });
-		hammertime.on("panleft panright panup pandown", ".tile", function(ev) {
+		$('.tile-container').data("hammer").get('swipe').set({ direction: Hammer.DIRECTION_ALL, threshold: 0 });
+		hammertime.on("swipeleft swiperight swipeup swipedown", ".tile", function(ev) {
 			PreventGhostClick('.tile-container');
 			ev.originalEvent.gesture.srcEvent.preventDefault();
 			var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
