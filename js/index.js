@@ -8,7 +8,7 @@ var moves = 0;
 var testing = true;
 
 if (testing) {
-	AdMod = false;
+	AdMob = false;
 	onReady();
 }
 else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
