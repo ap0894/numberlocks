@@ -6,23 +6,6 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=1, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        
-        <link rel="apple-touch-icon" sizes="57x57" href="./img/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="./img/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="./img/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="./img/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="./img/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="./img/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="./img/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="./img/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="./img/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="./img/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="./img/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
-		<link rel="manifest" href="/manifest.json">
-
-        <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Number Lock</title>
     </head>
     <body>
@@ -48,38 +31,15 @@
 					</tr>
 				</tbody></table>
 			</div>
-			<div class="control-container">
-				<div class="controller moves-container"><span></span></div>
-				<div class="controller restart-container"></div>
-				<div class="controller level-selector"><span>Levels</span></div>
-			</div>
-		  	<div class="game-container">
-				<div class="grid-container"></div>
-		  		<div class="tile-container"></div>
-			</div>
 		  	<p class="game-explanation"></p>
 		  	<hr>
 		  	<p>Created by <a href="http://brandmaster-virtualteambuild.rhcloud.com/" target="_blank">Anup Parekh</a></p>
 		</div>
 		
-		<!-- Game Over Modal -->
-		<div id="gameOverModal" class="modal">
-			<!--Modal Content -->
-			<div id="gameOverContent" class="modal-content">
-				<span class="close">x</span>
-				<div class="score-container">
-					<p>Complete Bonus: <span class="count" id="complete"></span></p>
-					<p>Remainder Bonus: <span class="count" id="remainder"></span></p>
-					<p>Moves Bonus: <span class="count" id="moves"></span></p>
-					<p>Total: <span class="count" id="total"></span></p>
-				</div>
-			</div>
-		</div>
-		
         <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
         <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
         <script type="text/javascript" src="js/levels.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
         <script type="text/javascript" src="js/admob_simple.js"></script>
     </body>
 </html>
