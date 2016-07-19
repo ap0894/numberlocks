@@ -154,7 +154,23 @@ function onReady() {
 			var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 				return v.indexOf("tile-position") === 0;
 			}).join();
-    		alert(ev.type + " " + classIndex); 
+			var angle = ev.originalEvent.gesture.angle;
+			if(angle > -157.5 && angle < -112.5) {
+				direction = "upleft"; 
+				//UP-LEFT SWIPE...
+			} else if(angle > -67.5 && angle < -22.5) {
+				direction = "upright"; 
+				//UP-RIGHT SWIPE...
+			} else if(angle > 22.5 && angle < 67.5) {
+				direction = "downright"; 
+				//DOWN-RIGHT SWIPE...
+			} else if (angle > 112.5 && angle < 157.5) {
+				direction = "downleft"; 
+				//DOWN-LEFT SWIPE...
+			} else {
+				direction = ev.type;
+			}
+    		alert(direction + " " + classIndex); 
 		});
 		
       var addSwipeTo = function(selector) {
