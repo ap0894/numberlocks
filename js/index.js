@@ -110,7 +110,7 @@ function onReady() {
     	if(AdMob) AdMob.showInterstitial();
 		remainingTiles = levels[currentLevel].length;
 		addBoard();	
-		addSwipeTo('.tile');
+		//addSwipeTo('.tile');
 	});
     
     $(".level-selector").on('click', function(e) {
@@ -127,7 +127,7 @@ function onReady() {
 		currentLevel = $(this).attr('id');
 		remainingTiles = levels[currentLevel].length;
 		addBoard();	
-		addSwipeTo('.tile');
+		//addSwipeTo('.tile');
 	});
 	
 	$('.restart-container').on('click', function(e) {
@@ -141,7 +141,7 @@ function onReady() {
 			$('.tile-container').html(generateLevel(size));
 		}
 		remainingTiles = levels[currentLevel].length;
-		addSwipeTo('.tile');
+		//addSwipeTo('.tile');
 		moves=0;
 		$('.moves-container span').html(moves);
 	});     
@@ -149,7 +149,7 @@ function onReady() {
 		//var remainingTiles = levels[currentLevel].length;
       //Enable swiping...
 		var hammertime = $('.tile-container').hammer({prevent_default: true, domEvents:true});
-		$('.tile-container').data("hammer").get('swipe').set({ direction: Hammer.DIRECTION_ALL, threshold: 0 });
+		$('.tile-container').data("hammer").get('swipe').set({ direction: Hammer.DIRECTION_ALL, threshold: 0, velocity: 0.1 });
 		hammertime.on("swipeleft swiperight swipeup swipedown", ".tile", function(ev) {
 			var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 				return v.indexOf("tile-position") === 0;
@@ -170,10 +170,85 @@ function onReady() {
 			} else {
 				direction = ev.type;
 			}
-    		alert(direction + " " + classIndex); 
+    		//alert(direction + " " + classIndex); 
+    		
+				
+		var x = parseInt(classIndex.slice(-3, -2), 10);
+		var y = classIndex.slice(-1);
+		var move = false;
+		console.log("x: "+x + " y:" + y);
+        
+          switch (direction) { 
+			case 'swipeleft':
+				if(x>1) {
+					x--;
+					move = true;
+				}
+			break;
+			case 'swiperight':
+				if(x<5) {
+					x++	;
+					move = true;
+				}
+			break;
+			case 'swipeup':  
+				if (y>1) {
+					y--;
+					move = true;
+				}
+			break;		
+			case 'swipedown': 
+				if (y<5) {
+					y++;
+					move = true;
+				}
+			break;
+			default:
+			} 
+			if(move) {
+			moves++;			
+			newClassIndex = 'tile-position-'+x+'-'+y;
+				if ($('.'+newClassIndex).text()) {
+					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
+					$('.'+newClassIndex).remove();
+					$(this).removeClass(classIndex);
+					$(this).addClass(newClassIndex);
+					$(this).addClass('tile-merged');
+					$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+					if(newValue !=0){
+						$(this).text(newValue);
+						remainingTiles--;
+					} else {
+						$('.'+newClassIndex).remove();
+						$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
+						remainingTiles--;
+						remainingTiles--;
+					}
+					$('.moves-container span').html(moves);
+				}
+				if(remainingTiles === 0) {
+					var total = calculateTotal();
+					gameOverModal.style.display = "block";
+					$('#complete').html(completeBonus);
+					$('#remainder').html(remainderBonus);
+					$('#moves').html(((levels[currentLevel].length-1)-moves) * 75);
+					$('#total').html(total);
+					$('.count').each(function () {
+					  var $this = $(this);
+					  jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+						duration: 2000,
+						easing: 'swing',
+						step: function () {
+						  $this.text(Math.ceil(this.Counter));
+						}
+					  });
+					});
+					currentLevel = incrementLevel();
+				}
+			}
 		});
 		
-      var addSwipeTo = function(selector) {
+      /*var addSwipeTo = function(selector) {
       $(selector).swipe("destroy");
       $(selector).swipe( {
         //Generic swipe handler for all directions
@@ -259,5 +334,5 @@ function onReady() {
         },
          threshold:5
       });
-      };
+      };*/
     }
