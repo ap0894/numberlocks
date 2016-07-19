@@ -6,11 +6,11 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves = 0;
 
-if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
+/*if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
     document.addEventListener('deviceready', onDeviceReady, false);
-} else {
+} else {*/
     onReady();
-}
+//}
 
 
 function onDeviceReady () {
