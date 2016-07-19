@@ -156,16 +156,16 @@ function onReady() {
 			}).join();
 			var angle = ev.originalEvent.gesture.angle;
 			if(angle > -157.5 && angle < -112.5) {
-				direction = "upleft"; 
+				direction = "swipeupleft"; 
 				//UP-LEFT SWIPE...
 			} else if(angle > -67.5 && angle < -22.5) {
-				direction = "upright"; 
+				direction = "swipeupright"; 
 				//UP-RIGHT SWIPE...
 			} else if(angle > 22.5 && angle < 67.5) {
-				direction = "downright"; 
+				direction = "swipedownright"; 
 				//DOWN-RIGHT SWIPE...
 			} else if (angle > 112.5 && angle < 157.5) {
-				direction = "downleft"; 
+				direction = "swipedownleft"; 
 				//DOWN-LEFT SWIPE...
 			} else {
 				direction = ev.type;
@@ -184,10 +184,11 @@ function onReady() {
 					x--;
 					move = true;
 				}
-			break;
-			case 'swiperight':
-				if(x<5) {
-					x++	;
+			break; 
+			case 'swipeupleft':
+				if(x>1 && y>1) {
+					x--;
+					y--;
 					move = true;
 				}
 			break;
@@ -196,10 +197,37 @@ function onReady() {
 					y--;
 					move = true;
 				}
-			break;		
+			break;	
+			case 'swipeupright':  
+				if (y>1 && x<5) {
+					y--;
+					x++;
+					move = true;
+				}
+			break;	
+			case 'swiperight':
+				if(x<5) {
+					x++	;
+					move = true;
+				}
+			break;
+			case 'swipedownright':
+				if(x<5 && y<5) {
+					x++	;
+					y++;
+					move = true;
+				}
+			break;	
 			case 'swipedown': 
 				if (y<5) {
 					y++;
+					move = true;
+				}
+			break;
+			case 'swipedownleft': 
+				if (y<5 && x>1) {
+					y++;
+					x--;
 					move = true;
 				}
 			break;
