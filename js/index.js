@@ -5,12 +5,15 @@ var remainingTiles;
 var completeBonus = 500;
 var remainderBonus = 1000;
 var moves = 0;
+var testing = true; 
 
-/*if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
-    document.addEventListener('deviceready', onDeviceReady, false);
-} else {*/
+if (testing) {
     onReady();
-//}
+} else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
+    document.addEventListener('deviceready', onDeviceReady, false);
+} else {
+    onReady();
+}
 
 
 function onDeviceReady () {
