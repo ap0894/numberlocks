@@ -28,6 +28,14 @@ body {
   line-height: 86px
 }
 
+.leaderboard span{
+	position: relative;
+    top: -6px;
+    font-size: 12px;
+    line-height: 29px;
+    overflow-wrap: break-word;
+}
+
 
 h1.title {
   font-size: 32px;
@@ -398,5 +406,9 @@ table {
 
 .count {
 	font-weight: bold;
+}
+
+.vault-img {
+	width: 50px;
 }
 

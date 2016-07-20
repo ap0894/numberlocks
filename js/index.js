@@ -6,6 +6,7 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves = 0;
 var testing = true;
+var total = 0;
 
 if (testing) {
 	AdMob = false;
@@ -17,13 +18,21 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
     onReady();
 }
 
-
 function onDeviceReady () {
+	var successCallback = function (user) {
+		//alert(user.alias);
+		// user.alias, user.player, user.displayName
+	};
+	
+	var failureCallback = function (e) {
+		//alert("Failed to authenticate " + e);
+	}
+
+	gamecenter.auth(successCallback, failureCallback);
 	AndroidFullScreen.immersiveMode();
 	showBanner();
 	onReady();
 }
-
 
 function createGrid(size) {
 	var grid = "";
@@ -94,8 +103,8 @@ function generateStraightLevel(size) {
 }
 
 function calculateTotal() {
-	var total = remainderBonus + completeBonus + (((levels[currentLevel].length-1)-moves) * 75);
-	return total;
+	total = remainderBonus + completeBonus + (((levels[currentLevel].length-1)-moves) * 75);
+	//return total;
 }
 
 function incrementLevel() {
@@ -103,12 +112,40 @@ function incrementLevel() {
 	return "level"+newNum;
 }
 
-
-
 function onReady() {
+    
+    $('.leaderboard').on('click', function(e) {
+    	var data = {
+    		leaderboardId: "NLLB1234"
+		};
+		gamecenter.showLeaderboard(successCallback, failureCallback, data);
+		
+		var successCallback = function (e) {
+			//alert("Successfully showed Leaderboard" + e);
+		};
+	
+		var failureCallback = function (e) {
+			//alert("Failed to show Leaderboardd " + e);
+		};
+    });
     
     $(".close").on('click', function(e) {
     	gameOverModal.style.display = "none";
+
+		var data = {
+			score: total,
+			leaderboardId: "NLLB1234"
+		};
+		gamecenter.submitScore(successCallback, failureCallback, data);
+		
+		var successCallback = function (e) {
+			//alert("Successfully submitted score" + e);
+		};
+	
+		var failureCallback = function (e) {
+			//alert("Failed to submit score " + e);
+		};
+		
     	// check and show it at end of a game level
     	showInterstitial();
 		remainingTiles = levels[currentLevel].length;
@@ -172,9 +209,7 @@ function onReady() {
 				//DOWN-LEFT SWIPE...
 			} else {
 				direction = ev.type;
-			}
-    		//alert(direction + " " + classIndex); 
-    		
+			}    		
 				
 		var x = parseInt(classIndex.slice(-3, -2), 10);
 		var y = classIndex.slice(-1);
@@ -258,7 +293,7 @@ function onReady() {
 					$('.moves-container span').html(moves);
 				}
 				if(remainingTiles === 0) {
-					var total = calculateTotal();
+					calculateTotal();
 					gameOverModal.style.display = "block";
 					$('#complete').html(completeBonus);
 					$('#remainder').html(remainderBonus);
