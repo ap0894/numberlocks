@@ -18,8 +18,8 @@ if( /(android)/i.test(navigator.userAgent) ) {
   };
 }
 
-function initAds() {
-  if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
+function showBanner() {
+	if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
 
   // this will create a banner on startup
   AdMob.createBanner( {
@@ -31,6 +31,10 @@ function initAds() {
     autoShow: true,
     bgColor: 'black'
   } );
+}
+
+function prepInterstitial() {
+	if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
 
   // this will load a full screen ad on startup
   AdMob.prepareInterstitial({
@@ -38,4 +42,8 @@ function initAds() {
     isTesting: true, // TODO: remove this line when release
     autoShow: false
   });
+}
+
+function showInterstitial() {
+	if(AdMob) AdMob.showInterstitial();
 }

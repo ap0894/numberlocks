@@ -20,7 +20,7 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
 
 function onDeviceReady () {
 	AndroidFullScreen.immersiveMode();
-	initAds();
+	showBanner();
 	onReady();
 }
 
@@ -48,6 +48,8 @@ function createLine(size) {
 }
 
 function addBoard() {
+
+	prepInterstitial();
 	moves = 0;
 	$('.levels').css('display','none');
 	var size;
@@ -78,7 +80,7 @@ function addBoard() {
 function generateLevel(size) {
 	var output = "";
 	for (i=0; i<levels[currentLevel].length; i++) {
-		output += "<div class=\"tile tile-position-" + (Math.floor(i/size)+1)+ "-" + ((i%size)+1) + "\">" + levels[currentLevel][i] + "</div>";
+		output += "<div class=\"tile tile-movable tile-position-" + (Math.floor(i/size)+1)+ "-" + ((i%size)+1) + "\">" + levels[currentLevel][i] + "</div>";
 	}
 	return output;
 }
@@ -86,7 +88,7 @@ function generateLevel(size) {
 function generateStraightLevel(size) {
 	var output = "";
 	for (i=0; i<levels[currentLevel].length; i++) {
-		output += "<div class=\"tile tile-position-" + ((i%size)+1) + "-" + (Math.floor(i/size)+1) + "\">" + levels[currentLevel][i] + "</div>";
+		output += "<div class=\"tile tile-movable tile-position-" + ((i%size)+1) + "-" + (Math.floor(i/size)+1) + "\">" + levels[currentLevel][i] + "</div>";
 	}
 	return output;
 }
@@ -107,7 +109,8 @@ function onReady() {
     
     $(".close").on('click', function(e) {
     	gameOverModal.style.display = "none";
-    	if(AdMob) AdMob.showInterstitial();
+    	// check and show it at end of a game level
+    	showInterstitial();
 		remainingTiles = levels[currentLevel].length;
 		addBoard();	
 		//addSwipeTo('.tile');
@@ -150,7 +153,7 @@ function onReady() {
       //Enable swiping...
 		var hammertime = $('.tile-container').hammer({prevent_default: true, domEvents:true});
 		$('.tile-container').data("hammer").get('swipe').set({ direction: Hammer.DIRECTION_ALL, threshold: 0, velocity: 0.1 });
-		hammertime.on("swipeleft swiperight swipeup swipedown", ".tile", function(ev) {
+		hammertime.on("swipeleft swiperight swipeup swipedown", ".tile-movable", function(ev) {
 			var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 				return v.indexOf("tile-position") === 0;
 			}).join();
