@@ -120,7 +120,7 @@ function onReady() {
     	var data = {
     		leaderboardId: "NLLB1234"
 		};
-		gamecenter.showLeaderboard(successCallback, failureCallback, data);
+		if(!testing) gamecenter.showLeaderboard(successCallback, failureCallback, data);
 		
 		var successCallback = function (e) {
 			//alert("Successfully showed Leaderboard" + e);
@@ -138,7 +138,7 @@ function onReady() {
 			score: total,
 			leaderboardId: "NLLB1234"
 		};
-		gamecenter.submitScore(successCallback, failureCallback, data);
+		if(!testing) gamecenter.submitScore(successCallback, failureCallback, data);
 		
 		var successCallback = function (e) {
 			//alert("Successfully submitted score" + e);
