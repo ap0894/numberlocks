@@ -19,7 +19,10 @@ if( /(android)/i.test(navigator.userAgent) ) {
 }
 
 function showBanner() {
-	if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
+	if (! AdMob ) { 
+		//alert( 'admob plugin not ready' ); 
+		return; 
+	}
 
   // this will create a banner on startup
   AdMob.createBanner( {
@@ -34,7 +37,10 @@ function showBanner() {
 }
 
 function prepInterstitial() {
-	if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
+	if (! AdMob ) { 
+		//alert( 'admob plugin not ready' ); 
+		return; 
+	}
 
   // this will load a full screen ad on startup
   AdMob.prepareInterstitial({

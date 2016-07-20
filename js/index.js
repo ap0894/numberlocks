@@ -69,22 +69,31 @@ function addBoard() {
 		$('.grid-container').html(createLine(size));
 		$('.tile-container').html(generateStraightLevel(size));
 		var width = (12*(size+1))+(size*46);
+		var superWidth = width + 25;
 		width = width.toString() + 'px';
+		superWidth = superWidth.toString() + 'px';
 		var height = (46) + (12*2);
 		height = (height+25).toString() + 'px';
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
+		$('.super-container').css('padding-bottom','10px');
+		$('.super-container').css('width',superWidth);
 	} else {
 		size = Math.sqrt(levels[currentLevel].length); 
 		$('.grid-container').html(createGrid(size));
 		$('.tile-container').html(generateLevel(size));
 		var dimension = (12*(size+1))+(size*46);
+		var height = dimension + 25;
 		dimension = dimension.toString() + 'px';
+		height = height.toString() + 'px';
 		$('.game-container').css('width',dimension);
-		$('.game-container').css('height',dimension);
+		$('.game-container').css('height',height);
+		$('.super-container').css('padding-bottom','10px');
+		$('.super-container').css('width',height);
 	}
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
+	$('.super-container').css('display','block');	
 	$('.moves-label span').html(moves);
 }
 
@@ -158,8 +167,10 @@ function onReady() {
     $(".level-selector").on('click', function(e) {
     	e.preventDefault();
 		$('.control-container').css('display','none');	
-		$('.game-container').css('display','none');
+		$('.game-container').css('display','none');	
+		$('.super-container').css('display','none');
 		$('.levels').css('display','block');
+		$('.title').show();
     });
     
 	$('.game-explanation').html(gameExplanation);
@@ -167,8 +178,10 @@ function onReady() {
 	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10', function(e) {
 		e.preventDefault();
 		currentLevel = $(this).attr('id');
+		$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
 		remainingTiles = levels[currentLevel].length;
 		addBoard();	
+		$('.title').hide();
 		//addSwipeTo('.tile');
 	});
 	

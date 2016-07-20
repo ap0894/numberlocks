@@ -62,7 +62,10 @@ h1.title {
   font-weight: bold;
 }
 .moves-label {
-
+  padding-bottom: 5px;
+  text-align: right;
+  color: white;
+  font-size: 12px;
 }
 
 .moves-label span{
@@ -73,9 +76,11 @@ h1.title {
 }
 
 .restart-container {
-  background-image: url("../img/reload-arrow.png") ;
-  background-repeat: no-repeat;
-  background-position: 6px;
+	display: inline-block;
+}
+
+.restart-container img {
+	width: 24px;
 }
 
 p {
@@ -322,7 +327,7 @@ hr {
 }
 
 .game-explanation {
-  margin-top: 22px;
+  margin-top: 12px;
 }
 
 .tile-tick:before {
@@ -416,4 +421,6 @@ table {
 
 .super-container {
 	background: white;
+	border-radius: 5px;
+	margin: 0 auto;
 }
