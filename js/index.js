@@ -1,5 +1,7 @@
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
+var levelsDiv = "<table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td><td>Level 4</td><td>Level 5</td></tr><tr><td><img id=\"level1\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level2\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level3\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level4\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level5\" src=\"./img/levelLocked.png\" /></td></tr></tr><tr><tr><td>Level 6</td><td>Level 7</td><td>Level 8</td><td>Level 9</td><td>Level 10</td></tr><tr><td><img id=\"level6\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level7\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level8\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level9\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level10\" src=\"./img/levelLocked.png\" /></td></tr></tr></tbody></table>";
+
 var currentLevel;
 var remainingTiles;
 var completeBonus = 500;
@@ -125,7 +127,7 @@ function onReady() {
 		};
 	
 		var failureCallback = function (e) {
-			//alert("Failed to show Leaderboardd " + e);
+			//alert("Failed to show Leaderboard " + e);
 		};
     });
     
@@ -162,12 +164,17 @@ function onReady() {
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$("#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10").on('click', function(e) {
+	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10', function(e) {
 		e.preventDefault();
 		currentLevel = $(this).attr('id');
 		remainingTiles = levels[currentLevel].length;
 		addBoard();	
 		//addSwipeTo('.tile');
+	});
+	
+	$("#vault1, #vault2, #vault3, #vault4, #vault5").on('click', function(e) {
+		$('.vaults').hide();
+		$('.levels').html(levelsDiv);
 	});
 	
 	$('.restart-container').on('click', function(e) {

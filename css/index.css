@@ -13,8 +13,11 @@ body {
 }
 
 .levels {
-	width: 50%
-	margin: auto;
+	font-size: 12px;
+}
+
+.levels img {
+	width: 50px;
 }
 
 .level-selector {
@@ -410,5 +413,9 @@ table {
 
 .vault-img {
 	width: 50px;
+}
+
+.operation-img {
+	width: 25px;
 }
 
