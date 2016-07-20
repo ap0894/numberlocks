@@ -61,24 +61,15 @@ h1.title {
   border-radius:3px;
   font-weight: bold;
 }
-.moves-container {
-  position: relative;
+.moves-label {
+
 }
 
-.moves-container span{
-  position: relative;
+.moves-label span{
+  /*position: relative;
   top: -8px;
   font-size: 24px;
-  line-height: 78px
-}
-
-.moves-container:before {
-  position: absolute;
-  top: 4px;
-  left: 6px;
-  content: "Moves";
-  text-transform: uppercase;
-  font-size: 10px;
+  line-height: 78px*/
 }
 
 .restart-container {
@@ -119,8 +110,8 @@ hr {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  //background: #00002E;
-  background : white;
+  background: #00002E;
+  //background : white;
   border-radius: 6px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -419,3 +410,10 @@ table {
 	width: 25px;
 }
 
+.current-level {
+	display: inline-block;
+}
+
+.super-container {
+	background: white;
+}

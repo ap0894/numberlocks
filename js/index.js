@@ -71,7 +71,7 @@ function addBoard() {
 		var width = (12*(size+1))+(size*46);
 		width = width.toString() + 'px';
 		var height = (46) + (12*2);
-		height = height.toString() + 'px';
+		height = (height+25).toString() + 'px';
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
 	} else {
@@ -85,7 +85,7 @@ function addBoard() {
 	}
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
-	$('.moves-container span').html(moves);
+	$('.moves-label span').html(moves);
 }
 
 function generateLevel(size) {
@@ -190,7 +190,7 @@ function onReady() {
 		remainingTiles = levels[currentLevel].length;
 		//addSwipeTo('.tile');
 		moves=0;
-		$('.moves-container span').html(moves);
+		$('.moves-label span').html(moves);
 	});     
 	
 		//var remainingTiles = levels[currentLevel].length;
@@ -297,7 +297,7 @@ function onReady() {
 						remainingTiles--;
 						remainingTiles--;
 					}
-					$('.moves-container span').html(moves);
+					$('.moves-label span').html(moves);
 				}
 				if(remainingTiles === 0) {
 					calculateTotal();
