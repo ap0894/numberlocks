@@ -25,17 +25,17 @@ body {
 }
 
 .level-selector span{
-  position: relative;
-  top: -20px;
+  //position: relative;
+  //top: -20px;
   font-size: 14px;
-  line-height: 86px
+  //line-height: 86px
 }
 
 .leaderboard span{
-	position: relative;
-    top: -6px;
+	//position: relative;
+    //top: -6px;
     font-size: 12px;
-    line-height: 29px;
+    //line-height: 29px;
     overflow-wrap: break-word;
 }
 
@@ -81,6 +81,8 @@ h1.title {
 
 .restart-container img {
 	width: 24px;
+	position: relative;
+    top: 5px;
 }
 
 p {
