@@ -65,12 +65,12 @@
 			<div class="levels">
 			</div>
 			<div class="super-container">
-				<div class="control-container">
+				<!--<div class="control-container">
 					<div class="current-level"></div>
 					<div class="restart-container"><img src="./img/reload.png" /></div>
 					<div class=" level-selector"><span>Back</span></div>
 					<div class=" leaderboard"><span>Leaderboard</span></div>
-				</div>
+				</div>-->
 				<div class="game-container">
 					<div class="controls">
 						<div class="pause control"><img src="./img/pause.png"/></div>
@@ -91,12 +91,28 @@
 		<div id="gameOverModal" class="modal">
 			<!--Modal Content -->
 			<div id="gameOverContent" class="modal-content">
-				<span class="close">x</span>
+				<span class="close GameOverClose">x</span>
 				<div class="score-container">
 					<p>Complete Bonus: <span class="count" id="complete"></span></p>
 					<p>Remainder Bonus: <span class="count" id="remainder"></span></p>
 					<p>Moves Bonus: <span class="count" id="moves"></span></p>
 					<p>Total: <span class="count" id="total"></span></p>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Pause Modal -->
+		<div id="pauseModal" class="modal">
+			<!--Modal Content -->
+			<div id="pauseContent" class="modal-content">
+				<span class="close pauseClose">x</span>
+				<p>LEVEL: <span id="level"></span></p>
+				<div style="text-align:left">	
+					<div class="pause-item" id="return"><img class="pause-img" src="./img/return.png" />Return to game</div>
+					<div class="pause-item" id="restart"><img class="pause-img" src="./img/reload.png" />Restart level</div>
+					<div class="pause-item" id="levelSelect"><img class="pause-img" src="./img/reload.png" />Change level</div>
+					<div class="pause-item" id="vaultSelect"><img class="pause-img" src="./img/vaultPause.png" />Vaults</div>
+					<div class="pause-item leaderboard"><img class="pause-img" src="./img/leaderboard.png" />Leaderboard</div>
 				</div>
 			</div>
 		</div>

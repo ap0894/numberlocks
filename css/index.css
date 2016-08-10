@@ -58,12 +58,13 @@ h1.title {
 .lines-container {
     position: relative;
     top: 14px;
+    left: 1px;
     z-index: 1;
 }
 
 .vertical-lines-container {
     position: absolute;
-    top: 14px;
+    top:36px;
     left: 5px;
     z-index: 1;
     float: left;
@@ -386,7 +387,7 @@ table {
 	display:none;
 	position:fixed;
 	z-index: 2;
-	padding-top: 75px;
+	padding-top: 25px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -396,14 +397,16 @@ table {
 
 .modal-content {
 	position: relative;
-	background-color: #64cdff;
+	background-color: white;
 	margin: auto;
 	padding: 20px;
+	font-size: 12px;
 	border-radius: 10px;
-	color: white;
+	color: #00b0f0;
 	text-align: center;
-	width: 250px;
-	height: 160px;
+	width: 155px;
+	height: 216px;
+	box-shadow: 0 3px 6px #000000;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -463,4 +466,12 @@ table {
 	background: white;
 	border-radius: 5px;
 	margin: 0 auto;
+}
+
+.pause-img {
+	padding-right: 12px;
+}
+
+.pause-item {
+	padding-bottom: 6px;
 }

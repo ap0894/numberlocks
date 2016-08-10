@@ -77,7 +77,9 @@ function createLine(size) {
 
 function addBoard() {
 
-	prepInterstitial();
+	prepInterstitial();	
+	$('.lines-container').html('');
+	$('.vertical-lines-container').html('');
 	moves = 0;
 	$('.levels').css('display','none');
 	var size;
@@ -95,6 +97,7 @@ function addBoard() {
 		$('.game-container').css('height',height);
 		$('.super-container').css('padding-bottom','10px');
 		$('.super-container').css('width',superWidth);
+		$('.super-container').css('box-shadow','0 3px 6px #000000');
 	} else {
 		size = Math.sqrt(levels[currentLevel].length); 
 		$('.grid-container').html(createGrid(size));
@@ -103,7 +106,8 @@ function addBoard() {
 		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
 		var height = dimension + 25;
-		$('.vertical-line').css('height',dimension-25);
+		$('.vertical-line').css('height',dimension-70);
+		$('.horizontal-line').css('width',dimension-66);
 		dimension = dimension.toString() + 'px';
 		height = height.toString() + 'px';
 		$('.game-container').css('width',dimension);
@@ -187,7 +191,8 @@ function checkSurrounds(x,y) {
 }
 
 function onReady() {
-    
+    $('.levels').html(levelsDiv);
+    $('.levels').css('display','none');
     $('.leaderboard').on('click', function(e) {
     	var data = {
     		leaderboardId: "NLLB1234"
@@ -203,7 +208,15 @@ function onReady() {
 		};
     });
     
-    $(".close").on('click', function(e) {
+    $(".pause").on('click', function(e) {
+    	pauseModal.style.display = "block";
+	});    
+	
+	$(".pauseClose").on('click', function(e) {
+		pauseModal.style.display = "none";
+	});
+	
+    $(".GameOverClose").on('click', function(e) {
     	gameOverModal.style.display = "none";
 
 		var data = {
@@ -227,12 +240,23 @@ function onReady() {
 		//addSwipeTo('.tile');
 	});
     
-    $(".level-selector").on('click', function(e) {
+    $("#levelSelect").on('click', function(e) {
     	e.preventDefault();
+		pauseModal.style.display = "none";
 		$('.control-container').css('display','none');	
 		$('.game-container').css('display','none');	
 		$('.super-container').css('display','none');
 		$('.levels').css('display','block');
+		$('.title').show();
+    });
+    
+    $("#vaultSelect").on('click', function(e) {
+    	e.preventDefault();
+		pauseModal.style.display = "none";
+		$('.control-container').css('display','none');	
+		$('.game-container').css('display','none');	
+		$('.super-container').css('display','none');
+		$('.vaults').css('display','block');
 		$('.title').show();
     });
     
@@ -250,11 +274,12 @@ function onReady() {
 	
 	$("#vault1, #vault2, #vault3, #vault4, #vault5").on('click', function(e) {
 		$('.vaults').hide();
-		$('.levels').html(levelsDiv);
+		$('.levels').css('display','block');
 	});
 	
-	$('.restart-container').on('click', function(e) {
+	$('#restart').on('click', function(e) {
 		e.preventDefault();
+		pauseModal.style.display = "none";
 		var size;
 		if(levels[currentLevel].length<4) {
 			size = levels[currentLevel].length;
