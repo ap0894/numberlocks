@@ -48,6 +48,23 @@ function createGrid(size) {
 	return grid;
 }
 
+function createLines(size) {
+	var lines = "";
+	for (i=0; i<size; i++) {
+			lines += "<hr class=\"horizontal-line\" \>";
+	}
+	return lines;
+}
+
+function createVerticalLines(size) {
+	var lines = "";
+	for (i=0; i<size; i++) {
+			lines += "<hr class= \"vertical-line\"\>";
+	}
+	return lines;
+}
+
+
 function createLine(size) {
 	var grid = "";
 	grid += "<div class=\"grid-row\">";
@@ -82,8 +99,11 @@ function addBoard() {
 		size = Math.sqrt(levels[currentLevel].length); 
 		$('.grid-container').html(createGrid(size));
 		$('.tile-container').html(generateLevel(size));
+		$('.lines-container').html(createLines(size));
+		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
 		var height = dimension + 25;
+		$('.vertical-line').css('height',dimension-25);
 		dimension = dimension.toString() + 'px';
 		height = height.toString() + 'px';
 		$('.game-container').css('width',dimension);

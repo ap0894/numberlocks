@@ -51,6 +51,33 @@ h1.title {
 	display: none;
 }
 
+.control {
+	display: inline-block;
+}
+
+.lines-container {
+    position: relative;
+    top: 14px;
+    z-index: 1;
+}
+
+.vertical-lines-container {
+    position: absolute;
+    top: 14px;
+    left: 5px;
+    z-index: 1;
+    float: left;
+}
+
+.vertical-line {
+    width: 0px;
+    //height: 92px;
+    border: none;
+    border-left: 1px solid #5b9bd5;
+    margin: 29px;
+    display: inline-block;
+}
+
 .controller {
   background: #27aae0;
   width: 46px;
@@ -64,7 +91,7 @@ h1.title {
 .moves-label {
   padding-bottom: 5px;
   text-align: right;
-  color: white;
+  //color: white;
   font-size: 12px;
 }
 
@@ -102,11 +129,10 @@ strong.important {
   text-transform: uppercase;
 }
 
-hr {
+.horizontal-line {
   border: none;
-  border-bottom: 1px solid #d8d4d0;
-  margin-top: 22px;
-  margin-bottom: 22px;
+  border-bottom: 1px solid #5b9bd5;
+  margin-bottom: 57px;
 }
 
 .game-container {
@@ -349,6 +375,7 @@ hr {
 .tile-complete{
 	background: white;
 	border: 1px solid #0088b8;
+	box-shadow: 0 0px 0px #000000;
 }
 
 table {
