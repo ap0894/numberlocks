@@ -117,7 +117,7 @@ hr {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  background: #00002E;
+  background: white;
   //background : white;
   border-radius: 6px;
   -webkit-box-sizing: border-box;
@@ -148,7 +148,7 @@ hr {
   height: 46px;
   margin-right: 12px;
   float: left;
-  border-radius: 3px;
+  border-radius: 23px;
   //background: rgba(238, 228, 218, 0.35);
   background: rgba(129, 99, 70, 0.25);
 }
@@ -291,17 +291,22 @@ hr {
   width: 46px;
   height: 46px;
   line-height: 46px;
-  border-radius: 3px;
-  background-color: #27aae0;
+  border-radius: 23px;
+  background-color: #00b0f0;
   color: white;
   text-align: center;
-  font-weight: bold;
+  //font-weight: bold;
   z-index: 10;
   font-size: 24px;
+  box-shadow: 0 3px 6px #000000;
   -webkit-transition: 250ms ease-in-out;
   -moz-transition: 250ms ease-in-out;
   -webkit-transition-property: top, left;
   -moz-transition-property: top, left;
+}
+
+.tile:active {
+	background-color: #002060;
 }
 
 .title-tile {
@@ -328,16 +333,22 @@ hr {
   -moz-animation-fill-mode: both;*/
 }
 
+.pair {
+	background-color: #03dbd6;
+}
+
 .game-explanation {
   margin-top: 12px;
 }
 
 .tile-tick:before {
 	content:url("../img/tick.png");
+	line-height: 65px;
 }
 
 .tile-complete{
-	background: #EBEBEB;
+	background: white;
+	border: 1px solid #0088b8;
 }
 
 table {

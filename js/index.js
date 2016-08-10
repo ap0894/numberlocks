@@ -123,6 +123,49 @@ function incrementLevel() {
 	return "level"+newNum;
 }
 
+function checkSurrounds(x,y) {
+	var leftX = parseInt(x,10)-1;
+	var rightX = parseInt(x,10)+1;
+	var upY = parseInt(y,10)-1;
+	var downY = parseInt(y,10)+1;
+	var classIndexTopLeft = '.'+'tile-position-'+leftX+'-'+upY;
+	var classIndexTopMid = '.'+'tile-position-'+x+'-'+upY;
+	var classIndexTopRight = '.'+'tile-position-'+rightX+'-'+upY;
+	var classIndexMidLeft = '.'+'tile-position-'+leftX+'-'+y;
+	var classIndex = '.'+'tile-position-'+x+'-'+y;
+	var classIndexMidRight = '.'+'tile-position-'+rightX+'-'+y;
+	var classIndexBotLeft = '.'+'tile-position-'+leftX+'-'+downY;
+	var classIndexBotMid = '.'+'tile-position-'+x+'-'+downY;
+	var classIndexBotRight = '.'+'tile-position-'+rightX+'-'+downY;
+	
+	if ($(classIndex).text() == $(classIndexTopLeft).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexTopLeft).addClass('pair');
+	} else if ($(classIndex).text() == $(classIndexTopMid).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexTopMid).addClass('pair');
+	} else if ($(classIndex).text() == $(classIndexTopRight).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexTopRight).addClass('pair');
+	} else if ($(classIndex).text() == $(classIndexMidLeft).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexMidLeft).addClass('pair');
+	} else if ($(classIndex).text() == $(classIndexMidRight).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexMidRight).addClass('pair');
+	} else if ($(classIndex).text() == $(classIndexBotLeft).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexBotLeft).addClass('pair');
+	} else if ($(classIndex).text() == $(classIndexBotMid).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexBotMid).addClass('pair');
+	} else if ($(classIndex).text() == $(classIndexBotRight).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexBotRight).addClass('pair');
+	}
+	//alert($(classIndexTopLeft).text()+','+$(classIndexTopMid).text()+','+$(classIndexTopRight).text()+','+$(classIndexMidLeft).text()+','+$(classIndex).text()+','+$(classIndexMidRight).text()+','+$(classIndexBotLeft).text()+','+$(classIndexBotMid).text()+','+$(classIndexBotRight).text());
+}
+
 function onReady() {
     
     $('.leaderboard').on('click', function(e) {
@@ -303,6 +346,7 @@ function onReady() {
 					$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 					if(newValue !=0){
 						$(this).text(newValue);
+						checkSurrounds(x,y);
 						remainingTiles--;
 					} else {
 						$('.'+newClassIndex).remove();
