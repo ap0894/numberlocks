@@ -66,7 +66,7 @@ h1.title {
     position: relative;
     top: 14px;
     left: 1px;
-    z-index: 2;
+    z-index: 1;
 }
 
 .vertical-lines-container {
@@ -89,7 +89,7 @@ h1.title {
     position: absolute;
     top:45px;
     left: 5px;
-    z-index: 2;
+    z-index: 1;
     float: left;
 }
 
