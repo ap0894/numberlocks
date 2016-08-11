@@ -66,7 +66,7 @@ h1.title {
     position: relative;
     top: 14px;
     left: 1px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .vertical-lines-container {
@@ -75,6 +75,44 @@ h1.title {
     left: 5px;
     z-index: 1;
     float: left;
+}
+
+.diagonal-left-lines-container {
+    position: absolute;
+    top:45px;
+    left: 5px;
+    z-index: 1;
+    float: left;
+}
+
+.diagonal-right-lines-container {
+    position: absolute;
+    top:45px;
+    left: 5px;
+    z-index: 2;
+    float: left;
+}
+
+.diagonal-left-line {
+    position: absolute;
+    top: 0px;
+    width: 0px;
+    border: none;
+    border-left: 1px solid #5b9bd5;
+    margin: 29px;
+    display: inline-block;
+    transform: rotate(45deg);
+	transform-origin: 0% 0%;
+}
+
+.diagonal-right-line {
+    width: 0px;
+    border: none;
+    border-left: 1px solid #5b9bd5;
+    margin: 29px;
+    display: inline-block;
+    transform: rotate(-45deg);
+	transform-origin: 0% 0%;
 }
 
 .vertical-line {
@@ -498,7 +536,7 @@ table {
     display: inline-block;
     position: relative;
     border-radius: 50%;
-    background-color: #00b0f0;
+    background-color: white;
     float: left;
     /* margin: 4px; */
     top: 7px;
@@ -519,7 +557,7 @@ table {
   position:absolute;
   top:32%;
   left:22%;
-  color: #b0b0b0;
+  color: #27aae0;
   font-size:8pt;
 }
 .degree{

@@ -34,10 +34,10 @@ function update(percent){
 	var colour = '#00b0f0';
 	if (percent<(timerDuration/2)) {
 		deg = 90 + (360*percent/timerDuration);
-		$('.pie').css('background-image','linear-gradient('+deg+'deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)');
+		$('.pie').css('background-image','linear-gradient('+deg+'deg, transparent 50%, '+colour+' 50%),linear-gradient(90deg, '+colour+' 50%, transparent 50%)');
 	} else if (percent>=(timerDuration/2)) {	
 		deg = -90 + (360*percent/timerDuration);
-        $('.pie').css('background-image','linear-gradient('+deg+'deg, transparent 50%, '+colour+' 50%),linear-gradient(90deg, white 50%, transparent 50%)');
+        $('.pie').css('background-image','linear-gradient(90deg, white 50%, transparent 50%) ,linear-gradient('+deg+'deg, transparent 50%, '+colour+' 50%)');
 	}
 }
 
@@ -85,6 +85,68 @@ function createVerticalLines(size) {
 	return lines;
 }
 
+function createDiagonalLeftLines(size) {
+	var lines = "";
+	var numLines = getNumLines(size);
+
+	for (i=0; i<numLines; i++) {
+		var height = getHeight(i+1,numLines);
+		var top = getTop(i+1,numLines);
+		var left = getLeft(i+1,numLines);
+		lines += "<hr style =\"height:"+height+"px; top:"+top+"px; left:"+left+"px\" class= \"diagonal-left-line\"\>";
+		//linesRight += "<hr class= \"diagonal-right-line\"\>";
+	}
+	return lines;
+}
+
+function getMid(numLines) {
+	return mid = Math.floor(numLines/2)+1;
+}
+
+function getNumLines(num) { 
+  return ((num-1)*2)-1;
+}
+
+function getHeight(i,numLines) {
+	var mid = getMid(numLines);
+	if (i>mid) {
+		return (82*(numLines+1-i));	
+	} else {
+		return 82*i;
+	}
+}
+
+function getTop(i,numLines) {
+	var mid = getMid(numLines);
+	if (i>mid) {
+		return (i-mid)*58;
+	} else {
+		return 0;
+	}
+}
+
+function getLeft(i,numLines) {
+	var mid = getMid(numLines);
+	
+	if (i>mid) {
+		return mid*58;
+	} else {
+		return i*58;
+	}
+}
+
+function createDiagonalRightLines(size) {
+	var lines = "";
+	//var linesLeft = "";
+	//var linesRight = "";
+	for (i=0; i<size; i++) {
+			//linesLeft += "<hr class= \"diagonal-left-line\"\>";
+			length = (i*56) + 56;
+			lines += "<hr style =\"height:"+length+"px\" class= \"diagonal-right-line\"\>";
+	}
+	return lines ;
+}
+
 
 function createLine(size) {
 	var grid = "";
@@ -118,7 +180,6 @@ function addBoard() {
 		$('.game-container').css('height',height);
 		$('.super-container').css('padding-bottom','10px');
 		$('.super-container').css('width',superWidth);
-		$('.super-container').css('box-shadow','0 3px 6px #000000');
 	} else {
 		size = Math.sqrt(levels[currentLevel].length); 
 		$('.grid-container').html(createGrid(size));
@@ -127,6 +188,12 @@ function addBoard() {
 		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
 		var height = dimension + 25;
+		if(currentVaultNumber > 1) {
+			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
+			//$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
+			//$('.diagonal-left-line').css('height',dimension-70);
+			//$('.diagonal-right-line').css('height',dimension-70);
+		}
 		$('.vertical-line').css('height',dimension-70);
 		$('.horizontal-line').css('width',dimension-66);
 		dimension = dimension.toString() + 'px';
@@ -136,6 +203,7 @@ function addBoard() {
 		$('.super-container').css('padding-bottom','10px');
 		$('.super-container').css('width',height);
 	}
+	$('.super-container').css('box-shadow','0 3px 6px #000000');
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
 	$('.super-container').css('display','block');	
@@ -186,32 +254,40 @@ function checkSurrounds(x,y) {
 	var classIndexBotMid = '.'+'tile-position-'+x+'-'+downY;
 	var classIndexBotRight = '.'+'tile-position-'+rightX+'-'+downY;
 	
-	if ($(classIndex).text() == $(classIndexTopLeft).text()) {
-		$(classIndex).addClass('pair');
-		$(classIndexTopLeft).addClass('pair');
-	} else if ($(classIndex).text() == $(classIndexTopMid).text()) {
+	if ($(classIndex).text() == $(classIndexTopMid).text()) {
 		$(classIndex).addClass('pair');
 		$(classIndexTopMid).addClass('pair');
-	} else if ($(classIndex).text() == $(classIndexTopRight).text()) {
-		$(classIndex).addClass('pair');
-		$(classIndexTopRight).addClass('pair');
-	} else if ($(classIndex).text() == $(classIndexMidLeft).text()) {
+	} 
+	if ($(classIndex).text() == $(classIndexMidLeft).text()) {
 		$(classIndex).addClass('pair');
 		$(classIndexMidLeft).addClass('pair');
-	} else if ($(classIndex).text() == $(classIndexMidRight).text()) {
+	} 
+	if ($(classIndex).text() == $(classIndexMidRight).text()) {
 		$(classIndex).addClass('pair');
 		$(classIndexMidRight).addClass('pair');
-	} else if ($(classIndex).text() == $(classIndexBotLeft).text()) {
-		$(classIndex).addClass('pair');
-		$(classIndexBotLeft).addClass('pair');
-	} else if ($(classIndex).text() == $(classIndexBotMid).text()) {
+	} 
+	if ($(classIndex).text() == $(classIndexBotMid).text()) {
 		$(classIndex).addClass('pair');
 		$(classIndexBotMid).addClass('pair');
-	} else if ($(classIndex).text() == $(classIndexBotRight).text()) {
-		$(classIndex).addClass('pair');
-		$(classIndexBotRight).addClass('pair');
+	} 
+	if (currentVaultNumber > 1) {
+		if ($(classIndex).text() == $(classIndexTopLeft).text()) {
+			$(classIndex).addClass('pair');
+			$(classIndexTopLeft).addClass('pair');
+		} 
+		if ($(classIndex).text() == $(classIndexTopRight).text()) {
+			$(classIndex).addClass('pair');
+			$(classIndexTopRight).addClass('pair');
+		} 
+		if ($(classIndex).text() == $(classIndexBotLeft).text()) {
+			$(classIndex).addClass('pair');
+			$(classIndexBotLeft).addClass('pair');
+		} 
+		if ($(classIndex).text() == $(classIndexBotRight).text()) {
+			$(classIndex).addClass('pair');
+			$(classIndexBotRight).addClass('pair');
+		} 
 	}
-	//alert($(classIndexTopLeft).text()+','+$(classIndexTopMid).text()+','+$(classIndexTopRight).text()+','+$(classIndexMidLeft).text()+','+$(classIndex).text()+','+$(classIndexMidRight).text()+','+$(classIndexBotLeft).text()+','+$(classIndexBotMid).text()+','+$(classIndexBotRight).text());
 }
 
 function onReady() {
