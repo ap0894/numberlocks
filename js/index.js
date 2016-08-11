@@ -99,6 +99,19 @@ function createDiagonalLeftLines(size) {
 	return lines;
 }
 
+function createDiagonalRightLines(size) {
+	var lines = "";
+	var numLines = getNumLines(size);
+
+	for (i=0; i<numLines; i++) {
+		var height = getHeight(i+1,numLines);
+		var top = getRTop(i+1,numLines);
+		var left = getRLeft(i+1,numLines);
+		lines += "<hr style =\"height:"+height+"px; top:"+top+"px; left:"+left+"px\" class= \"diagonal-right-line\"\>";
+	}
+	return lines ;
+}
+
 function getMid(numLines) {
 	return mid = Math.floor(numLines/2)+1;
 }
@@ -135,16 +148,23 @@ function getLeft(i,numLines) {
 	}
 }
 
-function createDiagonalRightLines(size) {
-	var lines = "";
-	//var linesLeft = "";
-	//var linesRight = "";
-	for (i=0; i<size; i++) {
-			//linesLeft += "<hr class= \"diagonal-left-line\"\>";
-			length = (i*56) + 56;
-			lines += "<hr style =\"height:"+length+"px\" class= \"diagonal-right-line\"\>";
+function getRTop(i,numLines) {
+	var mid = getMid(numLines);
+	if (i<mid) {
+		return (mid-i)*58;
+	} else {
+		return 0;
 	}
-	return lines ;
+}
+
+function getRLeft(i,numLines) {
+	var mid = getMid(numLines);
+	
+	if (i>mid) {
+		return (i-mid)*58;
+	} else {
+		return 0;
+	}
 }
 
 
@@ -192,7 +212,7 @@ function addBoard() {
 		var height = dimension + 25;
 		if(currentVaultNumber > 1) {
 			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
-			//$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
+			$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
 		}
 		$('.vertical-line').css('height',dimension-70);
 		$('.horizontal-line').css('width',dimension-66);

@@ -106,6 +106,8 @@ h1.title {
 }
 
 .diagonal-right-line {
+    position: absolute;
+    top: 0px;
     width: 0px;
     border: none;
     border-left: 1px solid #5b9bd5;
