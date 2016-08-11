@@ -163,6 +163,8 @@ function addBoard() {
 	prepInterstitial();	
 	$('.lines-container').html('');
 	$('.vertical-lines-container').html('');
+	$('.diagonal-left-lines-container').html('');
+	$('.diagonal-right-lines-container').html('');
 	moves = 0;
 	$('.levels').css('display','none');
 	var size;
@@ -191,8 +193,6 @@ function addBoard() {
 		if(currentVaultNumber > 1) {
 			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
 			//$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
-			//$('.diagonal-left-line').css('height',dimension-70);
-			//$('.diagonal-right-line').css('height',dimension-70);
 		}
 		$('.vertical-line').css('height',dimension-70);
 		$('.horizontal-line').css('width',dimension-66);
