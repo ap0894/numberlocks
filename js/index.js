@@ -1,10 +1,14 @@
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
-var levelsDiv = "<table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td><td>Level 4</td><td>Level 5</td></tr><tr><td><img id=\"level1\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level2\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level3\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level4\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level5\" src=\"./img/levelLocked.png\" /></td></tr></tr><tr><tr><td>Level 6</td><td>Level 7</td><td>Level 8</td><td>Level 9</td><td>Level 10</td></tr><tr><td><img id=\"level6\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level7\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level8\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level9\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level10\" src=\"./img/levelLocked.png\" /></td></tr></tr></tbody></table>";
+var sublevelsDiv = "<div style=\"float: right\" class=\"pause-item\" id=\"vaultSelect\"><img class=\"pause-img\" src=\"./img/vaultPause.png\" />Vaults</div><table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td><td>Level 4</td><td>Level 5</td></tr><tr><td><img id=\"level1\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level2\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level3\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level4\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level5\" src=\"./img/levelLocked.png\" /></td></tr></tr><tr><tr><td>Level 6</td><td>Level 7</td><td>Level 8</td><td>Level 9</td><td>Level 10</td></tr><tr><td><img id=\"level6\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level7\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level8\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level9\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level10\" src=\"./img/levelLocked.png\" /></td></tr></tr></tbody></table>";
+
+var diaglevelsDiv = "<div style=\"float: right\" class=\"pause-item\" id=\"vaultSelect\"><img class=\"pause-img\" src=\"./img/vaultPause.png\" />Vaults</div><table><tbody><tr><tr><td>Level 11</td><td>Level 12</td><td>Level 13</td><td>Level 14</td><td>Level 15</td></tr><tr><td><img id=\"level11\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level12\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level13\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level14\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level15\" src=\"./img/levelLocked.png\" /></td></tr></tr><tr><tr><td>Level 16</td><td>Level 17</td><td>Level 18</td><td>Level 19</td><td>Level 20</td></tr><tr><td><img id=\"level16\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level17\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level18\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level19\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level20\" src=\"./img/levelLocked.png\" /></td></tr></tr></tbody></table>";
 
 var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
 
 var currentLevel;
+var currentVault;
+var currentVaultNumber;
 var remainingTiles;
 var completeBonus = 500;
 var remainderBonus = 1000;
@@ -212,7 +216,6 @@ function checkSurrounds(x,y) {
 
 function onReady() {
 
-    $('.levels').html(levelsDiv);
     $('.levels').css('display','none');
 
 	function pauseTimer() {
@@ -264,6 +267,7 @@ function onReady() {
     $(".pause").on('click', function(e) {
 	    pauseTimer();
     	pauseModal.style.display = "block";
+    	$('#levelTitle').html(currentLevel.substr(5));
 	});    
 	
 	$(".pauseClose").on('click', function(e) {
@@ -305,19 +309,20 @@ function onReady() {
 		$('.title').show();
     });
     
-    $("#vaultSelect").on('click', function(e) {
+    $('body').on('click', '#vaultSelect', function(e) {
     	e.preventDefault();
 		pauseModal.style.display = "none";
+		$('.levels').hide();
 		$('.control-container').css('display','none');	
 		$('.game-container').css('display','none');	
 		$('.super-container').css('display','none');
 		$('.vaults').css('display','block');
 		$('.title').show();
-    });
+	});
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10', function(e) {
+	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20', function(e) {
 		e.preventDefault();
 		currentLevel = $(this).attr('id');
 		$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
@@ -329,6 +334,18 @@ function onReady() {
 	
 	$("#vault1, #vault2, #vault3, #vault4, #vault5").on('click', function(e) {
 		$('.vaults').hide();
+		currentVault = $(this).attr('id');
+		currentVaultNumber = parseInt(currentVault.substr(5),10);
+		switch(currentVaultNumber) {
+			case 1:
+				$('.levels').html(sublevelsDiv);
+				break;
+			case 2:
+				$('.levels').html(diaglevelsDiv);
+				break;
+			default:
+				$('.levels').html(sublevelsDiv);
+		}		
 		$('.levels').css('display','block');
 	});
 	
@@ -347,6 +364,8 @@ function onReady() {
 		//addSwipeTo('.tile');
 		moves=0;
 		$('.moves-label span').html(moves);
+		isPaused = false;
+		startTimer();
 	});     
 	
 		//var remainingTiles = levels[currentLevel].length;
@@ -357,23 +376,26 @@ function onReady() {
 			var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 				return v.indexOf("tile-position") === 0;
 			}).join();
-			var angle = ev.originalEvent.gesture.angle;
-			if(angle > -157.5 && angle < -112.5) {
-				direction = "swipeupleft"; 
-				//UP-LEFT SWIPE...
-			} else if(angle > -67.5 && angle < -22.5) {
-				direction = "swipeupright"; 
-				//UP-RIGHT SWIPE...
-			} else if(angle > 22.5 && angle < 67.5) {
-				direction = "swipedownright"; 
-				//DOWN-RIGHT SWIPE...
-			} else if (angle > 112.5 && angle < 157.5) {
-				direction = "swipedownleft"; 
-				//DOWN-LEFT SWIPE...
+			if(currentVaultNumber > 1) {
+				var angle = ev.originalEvent.gesture.angle;
+				if(angle > -157.5 && angle < -112.5) {
+					direction = "swipeupleft"; 
+					//UP-LEFT SWIPE...
+				} else if(angle > -67.5 && angle < -22.5) {
+					direction = "swipeupright"; 
+					//UP-RIGHT SWIPE...
+				} else if(angle > 22.5 && angle < 67.5) {
+					direction = "swipedownright"; 
+					//DOWN-RIGHT SWIPE...
+				} else if (angle > 112.5 && angle < 157.5) {
+					direction = "swipedownleft"; 
+					//DOWN-LEFT SWIPE...
+				} else {
+					direction = ev.type;
+				}
 			} else {
 				direction = ev.type;
-			}    		
-				
+			}
 		var x = parseInt(classIndex.slice(-3, -2), 10);
 		var y = classIndex.slice(-1);
 		var move = false;

@@ -53,6 +53,13 @@ h1.title {
 
 .control {
 	display: inline-block;
+    text-align: center;
+    position: relative;
+    left: 18px;
+}
+
+.controls {
+	padding-bottom: 12px;
 }
 
 .lines-container {
@@ -91,9 +98,11 @@ h1.title {
 }
 .moves-label {
   padding-bottom: 5px;
-  text-align: right;
+  float: right;
   //color: white;
   font-size: 12px;
+  line-height: 22px;
+  color: #00b0f0;
 }
 
 .moves-label span{
@@ -405,7 +414,7 @@ table {
 	color: #00b0f0;
 	text-align: center;
 	width: 155px;
-	height: 216px;
+	height: 175px;
 	box-shadow: 0 3px 6px #000000;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -451,7 +460,7 @@ table {
 }
 
 .vault-img {
-	width: 50px;
+	width: 50%;
 }
 
 .operation-img {
@@ -471,6 +480,11 @@ table {
 
 .pause-img {
 	padding-right: 12px;
+	vertical-align: middle;
+}
+
+.pause img{
+	//vertical-align:middle;
 }
 
 .pause-item {
@@ -487,8 +501,8 @@ table {
     background-color: #00b0f0;
     float: left;
     /* margin: 4px; */
-    top: 3px;
-    left: 4px;
+    top: 7px;
+    left: 8px;
     z-index: 1;
 }
 
