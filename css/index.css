@@ -466,6 +466,7 @@ table {
 	background: white;
 	border-radius: 5px;
 	margin: 0 auto;
+	min-width: 200px;
 }
 
 .pause-img {
@@ -474,4 +475,41 @@ table {
 
 .pause-item {
 	padding-bottom: 6px;
+}
+
+
+.pie {
+    width: 38px;
+    height: 38px;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    background-color: #00b0f0;
+    float: left;
+    /* margin: 4px; */
+    top: 3px;
+    left: 4px;
+    z-index: 1;
+}
+
+.block{
+    position:absolute;
+    background:#fff;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    top:10%;
+    left:10%;
+}
+#time{
+  position:absolute;
+  top:32%;
+  left:22%;
+  color: #b0b0b0;
+  font-size:8pt;
+}
+.degree{
+      background-image:
+        linear-gradient(90deg, transparent 50%, white 50%),
+        linear-gradient(90deg, white 50%, transparent 50%);
 }

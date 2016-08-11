@@ -2,6 +2,8 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 
 var levelsDiv = "<table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td><td>Level 4</td><td>Level 5</td></tr><tr><td><img id=\"level1\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level2\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level3\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level4\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level5\" src=\"./img/levelLocked.png\" /></td></tr></tr><tr><tr><td>Level 6</td><td>Level 7</td><td>Level 8</td><td>Level 9</td><td>Level 10</td></tr><tr><td><img id=\"level6\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level7\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level8\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level9\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level10\" src=\"./img/levelLocked.png\" /></td></tr></tr></tbody></table>";
 
+var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
+
 var currentLevel;
 var remainingTiles;
 var completeBonus = 500;
@@ -9,6 +11,9 @@ var remainderBonus = 1000;
 var moves = 0;
 var testing = true;
 var total = 0;
+var myTimer;
+var timerDuration = 60 * 2;
+var isPaused = false;
 
 if (testing) {
 	AdMob = false;
@@ -18,6 +23,18 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
     document.addEventListener('deviceready', onDeviceReady, false);
 } else {
     onReady();
+}
+
+function update(percent){
+	var deg;
+	var colour = '#00b0f0';
+	if (percent<(timerDuration/2)) {
+		deg = 90 + (360*percent/timerDuration);
+		$('.pie').css('background-image','linear-gradient('+deg+'deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)');
+	} else if (percent>=(timerDuration/2)) {	
+		deg = -90 + (360*percent/timerDuration);
+        $('.pie').css('background-image','linear-gradient('+deg+'deg, transparent 50%, '+colour+' 50%),linear-gradient(90deg, white 50%, transparent 50%)');
+	}
 }
 
 function onDeviceReady () {
@@ -118,7 +135,10 @@ function addBoard() {
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
 	$('.super-container').css('display','block');	
+	$('#pie-container').html(pie);
 	$('.moves-label span').html(moves);
+	isPaused = false;
+	startTimer();
 }
 
 function generateLevel(size) {
@@ -191,8 +211,41 @@ function checkSurrounds(x,y) {
 }
 
 function onReady() {
+
     $('.levels').html(levelsDiv);
     $('.levels').css('display','none');
+
+	function pauseTimer() {
+		isPaused = true;
+	}
+
+	startTimer = function() {
+		if (myTimer) {
+			clearInterval(myTimer);
+		}
+		duration = timerDuration;
+		var minutes, seconds;
+		myTimer = setInterval(function () {
+			minutes = parseInt(duration / 60, 10);
+			seconds = parseInt(duration % 60, 10);
+
+			//minutes = minutes < 10 ? "0" + minutes : minutes;
+			seconds = seconds < 10 ? "0" + seconds : seconds;
+						
+			$('#time').html(minutes + ":" + seconds);
+			update(timerDuration-duration);
+
+			if(!isPaused) {
+				duration--;
+			}
+			if (duration < 0) {
+				// Time run out - need to change turns
+				duration = timerDuration;
+				console.log("Timeout");
+			}
+		}, 1000);
+	};
+
     $('.leaderboard').on('click', function(e) {
     	var data = {
     		leaderboardId: "NLLB1234"
@@ -209,10 +262,12 @@ function onReady() {
     });
     
     $(".pause").on('click', function(e) {
+	    pauseTimer();
     	pauseModal.style.display = "block";
 	});    
 	
 	$(".pauseClose").on('click', function(e) {
+		isPaused = false;
 		pauseModal.style.display = "none";
 	});
 	
