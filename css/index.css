@@ -1,15 +1,41 @@
+@font-face {
+font-family: 'Berlin Sans FB Demi Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Berlin Sans FB Demi Bold'), url('./font/BRLNSDB.woff') format('woff');
+}
+
 body {
   margin: 0;
   padding: 0;
-  color: #776E65;
   background-color: #e4eff9;
-  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-family:'Berlin Sans FB Demi Bold';
+  font-weight:normal;
   font-size: 18px;
+}
+
+.logo {
+	width: 26px;
+    position: relative;
+    top: 2px;
+    margin-right: 6px;
+}
+
+.heading {
+	margin-bottom: 20px;
 }
 
 .container {
   margin: 15px ;
   text-align: center;
+}
+
+.vaults td {
+	padding-bottom: 20px;
+}
+
+.level-img-row td {
+	padding-bottom: 20px;
 }
 
 .levels {
@@ -224,7 +250,7 @@ strong.important {
   height: 46px;
   margin-right: 12px;
   float: left;
-  border-radius: 23px;
+  border-radius: 50%;
   //background: rgba(238, 228, 218, 0.35);
   background: rgba(129, 99, 70, 0.25);
 }
@@ -367,7 +393,7 @@ strong.important {
   width: 46px;
   height: 46px;
   line-height: 46px;
-  border-radius: 23px;
+  border-radius: 50%;
   background-color: #00b0f0;
   color: white;
   text-align: center;
@@ -386,10 +412,10 @@ strong.important {
 }
 
 .title-tile {
-    width: 30px;
+    width: 24px;
     height: 24px;
-    line-height: 23px;
-    border-radius: 3px;
+    line-height: 22px;
+    border-radius: 50%;
     background-color: #27aae0;
     color: white;
     text-align: center;
@@ -399,6 +425,22 @@ strong.important {
     display: inline-block;
     position: relative;
     top: -4px;
+}
+
+.move-tile {
+	margin-left: 6px;
+    width: 24px;
+    height: 24px;
+    line-height: 22px;
+    border-radius: 50%;
+    background-color: #27aae0;
+    box-shadow: 0 3px 6px #000000;
+    color: white;
+    text-align: center
+    z-index: 10;
+    display: inline-block;
+    position: relative;
+    top: -2px;
 }
 
 .tile-merged {
@@ -552,8 +594,8 @@ table {
     width:30px;
     height:30px;
     border-radius:50%;
-    top:10%;
-    left:10%;
+    top:11%;
+    left:11%;
 }
 #time{
   position:absolute;

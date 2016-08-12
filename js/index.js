@@ -1,8 +1,10 @@
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
-var sublevelsDiv = "<div style=\"float: right\" class=\"pause-item\" id=\"vaultSelect\"><img class=\"pause-img\" src=\"./img/vaultPause.png\" />Vaults</div><table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td><td>Level 4</td><td>Level 5</td></tr><tr><td><img id=\"level1\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level2\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level3\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level4\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level5\" src=\"./img/levelLocked.png\" /></td></tr></tr><tr><tr><td>Level 6</td><td>Level 7</td><td>Level 8</td><td>Level 9</td><td>Level 10</td></tr><tr><td><img id=\"level6\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level7\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level8\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level9\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level10\" src=\"./img/levelLocked.png\" /></td></tr></tr></tbody></table>";
+var sublevelsDiv = "<table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td><td>Level 4</td><td>Level 5</td></tr><tr class=\"level-img-row\"><td><img id=\"level1\" src=\"./img/unlock.png\" /></td><td><img id=\"level2\" src=\"./img/unlock.png\" /></td><td><img id=\"level3\" src=\"./img/unlock.png\" /></td><td><img id=\"level4\" src=\"./img/unlock.png\" /></td><td><img id=\"level5\" src=\"./img/unlock.png\" /></td></tr></tr><tr><tr><td>Level 6</td><td>Level 7</td><td>Level 8</td><td>Level 9</td><td>Level 10</td></tr><tr class=\"level-img-row\"><td><img id=\"level6\" src=\"./img/unlock.png\" /></td><td><img id=\"level7\" src=\"./img/unlock.png\" /></td><td><img id=\"level8\" src=\"./img/unlock.png\" /></td><td><img id=\"level9\" src=\"./img/unlock.png\" /></td><td><img id=\"level10\" src=\"./img/unlock.png\" /></td></tr></tr><tr><tr><td>Level 11</td></tr><tr class=\"level-img-row\"><td><img id=\"level11\" src=\"./img/unlock.png\" /></td></tr></tr></tbody></table>";
 
-var diaglevelsDiv = "<div style=\"float: right\" class=\"pause-item\" id=\"vaultSelect\"><img class=\"pause-img\" src=\"./img/vaultPause.png\" />Vaults</div><table><tbody><tr><tr><td>Level 11</td><td>Level 12</td><td>Level 13</td><td>Level 14</td><td>Level 15</td></tr><tr><td><img id=\"level11\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level12\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level13\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level14\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level15\" src=\"./img/levelLocked.png\" /></td></tr></tr><tr><tr><td>Level 16</td><td>Level 17</td><td>Level 18</td><td>Level 19</td><td>Level 20</td></tr><tr><td><img id=\"level16\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level17\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level18\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level19\" src=\"./img/levelLocked.png\" /></td><td><img id=\"level20\" src=\"./img/levelLocked.png\" /></td></tr></tr></tbody></table>";
+//<div style=\"float: right\" class=\"pause-item\" id=\"vaultSelect\"><img class=\"pause-img\" src=\"./img/vaultPause.png\" />Vaults</div>
+
+var diaglevelsDiv = "<table><tbody><tr><tr><td>Level 12</td><td>Level 13</td><td>Level 14</td><td>Level 15</td><td>Level 16</td></tr><tr class=\"level-img-row\"><td><img id=\"level12\" src=\"./img/unlock.png\" /></td><td><img id=\"level13\" src=\"./img/unlock.png\" /></td><td><img id=\"level14\" src=\"./img/unlock.png\" /></td><td><img id=\"level15\" src=\"./img/unlock.png\" /></td><td><img id=\"level16\" src=\"./img/unlock.png\" /></td></tr></tr><tr><tr><td>Level 17</td><td>Level 18</td><td>Level 19</td><td>Level 20</td><td>Level 21</td></tr><tr class=\"level-img-row\"><td><img id=\"level17\" src=\"./img/unlock.png\" /></td><td><img id=\"level18\" src=\"./img/unlock.png\" /></td><td><img id=\"level19\" src=\"./img/unlock.png\" /></td><td><img id=\"level20\" src=\"./img/unlock.png\" /></td><td><img id=\"level21\" src=\"./img/unlock.png\" /></td></tr></tr><tr><tr><td>Level 22</td><td>Level 23</td></tr><tr class=\"level-img-row\"><td><img id=\"level22\" src=\"./img/unlock.png\" /></td><td><img id=\"level23\" src=\"./img/unlock.png\" /></td></tr></tr></tbody></table>";
 
 var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
 
@@ -16,7 +18,7 @@ var moves = 0;
 var testing = true;
 var total = 0;
 var myTimer;
-var timerDuration = 60 * 2;
+var timerDuration = 60*2;
 var isPaused = false;
 
 if (testing) {
@@ -37,7 +39,7 @@ function update(percent){
 		$('.pie').css('background-image','linear-gradient('+deg+'deg, transparent 50%, '+colour+' 50%),linear-gradient(90deg, '+colour+' 50%, transparent 50%)');
 	} else if (percent>=(timerDuration/2)) {	
 		deg = -90 + (360*percent/timerDuration);
-        $('.pie').css('background-image','linear-gradient(90deg, white 50%, transparent 50%) ,linear-gradient('+deg+'deg, transparent 50%, '+colour+' 50%)');
+        $('.pie').css('background-image','linear-gradient('+deg+'deg, transparent 50%, white 50%),linear-gradient(90deg, '+colour+' 50%, transparent 50%)');
 	}
 }
 
@@ -418,7 +420,7 @@ function onReady() {
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20', function(e) {
+	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23', function(e) {
 		e.preventDefault();
 		currentLevel = $(this).attr('id');
 		$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
