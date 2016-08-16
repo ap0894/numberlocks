@@ -447,6 +447,12 @@ function onReady() {
 		$('.levels').css('display','block');
 	});
 	
+	$('#return').on('click', function(e) {
+		e.preventDefault();
+		isPaused = false;
+		pauseModal.style.display = "none";
+	});
+	
 	$('#restart').on('click', function(e) {
 		e.preventDefault();
 		pauseModal.style.display = "none";
