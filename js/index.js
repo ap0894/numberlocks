@@ -6,6 +6,10 @@ var sublevelsDiv = "<table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Le
 
 var diaglevelsDiv = "<table><tbody><tr><tr><td>Level 11</td><td>Level 12</td><td>Level 13</td><td>Level 14</td><td>Level 15</td></tr><tr class=\"level-img-row\"><td><img id=\"level11\" src=\"./img/unlock.png\" /></td><td><img id=\"level12\" src=\"./img/unlock.png\" /></td><td><img id=\"level13\" src=\"./img/unlock.png\" /></td><td><img id=\"level14\" src=\"./img/unlock.png\" /></td><td><img id=\"level15\" src=\"./img/unlock.png\" /></td></tr></tr><tr><tr><td>Level 16</td><td>Level 17</td><td>Level 18</td><td>Level 19</td><td>Level 20</td></tr><tr class=\"level-img-row\"><td><img id=\"level16\" src=\"./img/unlock.png\" /></td><td><img id=\"level17\" src=\"./img/unlock.png\" /></td><td><img id=\"level18\" src=\"./img/unlock.png\" /></td><td><img id=\"level19\" src=\"./img/unlock.png\" /></td><td><img id=\"level20\" src=\"./img/unlock.png\" /></td></tr></tr></tbody></table>";
 
+var multiselectlevelsDiv = "<table><tbody><tr><tr><td>Level 21</td><td>Level 22</td><td>Level 23</td><td>Level 24</td><td>Level 25</td></tr><tr class=\"level-img-row\"><td><img id=\"level21\" src=\"./img/unlock.png\" /></td><td><img id=\"level22\" src=\"./img/unlock.png\" /></td><td><img id=\"level23\" src=\"./img/unlock.png\" /></td><td><img id=\"level24\" src=\"./img/unlock.png\" /></td><td><img id=\"level25\" src=\"./img/unlock.png\" /></td></tr></tr><tr><tr><td>Level 26</td><td>Level 27</td><td>Level 28</td><td>Level 29</td><td>Level 30</td></tr><tr class=\"level-img-row\"><td><img id=\"level26\" src=\"./img/unlock.png\" /></td><td><img id=\"level27\" src=\"./img/unlock.png\" /></td><td><img id=\"level28\" src=\"./img/unlock.png\" /></td><td><img id=\"level29\" src=\"./img/unlock.png\" /></td><td><img id=\"level30\" src=\"./img/unlock.png\" /></td></tr></tr></tbody></table>";
+
+var fourbyfourlevelsDiv = "<table><tbody><tr><tr><td>Level 31</td><td>Level 32</td><td>Level 33</td><td>Level 34</td><td>Level 35</td></tr><tr class=\"level-img-row\"><td><img id=\"level31\" src=\"./img/unlock.png\" /></td><td><img id=\"level32\" src=\"./img/unlock.png\" /></td><td><img id=\"level33\" src=\"./img/unlock.png\" /></td><td><img id=\"level34\" src=\"./img/unlock.png\" /></td><td><img id=\"level35\" src=\"./img/unlock.png\" /></td></tr></tr><tr><tr><td>Level 36</td><td>Level 37</td><td>Level 38</td><td>Level 39</td><td>Level 40</td></tr><tr class=\"level-img-row\"><td><img id=\"level36\" src=\"./img/unlock.png\" /></td><td><img id=\"level37\" src=\"./img/unlock.png\" /></td><td><img id=\"level38\" src=\"./img/unlock.png\" /></td><td><img id=\"level39\" src=\"./img/unlock.png\" /></td><td><img id=\"level40\" src=\"./img/unlock.png\" /></td></tr></tr></tbody></table>";
+
 var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
 
 var currentLevel;
@@ -420,7 +424,7 @@ function onReady() {
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23', function(e) {
+	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23, #level24, #level25, #level26, #level27, #level28, #level29, #level30, #level31, #level32, #level33, #level34, #level35, #level36, #level37', function(e) {
 		e.preventDefault();
 		currentLevel = $(this).attr('id');
 		$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
@@ -440,6 +444,12 @@ function onReady() {
 				break;
 			case 2:
 				$('.levels').html(diaglevelsDiv);
+				break;
+			case 3:
+				$('.levels').html(multiselectlevelsDiv);
+				break;
+			case 4:
+				$('.levels').html(fourbyfourlevelsDiv);
 				break;
 			default:
 				$('.levels').html(sublevelsDiv);
