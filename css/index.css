@@ -79,13 +79,22 @@ h1.title {
 
 .control {
 	display: inline-block;
-    text-align: center;
-    position: relative;
-    left: 18px;
+	//text-align: center;
+    //position: relative;
+    //left: 18px;
+}
+
+.pause {
+	margin-right: 28px;
 }
 
 .controls {
 	padding-bottom: 12px;
+}
+
+.controls-lower {
+	padding-top:14px;
+	text-align: center;
 }
 
 .lines-container {
@@ -164,11 +173,13 @@ h1.title {
 }
 .moves-label {
   padding-bottom: 5px;
-  float: right;
+  //float: right;
   //color: white;
   font-size: 12px;
   line-height: 22px;
   color: #00b0f0;
+  right: -8px;
+  position: absolute;
 }
 
 .moves-label span{
@@ -183,9 +194,10 @@ h1.title {
 }
 
 .restart-container img {
-	width: 24px;
+	//width: 24px;
 	position: relative;
-    top: 5px;
+    //top: 5px;
+	//right: -18px;
 }
 
 p {

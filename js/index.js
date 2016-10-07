@@ -203,7 +203,7 @@ function addBoard() {
 		width = width.toString() + 'px';
 		superWidth = superWidth.toString() + 'px';
 		var height = (46) + (12*2);
-		height = (height+25).toString() + 'px';
+		height = (height+39).toString() + 'px';
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
 		$('.super-container').css('padding-bottom','10px');
@@ -215,7 +215,7 @@ function addBoard() {
 		$('.lines-container').html(createLines(size));
 		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
-		var height = dimension + 25;
+		var height = dimension + 39;
 		if(currentVaultNumber > 1) {
 			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
 			$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
@@ -424,7 +424,7 @@ function onReady() {
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23, #level24, #level25, #level26, #level27, #level28, #level29, #level30, #level31, #level32, #level33, #level34, #level35, #level36, #level37', function(e) {
+	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23, #level24, #level25, #level26, #level27, #level28, #level29, #level30, #level31, #level32, #level33, #level34, #level35, #level36, #level37, #level38, #level39, #level40', function(e) {
 		e.preventDefault();
 		currentLevel = $(this).attr('id');
 		$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
