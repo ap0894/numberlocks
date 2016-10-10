@@ -22,7 +22,7 @@ body {
 }
 
 .heading {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 .container {
@@ -31,15 +31,15 @@ body {
 }
 
 .vaults td {
-	padding-bottom: 20px;
+	padding-bottom: 30px
 }
 
 .level-img-row td {
-	padding-bottom: 20px;
+	padding-bottom: 30px;
 }
 
 .levels {
-	font-size: 12px;
+	font-size: 14px
 }
 
 .levels img {
@@ -198,6 +198,8 @@ h1.title {
 	position: relative;
     //top: 5px;
 	//right: -18px;
+	height:	32px;
+	width: 32px;
 }
 
 p {
