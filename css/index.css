@@ -89,11 +89,10 @@ h1.title {
 }
 
 .controls {
-	padding-bottom: 12px;
+	padding-bottom: 26px;
 }
 
 .controls-lower {
-	padding-top:14px;
 	text-align: center;
 }
 
@@ -106,7 +105,7 @@ h1.title {
 
 .vertical-lines-container {
     position: absolute;
-    top:60px;
+    top:68px;
     left: 5px;
     z-index: 1;
     float: left;
