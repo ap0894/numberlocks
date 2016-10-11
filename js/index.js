@@ -363,7 +363,7 @@ function onReady() {
 
 	storage = window.localStorage;
 	highestLevel = storage.getItem('highestLevel');
-	if(highestLevel == "null") {
+	if(highestLevel == null) {
 		highestLevel = 1;
 	}
 	
