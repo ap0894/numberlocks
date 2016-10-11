@@ -45,6 +45,8 @@ function createLevelDiv(vault) {
 	var secondLabelRow = "<tr><tr>";
 	var firstIconRow = "<tr class=\"level-img-row\">";
 	var secondIconRow = "<tr class=\"level-img-row\">";
+	var firstStarRow = "";
+	var secondStarRow = "";
 	
 	for (i=((10*vault)-9); i<=(10*vault)-5; i++)
 	{
@@ -490,24 +492,7 @@ function onReady() {
 		currentVault = $(this).attr('id');
 		currentVaultNumber = parseInt(currentVault.substr(5),10);
 		levelDiv = createLevelDiv(currentVaultNumber);
-		$('.levels').html(levelDiv);
-		/*switch(currentVaultNumber) {
-			case 1:
-				levelDiv = createLevelDiv(1);
-				$('.levels').html(levelDiv);
-				break;
-			case 2:
-				$('.levels').html(diaglevelsDiv);
-				break;
-			case 3:
-				$('.levels').html(multiselectlevelsDiv);
-				break;
-			case 4:
-				$('.levels').html(fourbyfourlevelsDiv);
-				break;
-			default:
-				$('.levels').html(sublevelsDiv);
-		}*/		
+		$('.levels').html(levelDiv);	
 		$('.levels').css('display','block');
 	});
 	
@@ -670,6 +655,7 @@ function onReady() {
 						storage.setItem('highestLevel', highestLevel);
 					}
 					currentLevel = incrementLevel();
+					$('#' + currentLevel).attr("src", "./img/icons/PadlockOpenTick.svg");
 				}
 			}
 		});
