@@ -18,7 +18,7 @@ var currentVaultNumber;
 var remainingTiles;
 var completeBonus = 500;
 var remainderBonus = 1000;
-var moves = 0;
+var moves;
 var testing = true;
 var total = 0;
 var myTimer;
@@ -40,13 +40,14 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
 function createLevelDiv(vault) {
 	var tempLevelDiv = "";
 	tempLevelDiv += "<table><tbody>"
+	var numStars;
 	
-	var firstLabelRow = "<tr><tr>";
-	var secondLabelRow = "<tr><tr>";
+	var firstLabelRow = "<tr>";
+	var secondLabelRow = "<tr>";
 	var firstIconRow = "<tr class=\"level-img-row\">";
 	var secondIconRow = "<tr class=\"level-img-row\">";
-	var firstStarRow = "";
-	var secondStarRow = "";
+	var firstStarRow = "<tr class=\"star-row\">";
+	var secondStarRow = "<tr class=\"star-row\">";
 	
 	for (i=((10*vault)-9); i<=(10*vault)-5; i++)
 	{
@@ -56,23 +57,47 @@ function createLevelDiv(vault) {
 		} else {
 			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/Padlock.svg\" /></td>";
 		}
+		numStars = 0;
+		numStars = storage.getItem('level'+i);
+		firstStarRow += "<td>";
+		for (x=0; x<3; x++) {
+			if(numStars > x) {
+				firstStarRow += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
+			} else {
+				firstStarRow += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+			}
+		}
+		firstStarRow += "</td>";
 	}
 	firstLabelRow +="</tr>"
-	firstIconRow += "</tr></tr>"
+	firstIconRow += "</tr>"
+	firstStarRow += "</tr>"
 	
 	for (j=((10*vault)-4); j<=(10*vault); j++)
 	{
 		secondLabelRow +=  "<td>Level "+j+"</td>";
 		if(j <= highestLevel) {
-			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/unlock.png\" /></td>";
+			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/PadlockOpenTick.svg\" /></td>";
 		} else {
-			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/lock.png\" /></td>";
+			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/Padlock.svg\" /></td>";
 		}
+		numStars = 0;
+		numStars = storage.getItem('level'+j);
+		secondStarRow += "<td>";
+		for (y=0; y<3; y++) {
+			if(numStars > y) {
+				secondStarRow += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
+			} else {
+				secondStarRow += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+			}
+		}
+		secondStarRow += "</td>";
 	}
 	secondLabelRow +="</tr>";
-	secondIconRow += "</tr></tr>";
+	secondIconRow += "</tr>";
+	secondStarRow += "</tr>"
 	
-	tempLevelDiv = tempLevelDiv + firstLabelRow + firstIconRow + secondLabelRow + secondIconRow + "</tbody></table>";
+	tempLevelDiv = tempLevelDiv + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
 	return tempLevelDiv;
 }
 
@@ -232,7 +257,6 @@ function addBoard() {
 	$('.vertical-lines-container').html('');
 	$('.diagonal-left-lines-container').html('');
 	$('.diagonal-right-lines-container').html('');
-	moves = 0;
 	$('.levels').css('display','none');
 	var size;
 	if(levels[currentLevel].length<4) {
@@ -275,6 +299,9 @@ function addBoard() {
 	$('.game-container').css('display','block');
 	$('.super-container').css('display','block');	
 	$('#pie-container').html(pie);
+	
+	//moves = 0;
+	moves = levels[currentLevel].length-1;
 	$('.moves-label span').html(moves);
 	isPaused = false;
 	startTimer();
@@ -515,7 +542,8 @@ function onReady() {
 		}
 		remainingTiles = levels[currentLevel].length;
 		//addSwipeTo('.tile');
-		moves=0;
+		//moves=0;
+		moves = levels[currentLevel].length-1;
 		$('.moves-label span').html(moves);
 		isPaused = false;
 		startTimer();
@@ -610,7 +638,7 @@ function onReady() {
 			default:
 			} 
 			if(move) {
-			moves++;			
+			moves--;			
 			newClassIndex = 'tile-position-'+x+'-'+y;
 				if ($('.'+newClassIndex).text()) {
 					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
@@ -648,8 +676,9 @@ function onReady() {
 						}
 					  });
 					});
+					storage.setItem(currentLevel, moves);
 					highestLevel = storage.getItem('highestLevel');
-					//storage.setItem(currentLevel, "3"); // Pass a key name and its value to add or update that key.
+					var stars = storage.getItem(currentLevel);
 					if(getCurrentLevelNumber() >= highestLevel || highestLevel === null) {
 						highestLevel = getCurrentLevelNumber()+1;
 						storage.setItem('highestLevel', highestLevel);

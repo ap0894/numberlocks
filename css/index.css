@@ -34,7 +34,7 @@ body {
 	padding-bottom: 30px
 }
 
-.level-img-row td {
+.star-row td {
 	padding-bottom: 30px;
 }
 
@@ -42,8 +42,12 @@ body {
 	font-size: 14px
 }
 
-.levels img {
-	width: 50px;
+.star {
+	width: 18px;
+}
+
+.level-img-row img {
+	width: 32px;
 }
 
 .level-selector {
