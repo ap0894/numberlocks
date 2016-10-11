@@ -580,6 +580,7 @@ table {
 }
 
 .pause img{
+	width: 32px;
 	//vertical-align:middle;
 }
 

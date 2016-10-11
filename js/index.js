@@ -1,12 +1,12 @@
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
-var sublevelsDiv = "<table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td><td>Level 4</td><td>Level 5</td></tr><tr class=\"level-img-row\"><td><img id=\"level1\" src=\"./img/lock.png\" /></td><td><img id=\"level2\" src=\"./img/lock.png\" /></td><td><img id=\"level3\" src=\"./img/lock.png\" /></td><td><img id=\"level4\" src=\"./img/lock.png\" /></td><td><img id=\"level5\" src=\"./img/lock.png\" /></td></tr></tr><tr><tr><td>Level 6</td><td>Level 7</td><td>Level 8</td><td>Level 9</td><td>Level 10</td></tr><tr class=\"level-img-row\"><td><img id=\"level6\" src=\"./img/lock.png\" /></td><td><img id=\"level7\" src=\"./img/lock.png\" /></td><td><img id=\"level8\" src=\"./img/lock.png\" /></td><td><img id=\"level9\" src=\"./img/lock.png\" /></td><td><img id=\"level10\" src=\"./img/lock.png\" /></td></tr></tr></tbody></table>";
+/*var sublevelsDiv = "<table><tbody><tr><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td><td>Level 4</td><td>Level 5</td></tr><tr class=\"level-img-row\"><td><img id=\"level1\" src=\"./img/lock.png\" /></td><td><img id=\"level2\" src=\"./img/lock.png\" /></td><td><img id=\"level3\" src=\"./img/lock.png\" /></td><td><img id=\"level4\" src=\"./img/lock.png\" /></td><td><img id=\"level5\" src=\"./img/lock.png\" /></td></tr></tr><tr><tr><td>Level 6</td><td>Level 7</td><td>Level 8</td><td>Level 9</td><td>Level 10</td></tr><tr class=\"level-img-row\"><td><img id=\"level6\" src=\"./img/lock.png\" /></td><td><img id=\"level7\" src=\"./img/lock.png\" /></td><td><img id=\"level8\" src=\"./img/lock.png\" /></td><td><img id=\"level9\" src=\"./img/lock.png\" /></td><td><img id=\"level10\" src=\"./img/lock.png\" /></td></tr></tr></tbody></table>";
 
 var diaglevelsDiv = "<table><tbody><tr><tr><td>Level 11</td><td>Level 12</td><td>Level 13</td><td>Level 14</td><td>Level 15</td></tr><tr class=\"level-img-row\"><td><img id=\"level11\" src=\"./img/lock.png\" /></td><td><img id=\"level12\" src=\"./img/lock.png\" /></td><td><img id=\"level13\" src=\"./img/lock.png\" /></td><td><img id=\"level14\" src=\"./img/lock.png\" /></td><td><img id=\"level15\" src=\"./img/lock.png\" /></td></tr></tr><tr><tr><td>Level 16</td><td>Level 17</td><td>Level 18</td><td>Level 19</td><td>Level 20</td></tr><tr class=\"level-img-row\"><td><img id=\"level16\" src=\"./img/lock.png\" /></td><td><img id=\"level17\" src=\"./img/lock.png\" /></td><td><img id=\"level18\" src=\"./img/lock.png\" /></td><td><img id=\"level19\" src=\"./img/lock.png\" /></td><td><img id=\"level20\" src=\"./img/lock.png\" /></td></tr></tr></tbody></table>";
 
 var multiselectlevelsDiv = "<table><tbody><tr><tr><td>Level 21</td><td>Level 22</td><td>Level 23</td><td>Level 24</td><td>Level 25</td></tr><tr class=\"level-img-row\"><td><img id=\"level21\" src=\"./img/lock.png\" /></td><td><img id=\"level22\" src=\"./img/lock.png\" /></td><td><img id=\"level23\" src=\"./img/lock.png\" /></td><td><img id=\"level24\" src=\"./img/lock.png\" /></td><td><img id=\"level25\" src=\"./img/lock.png\" /></td></tr></tr><tr><tr><td>Level 26</td><td>Level 27</td><td>Level 28</td><td>Level 29</td><td>Level 30</td></tr><tr class=\"level-img-row\"><td><img id=\"level26\" src=\"./img/lock.png\" /></td><td><img id=\"level27\" src=\"./img/lock.png\" /></td><td><img id=\"level28\" src=\"./img/lock.png\" /></td><td><img id=\"level29\" src=\"./img/lock.png\" /></td><td><img id=\"level30\" src=\"./img/lock.png\" /></td></tr></tr></tbody></table>";
 
-var fourbyfourlevelsDiv = "<table><tbody><tr><tr><td>Level 31</td><td>Level 32</td><td>Level 33</td><td>Level 34</td><td>Level 35</td></tr><tr class=\"level-img-row\"><td><img id=\"level31\" src=\"./img/lock.png\" /></td><td><img id=\"level32\" src=\"./img/lock.png\" /></td><td><img id=\"level33\" src=\"./img/lock.png\" /></td><td><img id=\"level34\" src=\"./img/lock.png\" /></td><td><img id=\"level35\" src=\"./img/lock.png\" /></td></tr></tr><tr><tr><td>Level 36</td><td>Level 37</td><td>Level 38</td><td>Level 39</td><td>Level 40</td></tr><tr class=\"level-img-row\"><td><img id=\"level36\" src=\"./img/lock.png\" /></td><td><img id=\"level37\" src=\"./img/lock.png\" /></td><td><img id=\"level38\" src=\"./img/lock.png\" /></td><td><img id=\"level39\" src=\"./img/lock.png\" /></td><td><img id=\"level40\" src=\"./img/lock.png\" /></td></tr></tr></tbody></table>";
+var fourbyfourlevelsDiv = "<table><tbody><tr><tr><td>Level 31</td><td>Level 32</td><td>Level 33</td><td>Level 34</td><td>Level 35</td></tr><tr class=\"level-img-row\"><td><img id=\"level31\" src=\"./img/lock.png\" /></td><td><img id=\"level32\" src=\"./img/lock.png\" /></td><td><img id=\"level33\" src=\"./img/lock.png\" /></td><td><img id=\"level34\" src=\"./img/lock.png\" /></td><td><img id=\"level35\" src=\"./img/lock.png\" /></td></tr></tr><tr><tr><td>Level 36</td><td>Level 37</td><td>Level 38</td><td>Level 39</td><td>Level 40</td></tr><tr class=\"level-img-row\"><td><img id=\"level36\" src=\"./img/lock.png\" /></td><td><img id=\"level37\" src=\"./img/lock.png\" /></td><td><img id=\"level38\" src=\"./img/lock.png\" /></td><td><img id=\"level39\" src=\"./img/lock.png\" /></td><td><img id=\"level40\" src=\"./img/lock.png\" /></td></tr></tr></tbody></table>";*/
 
 var levelDiv = "";
 
@@ -50,9 +50,9 @@ function createLevelDiv(vault) {
 	{
 		firstLabelRow +=  "<td>Level "+i+"</td>";
 		if(i <= highestLevel) {
-			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/unlock.png\" /></td>";
+			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTick.svg\" /></td>";
 		} else {
-			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/lock.png\" /></td>";
+			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/Padlock.svg\" /></td>";
 		}
 	}
 	firstLabelRow +="</tr>"
@@ -62,9 +62,9 @@ function createLevelDiv(vault) {
 	{
 		secondLabelRow +=  "<td>Level "+j+"</td>";
 		if(j <= highestLevel) {
-			firstIconRow += "<td><img id=\"level"+j+"\" src=\"./img/unlock.png\" /></td>";
+			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/unlock.png\" /></td>";
 		} else {
-			firstIconRow += "<td><img id=\"level"+j+"\" src=\"./img/lock.png\" /></td>";
+			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/lock.png\" /></td>";
 		}
 	}
 	secondLabelRow +="</tr>";
@@ -363,7 +363,7 @@ function onReady() {
 
 	storage = window.localStorage;
 	highestLevel = storage.getItem('highestLevel');
-	if(highestLevel = "null") {
+	if(highestLevel == "null") {
 		highestLevel = 1;
 	}
 	
