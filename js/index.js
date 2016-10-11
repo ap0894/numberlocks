@@ -25,7 +25,7 @@ var myTimer;
 var timerDuration = 60*2;
 var isPaused = false;
 var storage;
-var highestLevel = 1;
+var highestLevel;
 
 if (testing) {
 	AdMob = false;
@@ -363,6 +363,9 @@ function onReady() {
 
 	storage = window.localStorage;
 	highestLevel = storage.getItem('highestLevel');
+	if(highestLevel = null) {
+		highestLevel = 1;
+	}
 	
     $('.levels').css('display','none');
 
