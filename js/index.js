@@ -44,9 +44,9 @@ function createVaultDiv() {
 	var secondVaultRow = "<tr>";
 	for (i=1; i<=3; i++) {
 		if(i<=highestVault) {
-			firstVaultRow += "<td><img id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /></td>";
+			firstVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 32px; position: relative; bottom: 24px; right: 52px;\"/></td>";
 		} else {
-			firstVaultRow += "<td><img id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /></td>";
+			firstVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 32px; position: relative; bottom: 24px; right: 52px;\"/></td>";
 		}
 		//<td><img id="vault2" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
 		//<td><img id="vault3" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
@@ -55,15 +55,15 @@ function createVaultDiv() {
 	
 	for (j=4; j<=6; j++) {
 		if(j<=highestVault) {
-			secondVaultRow += "<td><img id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /></td>";
+			secondVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 32px; position: relative; bottom: 24px; right: 52px;\"/></td>";
 		} else {
-			secondVaultRow += "<td><img id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /></td>";
+			secondVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 32px; position: relative; bottom: 24px; right: 52px;\"/></td>";
 		}
 		//<td><img id="vault2" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
 		//<td><img id="vault3" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
 	}
 	secondVaultRow += "</tr>";
-	tempVaultDiv += firstVaultRow + secondVaultRow + "</tbody></table>";
+	tempVaultDiv += firstVaultRow + secondVaultRow + "</tbody></table>" + "<div style=\"text-decoration:underline; cursor:pointer;\" id=\"resetGame\">Reset Game</div>";
 	return tempVaultDiv;
 }
 
@@ -71,7 +71,7 @@ function createLevelDiv(vault) {
 	var tempLevelDiv = "<table><tbody>" ;
 	var numStars;
 	
-	var vaultIcon = "<tr style=\"text-align:right\"><td colspan=\"5\"><img id=\"vaultSelect\" style=\"width:32px; padding-right:32px; padding-bottom:32px;\"  src=\"./img/icons/SafeLargeClosed.svg\"></td></tr>"
+	var vaultIcon = "<tr style=\"text-align:right\"><td colspan=\"5\"><img id=\"vaultSelect\" style=\"width:32px; padding-right:32px; padding-bottom:32px;\"  src=\"./img/icons/SafeSmall.svg\"></td></tr>"
 	
 	var firstLabelRow = "<tr>";
 	var secondLabelRow = "<tr>";
@@ -294,6 +294,7 @@ function addBoard() {
 		size = levels[currentLevel].length; 
 		$('.grid-container').html(createLine(size));
 		$('.tile-container').html(generateStraightLevel(size));
+		$('.lines-container').html(createLines(1));
 		var width = (12*(size+1))+(size*46);
 		var superWidth = width + 25;
 		width = width.toString() + 'px';
@@ -302,7 +303,7 @@ function addBoard() {
 		height = (height+39).toString() + 'px';
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
-		$('.super-container').css('padding-bottom','10px');
+		$('.super-container').css('padding-bottom','20px');
 		$('.super-container').css('width',superWidth);
 	} else {
 		size = Math.sqrt(levels[currentLevel].length); 
@@ -322,20 +323,20 @@ function addBoard() {
 		height = height.toString() + 'px';
 		$('.game-container').css('width',dimension);
 		$('.game-container').css('height',height);
-		$('.super-container').css('padding-bottom','10px');
+		$('.super-container').css('padding-bottom','20px');
 		$('.super-container').css('width',height);
 	}
 	$('.super-container').css('box-shadow','0 3px 6px #000000');
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
 	$('.super-container').css('display','block');	
-	$('#pie-container').html(pie);
+	//$('#pie-container').html(pie);
 	
 	//moves = 0;
 	moves = levels[currentLevel].length-1;
 	$('.moves-label span').html(moves);
 	isPaused = false;
-	startTimer();
+	//startTimer();
 }
 
 function generateLevel(size) {
@@ -428,7 +429,7 @@ function onReady() {
 	}
 	highestVault = storage.getItem('highestVault');
 	if(highestVault == null) {
-		highestVault = 2;
+		highestVault = 1;
 	}
 	
 	$('.vaults').html(createVaultDiv());
@@ -536,6 +537,11 @@ function onReady() {
 		$('.vaults').css('display','block');
 		$('.title').show();
 	});
+	
+	$('body').on('click', '#resetGame', function(e) {
+    	window.localStorage.clear();
+    	location.reload();
+    });
     
 	$('.game-explanation').html(gameExplanation);
 	
@@ -585,7 +591,7 @@ function onReady() {
 		moves = levels[currentLevel].length-1;
 		$('.moves-label span').html(moves);
 		isPaused = false;
-		startTimer();
+		//startTimer();
 	});     
 	
 		//var remainingTiles = levels[currentLevel].length;
@@ -717,102 +723,24 @@ function onReady() {
 					});
 					storage.setItem(currentLevel, moves);
 					highestLevel = storage.getItem('highestLevel');
+					highestVault = storage.getItem('highestVault');
 					var stars = storage.getItem(currentLevel);
 					if(getCurrentLevelNumber() >= highestLevel || highestLevel === null) {
-						highestLevel = getCurrentLevelNumber()+1;
+						highestLevel = getCurrentLevelNumber();
+						if (highestLevel % 10 === 0){
+    						highestVault = (highestLevel/10)+1;
+    						storage.setItem('highestVault', highestVault)
+    						$('#vault' + highestVault).attr("src", "./img/icons/SafeLargeOpen.svg");
+    						currentVaultNumber++;
+							//$('.levels').hide();
+							//$('.vaults').show();
+						}
+						highestLevel++;
 						storage.setItem('highestLevel', highestLevel);
+						$('#' + currentLevel).attr("src", "./img/icons/PadlockOpenTick.svg");
+						currentLevel = incrementLevel();
 					}
-					currentLevel = incrementLevel();
-					$('#' + currentLevel).attr("src", "./img/icons/PadlockOpenTick.svg");
 				}
 			}
 		});
-		
-      /*var addSwipeTo = function(selector) {
-      $(selector).swipe("destroy");
-      $(selector).swipe( {
-        //Generic swipe handler for all directions
-        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-        
-        var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
-			return v.indexOf("tile-position") === 0;
-		}).join();
-				
-		var x = parseInt(classIndex.slice(-3, -2), 10);
-		var y = classIndex.slice(-1);
-		var move = false;
-		console.log("x: "+x + " y:" + y);
-        
-          switch (direction) { 
-			case 'left':
-				if(x>1) {
-					x--;
-					move = true;
-				}
-			break;
-			case 'right':
-				if(x<5) {
-					x++	;
-					move = true;
-				}
-			break;
-			case 'up':  
-				if (y>1) {
-					y--;
-					move = true;
-				}
-			break;		
-			case 'down': 
-				if (y<5) {
-					y++;
-					move = true;
-				}
-			break;
-			default:
-			} 
-			if(move) {
-			moves++;			
-			newClassIndex = 'tile-position-'+x+'-'+y;
-				if ($('.'+newClassIndex).text()) {
-					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
-					$('.'+newClassIndex).remove();
-					$(this).removeClass(classIndex);
-					$(this).addClass(newClassIndex);
-					$(this).addClass('tile-merged');
-					$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
-					if(newValue !=0){
-						$(this).text(newValue);
-						remainingTiles--;
-					} else {
-						$('.'+newClassIndex).remove();
-						$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
-						remainingTiles--;
-						remainingTiles--;
-					}
-					$('.moves-container span').html(moves);
-				}
-				if(remainingTiles === 0) {
-					var total = calculateTotal();
-					gameOverModal.style.display = "block";
-					$('#complete').html(completeBonus);
-					$('#remainder').html(remainderBonus);
-					$('#moves').html(((levels[currentLevel].length-1)-moves) * 75);
-					$('#total').html(total);
-					$('.count').each(function () {
-					  var $this = $(this);
-					  jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
-						duration: 2000,
-						easing: 'swing',
-						step: function () {
-						  $this.text(Math.ceil(this.Counter));
-						}
-					  });
-					});
-					currentLevel = incrementLevel();
-				}
-			}
-        },
-         threshold:5
-      });
-      };*/
     }
