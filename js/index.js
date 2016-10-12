@@ -737,7 +737,8 @@ function onReady() {
 						}
 						highestLevel++;
 						storage.setItem('highestLevel', highestLevel);
-						$('#' + currentLevel).attr("src", "./img/icons/PadlockOpenTick.svg");
+						var levToUpdate = currentLevel+1;
+						$('#' + levToUpdate).attr("src", "./img/icons/PadlockOpenTick.svg");
 					}
 					currentLevel = incrementLevel();
 				}
