@@ -26,6 +26,7 @@ var timerDuration = 60*2;
 var isPaused = false;
 var storage;
 var highestLevel;
+var highestVault;
 
 if (testing) {
 	AdMob = false;
@@ -37,10 +38,40 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
     onReady();
 }
 
+function createVaultDiv() {
+	var tempVaultDiv = "<table style=\"border-spacing: 0px; font-size: 10px;\"><tbody>";
+	var firstVaultRow = "<tr>";
+	var secondVaultRow = "<tr>";
+	for (i=1; i<=3; i++) {
+		if(i<=highestVault) {
+			firstVaultRow += "<td><img id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /></td>";
+		} else {
+			firstVaultRow += "<td><img id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /></td>";
+		}
+		//<td><img id="vault2" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
+		//<td><img id="vault3" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
+	}
+	firstVaultRow += "</tr>";
+	
+	for (j=4; j<=6; j++) {
+		if(j<=highestVault) {
+			secondVaultRow += "<td><img id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /></td>";
+		} else {
+			secondVaultRow += "<td><img id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /></td>";
+		}
+		//<td><img id="vault2" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
+		//<td><img id="vault3" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
+	}
+	secondVaultRow += "</tr>";
+	tempVaultDiv += firstVaultRow + secondVaultRow + "</tbody></table>";
+	return tempVaultDiv;
+}
+
 function createLevelDiv(vault) {
-	var tempLevelDiv = "";
-	tempLevelDiv += "<table><tbody>"
+	var tempLevelDiv = "<table><tbody>" ;
 	var numStars;
+	
+	var vaultIcon = "<tr style=\"text-align:right\"><td colspan=\"5\"><img id=\"vaultSelect\" style=\"width:32px; padding-right:32px; padding-bottom:32px;\"  src=\"./img/icons/SafeLargeClosed.svg\"></td></tr>"
 	
 	var firstLabelRow = "<tr>";
 	var secondLabelRow = "<tr>";
@@ -97,7 +128,7 @@ function createLevelDiv(vault) {
 	secondIconRow += "</tr>";
 	secondStarRow += "</tr>"
 	
-	tempLevelDiv = tempLevelDiv + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
+	tempLevelDiv += tempLevelDiv + vaultIcon + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
 	return tempLevelDiv;
 }
 
@@ -395,6 +426,12 @@ function onReady() {
 	if(highestLevel == null) {
 		highestLevel = 1;
 	}
+	highestVault = storage.getItem('highestVault');
+	if(highestVault == null) {
+		highestVault = 2;
+	}
+	
+	$('.vaults').html(createVaultDiv());
 	
     $('.levels').css('display','none');
 
@@ -515,12 +552,14 @@ function onReady() {
 	});
 	
 	$("#vault1, #vault2, #vault3, #vault4, #vault5, #vault6").on('click', function(e) {
-		$('.vaults').hide();
 		currentVault = $(this).attr('id');
 		currentVaultNumber = parseInt(currentVault.substr(5),10);
-		levelDiv = createLevelDiv(currentVaultNumber);
-		$('.levels').html(levelDiv);	
-		$('.levels').css('display','block');
+		if (currentVaultNumber <= highestVault) {
+			$('.vaults').hide();
+			levelDiv = createLevelDiv(currentVaultNumber);
+			$('.levels').html(levelDiv);	
+			$('.levels').css('display','block');
+		}
 	});
 	
 	$('#return').on('click', function(e) {
