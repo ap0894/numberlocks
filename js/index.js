@@ -71,7 +71,7 @@ function createLevelDiv(vault) {
 	var tempLevelDiv = "<table><tbody>" ;
 	var numStars;
 	
-	var vaultIcon = "<tr style=\"text-align:right\"><td colspan=\"5\"><img id=\"vaultSelect\" style=\"width:32px; padding-right:10px; padding-bottom:32px;\"  src=\"./img/icons/SafeSmall.svg\"></td></tr>"
+	var vaultIcon = "<tr style=\"text-align:right\"><td colspan=\"5\"><img id=\"vaultSelect\" style=\"width:32px; padding-right:12px; padding-bottom:32px;\"  src=\"./img/icons/SafeSmall.svg\"></td></tr>"
 	
 	var firstLabelRow = "<tr>";
 	var secondLabelRow = "<tr>";
