@@ -44,9 +44,9 @@ function createVaultDiv() {
 	var secondVaultRow = "<tr>";
 	for (i=1; i<=3; i++) {
 		if(i<=highestVault) {
-			firstVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 32px; position: relative; bottom: 24px; right: 52px;\"/></td>";
+			firstVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 30px; position: relative; bottom: 24px; right: 52px;\"/></td>";
 		} else {
-			firstVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 32px; position: relative; bottom: 24px; right: 52px;\"/></td>";
+			firstVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 30px; position: relative; bottom: 24px; right: 52px;\"/></td>";
 		}
 		//<td><img id="vault2" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
 		//<td><img id="vault3" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
@@ -55,9 +55,9 @@ function createVaultDiv() {
 	
 	for (j=4; j<=6; j++) {
 		if(j<=highestVault) {
-			secondVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 32px; position: relative; bottom: 24px; right: 52px;\"/></td>";
+			secondVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 30px; position: relative; bottom: 24px; right: 52px;\"/></td>";
 		} else {
-			secondVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 32px; position: relative; bottom: 24px; right: 52px;\"/></td>";
+			secondVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 30px; position: relative; bottom: 24px; right: 52px;\"/></td>";
 		}
 		//<td><img id="vault2" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
 		//<td><img id="vault3" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
