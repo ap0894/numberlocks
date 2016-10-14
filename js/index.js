@@ -347,7 +347,7 @@ function addBoard() {
 	
 	//moves = 0;
 	moves = levels[currentLevel].length-1;
-	$('.moves-label span').html(moves);
+	$('.move-num').html(moves);
 	isPaused = false;
 	//startTimer();
 }

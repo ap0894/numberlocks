@@ -46,14 +46,19 @@
 					<div class=" leaderboard"><span>Leaderboard</span></div>
 				</div>-->
 				<div class="game-container">
-					<div class="controls">
-						
-						<div class="moves-label control">Moves: <span></span></div>
-					</div>
 					<div class="controls-lower">
-						<div class="pause control"><img src="./img/icons/Pause.svg"/></div>
-						<div class="restart-container" id="restart"><img src="./img/icons/Restart.svg" /></div> 
+						<!--<div class="pause control"><img src="./img/icons/Pause.svg"/></div>-->
+						<!--<div class="restart-container" id="restart"><img src="./img/icons/Restart.svg" /></div> 
+						<div class="pause-item" id="levelSelect"><img class="pause-img" src="./img/icons/Padlock.svg" /></div>
+						<div class="pause-item" id="vaultSelect"><img class="pause-img" src="./img/icons/SafeSmall.svg" /></div>
+						<div class="pause-item leaderboard"><img class="pause-img" src="./img/icons/Trophy.svg" /></div>-->
+						
+						<img id="restart" class="pause-img" src="./img/icons/Restart.svg" />
+						<img id="levelSelect" class="pause-img" src="./img/icons/Padlock.svg" />
+						<img id="vaultSelect" class="pause-img" src="./img/icons/SafeSmall.svg" />
+						<img class="pause-img leaderboard" src="./img/icons/Trophy.svg" />
 					</div>	
+					<div class="moves-label control"><div id="move-num"></div><br /><div id="move-text">Moves</div></div>
 					<div class="grid-container"></div>
 					<div class="tile-container"></div>
 					<div class="lines-container"></div>

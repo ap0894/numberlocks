@@ -88,16 +88,18 @@ h1.title {
     //left: 18px;
 }
 
+#move-text {
+	font-size: 8px;
+}
+
 .pause {
 	margin-right: 28px;
 }
 
-.controls {
-	padding-bottom: 26px;
-}
-
 .controls-lower {
 	text-align: center;
+	//margin-bottom: 6px;
+	display: inline-block;
 }
 
 .lines-container {
@@ -175,14 +177,12 @@ h1.title {
   font-weight: bold;
 }
 .moves-label {
-  padding-bottom: 5px;
-  //float: right;
-  //color: white;
+  /*padding-bottom: 5px;
   font-size: 12px;
   line-height: 22px;
   color: #00b0f0;
   right: -8px;
-  position: absolute;
+  position: absolute;*/
 }
 
 .moves-label span{
@@ -579,9 +579,9 @@ table {
 }
 
 .pause-img {
-	padding-right: 12px;
+	padding: 2px;
 	vertical-align: middle;
-	width: 32px;
+	width: 28px;
 }
 
 .pause img{
