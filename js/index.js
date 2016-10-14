@@ -90,7 +90,7 @@ function createLevelDiv(vault) {
 		}
 		numStars = 0;
 		numStars = storage.getItem('level'+i);
-		firstStarRow += "<td>";
+		firstStarRow += "<td id=\""+i+"stars\">";
 		for (x=0; x<3; x++) {
 			if(numStars > x) {
 				firstStarRow += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
@@ -114,7 +114,7 @@ function createLevelDiv(vault) {
 		}
 		numStars = 0;
 		numStars = storage.getItem('level'+j);
-		secondStarRow += "<td>";
+		secondStarRow += "<td id=\""+j+"stars\">";
 		for (y=0; y<3; y++) {
 			if(numStars > y) {
 				secondStarRow += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
@@ -130,6 +130,19 @@ function createLevelDiv(vault) {
 	
 	tempLevelDiv += tempLevelDiv + vaultIcon + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
 	return tempLevelDiv;
+}
+
+function updateLevelDiv(level, stars) {
+	
+	var newStars = "";
+	for (i=0; i<3; i++) {
+		if(stars > i) {
+			newStars += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
+		} else {
+			newStars += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+		}
+	}
+	$('#'+level+'stars').html(newStars);
 }
 
 function update(percent){
@@ -721,10 +734,14 @@ function onReady() {
 						}
 					  });
 					});
-					storage.setItem(currentLevel, moves);
+					var stars = storage.getItem(currentLevel);
+					if (moves > stars) {
+						storage.setItem(currentLevel, moves);
+						updateLevelDiv(getCurrentLevelNumber(), moves);
+						//update stars in the levels div
+					}
 					highestLevel = storage.getItem('highestLevel');
 					highestVault = storage.getItem('highestVault');
-					var stars = storage.getItem(currentLevel);
 					if(getCurrentLevelNumber() >= highestLevel || highestLevel === null) {
 						highestLevel = getCurrentLevelNumber();
 						if (highestLevel % 10 === 0){
