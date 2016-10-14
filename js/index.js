@@ -316,7 +316,7 @@ function addBoard() {
 		height = (height+39).toString() + 'px';
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
-		$('.super-container').css('padding-bottom','20px');
+		$('.super-container').css('padding','10px');
 		$('.super-container').css('width',superWidth);
 	} else {
 		size = Math.sqrt(levels[currentLevel].length); 
@@ -336,18 +336,19 @@ function addBoard() {
 		height = height.toString() + 'px';
 		$('.game-container').css('width',dimension);
 		$('.game-container').css('height',height);
-		$('.super-container').css('padding-bottom','20px');
+		$('.super-container').css('padding','10px');
 		$('.super-container').css('width',height);
 	}
 	$('.super-container').css('box-shadow','0 3px 6px #000000');
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
+	$('.controls-lower').css('display','block');	
 	$('.super-container').css('display','block');	
 	//$('#pie-container').html(pie);
 	
 	//moves = 0;
 	moves = levels[currentLevel].length-1;
-	$('.move-num').html(moves);
+	$('#move-num').html(moves);
 	isPaused = false;
 	//startTimer();
 }
@@ -448,6 +449,8 @@ function onReady() {
 	$('.vaults').html(createVaultDiv());
 	
     $('.levels').css('display','none');
+    
+	$('.controls-lower').css('display','none');	
 
 	function pauseTimer() {
 		isPaused = true;
@@ -535,6 +538,7 @@ function onReady() {
 		pauseModal.style.display = "none";
 		$('.control-container').css('display','none');	
 		$('.game-container').css('display','none');	
+		$('.controls-lower').css('display','none');	
 		$('.super-container').css('display','none');
 		$('.levels').css('display','block');
 		$('.title').show();
@@ -546,6 +550,7 @@ function onReady() {
 		$('.levels').hide();
 		$('.control-container').css('display','none');	
 		$('.game-container').css('display','none');	
+		$('.controls-lower').css('display','none');	
 		$('.super-container').css('display','none');
 		$('.vaults').css('display','block');
 		$('.title').show();
@@ -602,7 +607,7 @@ function onReady() {
 		//addSwipeTo('.tile');
 		//moves=0;
 		moves = levels[currentLevel].length-1;
-		$('.moves-label span').html(moves);
+		$('.moves-num').html(moves);
 		isPaused = false;
 		//startTimer();
 	});     
@@ -715,7 +720,7 @@ function onReady() {
 						remainingTiles--;
 						remainingTiles--;
 					}
-					$('.moves-label span').html(moves);
+					$('#moves-num').html(moves);
 				}
 				if(remainingTiles === 0) {
 					calculateTotal();

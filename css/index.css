@@ -111,7 +111,7 @@ h1.title {
 
 .vertical-lines-container {
     position: absolute;
-    top:68px;
+    top:38px;
     left: 5px;
     z-index: 1;
     float: left;
@@ -119,7 +119,7 @@ h1.title {
 
 .diagonal-left-lines-container {
     position: absolute;
-    top: 68px;
+    top: 38px;
     left: 5px;
     z-index: 1;
     float: left;
@@ -127,7 +127,7 @@ h1.title {
 
 .diagonal-right-lines-container {
     position: absolute;
-    top:68px;
+    top:38px;
     left: 5px;
     z-index: 1;
     float: left;
@@ -183,6 +183,8 @@ h1.title {
   color: #00b0f0;
   right: -8px;
   position: absolute;*/
+  position: relative;
+  top : -8px;
 }
 
 .moves-label span{
@@ -242,7 +244,7 @@ strong.important {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin:8px auto;
+  margin:0px auto;
 }
 
 .grid-container {
