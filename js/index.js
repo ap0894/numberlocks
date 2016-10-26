@@ -616,7 +616,7 @@ function onReady() {
 		//addSwipeTo('.tile');
 		//moves=0;
 		moves = levels[currentLevel].length-1;
-		$('.moves-num').html(moves);
+		$('.move-num').html(moves);
 		isPaused = false;
 		//startTimer();
 	});     
@@ -729,7 +729,7 @@ function onReady() {
 						remainingTiles--;
 						remainingTiles--;
 					}
-					$('#moves-num').html(moves);
+					$('#move-num').html(moves);
 				}
 				if(remainingTiles === 0) {
 					calculateTotal();
