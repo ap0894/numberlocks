@@ -93,7 +93,11 @@ h1.title {
 }
 
 #move-text {
-	font-size: 8px;
+	//font-size: 8px;
+}
+
+#move-num::before {
+	content: " ";
 }
 
 .pause {
@@ -102,7 +106,7 @@ h1.title {
 
 .controls-lower {
 	text-align: center;
-	//margin-bottom: 6px;
+	margin-bottom: 12px;
 	display: inline-block;
 }
 

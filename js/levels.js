@@ -2,23 +2,23 @@ var levels = {
   "level1": 
   {
 	 "tiles": [3,3],
-	 "three": "6",
-	 "two": "7",
-	 "one": "8"
+	 "three": "1",
+	 "two": "1",
+	 "one": "1"
   },
   "level2": 
   {
 	 "tiles": [3,1,2],
-	 "three": "6",
-	 "two": "7",
-	 "one": "8"
+	 "three": "2",
+	 "two": "2",
+	 "one": "2"
   },
   "level3": 
   {
 	 "tiles": [5,7,9,3],
-	 "three": "6",
-	 "two": "7",
-	 "one": "8"
+	 "three": "3",
+	 "two": "3",
+	 "one": "3"
   },
   "level4": 
   {

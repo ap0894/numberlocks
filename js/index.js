@@ -21,6 +21,7 @@ var remainingTiles;
 var completeBonus = 500;
 var remainderBonus = 1000;
 var moves;
+var movesUp;
 var testing = true;
 var total = 0;
 var myTimer;
@@ -38,6 +39,20 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
     document.addEventListener('deviceready', onDeviceReady, false);
 } else {
     onReady();
+}
+
+function calculateStars(currentLevel, movesUp) {
+	var three = parseInt(levels[currentLevel]['three'], 10);
+	var two = parseInt(levels[currentLevel]['two'], 10);
+	var one = parseInt(levels[currentLevel]['one'], 10);
+	
+	if (movesUp <= three ) {
+		return 3;
+	} else if (movesUp > three && movesUp <= two) {
+		return 2;
+	} else {
+		return 1;
+	}
 }
 
 function createVaultDiv() {
@@ -359,9 +374,9 @@ function addBoard() {
 	}
 	//$('#pie-container').html(pie);
 	
-	//moves = 0;
+	movesUp = 0;
 	moves = levels[currentLevel]['tiles'].length-1;
-	$('#move-num').html(moves);
+	$('#move-num').html(movesUp);
 	isPaused = false;
 	//startTimer();
 	
@@ -628,9 +643,9 @@ function onReady() {
 		}
 		remainingTiles = levels[currentLevel]['tiles'].length;
 		//addSwipeTo('.tile');
-		//moves=0;
+		movesUp=0;
 		moves = levels[currentLevel]['tiles'].length-1;
-		$('.move-num').html(moves);
+		$('.move-num').html(movesUp);
 		isPaused = false;
 		//startTimer();
 	});     
@@ -724,7 +739,8 @@ function onReady() {
 			default:
 			} 
 			if(move) {
-			moves--;			
+			moves--;	
+			movesUp++;			
 			newClassIndex = 'tile-position-'+x+'-'+y;
 				if ($('.'+newClassIndex).text()) {
 					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
@@ -743,7 +759,7 @@ function onReady() {
 						remainingTiles--;
 						remainingTiles--;
 					}
-					$('#move-num').html(moves);
+					$('#move-num').html(movesUp);
 				}
 				if(remainingTiles === 0) {
 					calculateTotal();
@@ -763,9 +779,10 @@ function onReady() {
 					  });
 					});
 					var stars = storage.getItem(currentLevel);
-					if (moves > stars) {
-						storage.setItem(currentLevel, moves);
-						updateLevelDiv(getCurrentLevelNumber(), moves);
+					starsUpdate = calculateStars(currentLevel, movesUp);
+					if (starsUpdate > stars) {
+						storage.setItem(currentLevel, starsUpdate);
+						updateLevelDiv(getCurrentLevelNumber(), starsUpdate);
 						//update stars in the levels div
 					}
 					highestLevel = storage.getItem('highestLevel');
