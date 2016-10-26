@@ -296,6 +296,7 @@ function createLine(size) {
 
 function addBoard() {
 
+	var movesLegend = "<table><tbody><tr><td>Moves</td><td>"+levels[currentLevel]['three']+"</td><td>"+levels[currentLevel]['two']+"</td><td>"+levels[currentLevel]['one']+"</td></tr></tbody></table>";
 	prepInterstitial();	
 	$('.lines-container').html('');
 	$('.vertical-lines-container').html('');
@@ -303,8 +304,8 @@ function addBoard() {
 	$('.diagonal-right-lines-container').html('');
 	$('.levels').css('display','none');
 	var size;
-	if(levels[currentLevel].length<4) {
-		size = levels[currentLevel].length; 
+	if(levels[currentLevel]['tiles'].length<4) {
+		size = levels[currentLevel]['tiles'].length; 
 		$('.grid-container').html(createLine(size));
 		$('.tile-container').html(generateStraightLevel(size));
 		$('.lines-container').html(createLines(1));
@@ -317,9 +318,10 @@ function addBoard() {
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
 		$('.super-container').css('padding','10px');
+		$('.super-container').css('margin-bottom','20px');
 		$('.super-container').css('width',superWidth);
 	} else {
-		size = Math.sqrt(levels[currentLevel].length); 
+		size = Math.sqrt(levels[currentLevel]['tiles'].length); 
 		$('.grid-container').html(createGrid(size));
 		$('.tile-container').html(generateLevel(size));
 		$('.lines-container').html(createLines(size));
@@ -337,46 +339,52 @@ function addBoard() {
 		$('.game-container').css('width',dimension);
 		$('.game-container').css('height',height);
 		$('.super-container').css('padding','10px');
+		$('.super-container').css('margin-bottom','20px');
 		$('.super-container').css('width',height);
 	}
 	$('.super-container').css('box-shadow','0 3px 6px #000000');
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
 	$('.controls-lower').html(controls);
-	$('.controls-lower').css('display','block');	
+	$('.controls-lower').css('display','block');
+	$('.moves-legend-container').html(movesLegend);
+	$('.moves-legend-container').css('display','block');	
 	$('.super-container').css('display','block');
 	if(	currentLevel === "level1" ) {
-		$('.tutorial-container').html("<img style=\"position: relative; width: 28px; bottom: 22px; right: 20px;\" src=\"./img/icons/HandPointer.svg\"/>");
+		$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointer.svg\"/>");
+		$('.object').css('left');
+		$('.object').addClass('horizTranslate');
 	} else {
 		$('.tutorial-container').html("");
 	}
 	//$('#pie-container').html(pie);
 	
 	//moves = 0;
-	moves = levels[currentLevel].length-1;
+	moves = levels[currentLevel]['tiles'].length-1;
 	$('#move-num').html(moves);
 	isPaused = false;
 	//startTimer();
+	
 }
 
 function generateLevel(size) {
 	var output = "";
-	for (i=0; i<levels[currentLevel].length; i++) {
-		output += "<div class=\"tile tile-movable tile-position-" + (Math.floor(i/size)+1)+ "-" + ((i%size)+1) + "\">" + levels[currentLevel][i] + "</div>";
+	for (i=0; i<levels[currentLevel]['tiles'].length; i++) {
+		output += "<div class=\"tile tile-movable tile-position-" + (Math.floor(i/size)+1)+ "-" + ((i%size)+1) + "\">" + levels[currentLevel]['tiles'][i] + "</div>";
 	}
 	return output;
 }
 
 function generateStraightLevel(size) {
 	var output = "";
-	for (i=0; i<levels[currentLevel].length; i++) {
-		output += "<div class=\"tile tile-movable tile-position-" + ((i%size)+1) + "-" + (Math.floor(i/size)+1) + "\">" + levels[currentLevel][i] + "</div>";
+	for (i=0; i<levels[currentLevel]['tiles'].length; i++) {
+		output += "<div class=\"tile tile-movable tile-position-" + ((i%size)+1) + "-" + (Math.floor(i/size)+1) + "\">" + levels[currentLevel]['tiles'][i] + "</div>";
 	}
 	return output;
 }
 
 function calculateTotal() {
-	total = remainderBonus + completeBonus + (((levels[currentLevel].length-1)-moves) * 75);
+	total = remainderBonus + completeBonus + (((levels[currentLevel]['tiles'].length-1)-moves) * 75);
 	//return total;
 }
 
@@ -538,7 +546,7 @@ function onReady() {
 		
     	// check and show it at end of a game level
     	showInterstitial();
-		remainingTiles = levels[currentLevel].length;
+		remainingTiles = levels[currentLevel]['tiles'].length;
 		addBoard();	
 		//addSwipeTo('.tile');
 	});
@@ -579,7 +587,7 @@ function onReady() {
 		currentLevel = $(this).attr('id');
 		if (getCurrentLevelNumber() <= highestLevel) {
 			$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
-			remainingTiles = levels[currentLevel].length;
+			remainingTiles = levels[currentLevel]['tiles'].length;
 			addBoard();	
 			$('.title').hide();
 		}
@@ -609,23 +617,23 @@ function onReady() {
 		e.preventDefault();
 		pauseModal.style.display = "none";
 		var size;
-		if(levels[currentLevel].length<4) {
-			size = levels[currentLevel].length;
+		if(levels[currentLevel]['tiles'].length<4) {
+			size = levels[currentLevel]['tiles'].length;
 			$('.tile-container').html(generateStraightLevel(size));
 		} else {
-			size = Math.sqrt(levels[currentLevel].length);
+			size = Math.sqrt(levels[currentLevel]['tiles'].length);
 			$('.tile-container').html(generateLevel(size));
 		}
-		remainingTiles = levels[currentLevel].length;
+		remainingTiles = levels[currentLevel]['tiles'].length;
 		//addSwipeTo('.tile');
 		//moves=0;
-		moves = levels[currentLevel].length-1;
+		moves = levels[currentLevel]['tiles'].length-1;
 		$('.move-num').html(moves);
 		isPaused = false;
 		//startTimer();
 	});     
 	
-		//var remainingTiles = levels[currentLevel].length;
+		//var remainingTiles = levels[currentLevel]['tiles'].length;
       //Enable swiping...
 		var hammertime = $('.tile-container').hammer({prevent_default: true, domEvents:true});
 		$('.tile-container').data("hammer").get('swipe').set({ direction: Hammer.DIRECTION_ALL, threshold: 0, velocity: 0.1 });
@@ -740,7 +748,7 @@ function onReady() {
 					gameOverModal.style.display = "block";
 					$('#complete').html(completeBonus);
 					$('#remainder').html(remainderBonus);
-					$('#moves').html(((levels[currentLevel].length-1)-moves) * 75);
+					$('#moves').html(((levels[currentLevel]['tiles'].length-1)-moves) * 75);
 					$('#total').html(total);
 					$('.count').each(function () {
 					  var $this = $(this);
