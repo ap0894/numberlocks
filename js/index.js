@@ -48,18 +48,18 @@ function createVaultDiv() {
 	var secondVaultRow = "<tr class=\"vault-row\">";
 	for (i=1; i<=3; i++) {
 		if(i<=highestVault) {
-			firstVaultRow += "<td id=\"vault"+i+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
+			firstVaultRow += "<td id=\"vault"+i+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"open.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		} else {
-			firstVaultRow += "<td id=\"vault"+i+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
+			firstVaultRow += "<td id=\"vault"+i+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"lock.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		}
 	}
 	firstVaultRow += "</tr>";
 	
 	for (j=4; j<=6; j++) {
 		if(j<=highestVault) {
-			secondVaultRow += "<td id=\"vault"+j+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
+			secondVaultRow += "<td id=\"vault"+j+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img id=\"vault"+j+"overlay\" src=\"./img/icons/"+j+"open.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		} else {
-			secondVaultRow += "<td id=\"vault"+j+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
+			secondVaultRow += "<td id=\"vault"+j+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img id=\"vault"+j+"overlay\" src=\"./img/icons/"+j+"lock.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		}
 	}
 	secondVaultRow += "</tr>";
@@ -296,7 +296,7 @@ function createLine(size) {
 
 function addBoard() {
 
-	var movesLegend = "<table><tbody><tr><td>Moves</td><td>"+levels[currentLevel]['three']+"</td><td>"+levels[currentLevel]['two']+"</td><td>"+levels[currentLevel]['one']+"</td></tr></tbody></table>";
+	var movesLegend = "<table><tbody><tr><td>Moves</td><td>"+levels[currentLevel]['three']+"</td><td>"+levels[currentLevel]['two']+"</td><td>"+levels[currentLevel]['one']+"</td></tr><tr><td>Stars</td><td><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOn.svg\" /></td><td><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOff.svg\" /></td><td><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOff.svg\" /><img class = \"star\" src=\"./img/icons/StarOff.svg\" /></td></tr></tbody></table>";
 	prepInterstitial();	
 	$('.lines-container').html('');
 	$('.vertical-lines-container').html('');
@@ -559,6 +559,7 @@ function onReady() {
 		$('.game-container').css('display','none');	
 		$('.controls-lower').css('display','none');	
 		$('.super-container').css('display','none');
+		$('.moves-legend-container').css('display','none');	
 		$('.levels').css('display','block');
 		$('.title').show();
     });
@@ -571,6 +572,7 @@ function onReady() {
 		$('.game-container').css('display','none');	
 		$('.controls-lower').css('display','none');	
 		$('.super-container').css('display','none');
+		$('.moves-legend-container').css('display','none');	
 		$('.vaults').css('display','block');
 		$('.title').show();
 	});
@@ -774,6 +776,7 @@ function onReady() {
     						highestVault = (highestLevel/10)+1;
     						storage.setItem('highestVault', highestVault);
     						$('#vault' + highestVault).attr("src", "./img/icons/SafeLargeOpen.svg");
+    						$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
     						currentVaultNumber++;
 							//$('.levels').hide();
 							//$('.vaults').show();
