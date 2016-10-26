@@ -8,6 +8,8 @@ var multiselectlevelsDiv = "<table><tbody><tr><tr><td>Level 21</td><td>Level 22<
 
 var fourbyfourlevelsDiv = "<table><tbody><tr><tr><td>Level 31</td><td>Level 32</td><td>Level 33</td><td>Level 34</td><td>Level 35</td></tr><tr class=\"level-img-row\"><td><img id=\"level31\" src=\"./img/lock.png\" /></td><td><img id=\"level32\" src=\"./img/lock.png\" /></td><td><img id=\"level33\" src=\"./img/lock.png\" /></td><td><img id=\"level34\" src=\"./img/lock.png\" /></td><td><img id=\"level35\" src=\"./img/lock.png\" /></td></tr></tr><tr><tr><td>Level 36</td><td>Level 37</td><td>Level 38</td><td>Level 39</td><td>Level 40</td></tr><tr class=\"level-img-row\"><td><img id=\"level36\" src=\"./img/lock.png\" /></td><td><img id=\"level37\" src=\"./img/lock.png\" /></td><td><img id=\"level38\" src=\"./img/lock.png\" /></td><td><img id=\"level39\" src=\"./img/lock.png\" /></td><td><img id=\"level40\" src=\"./img/lock.png\" /></td></tr></tr></tbody></table>";*/
 
+var controls = "<img id=\"restart\" class=\"pause-img\" src=\"./img/icons/Restart.svg\" /><img id=\"levelSelect\" class=\"pause-img\" src=\"./img/icons/Padlock.svg\" /><img id=\"vaultSelect\" class=\"pause-img\" src=\"./img/icons/SafeSmall.svg\" /><img class=\"pause-img leaderboard\" src=\"./img/icons/Trophy.svg\" />";
+
 var levelDiv = "";
 
 var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
@@ -40,30 +42,28 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
 
 function createVaultDiv() {
 	var tempVaultDiv = "<table style=\"border-spacing: 0px; font-size: 10px;\"><tbody>";
-	var firstVaultRow = "<tr>";
-	var secondVaultRow = "<tr>";
+	var firstLabelRow = "<tr><td>Subtraction</td><td>Diagonal</td><td>Multi-Select</td></tr>";
+	var secondLabelRow = "<tr><td>4x4 Grid</td><td>5x5 Grid</td><td>Division</td></tr>";
+	var firstVaultRow = "<tr class=\"vault-row\">";
+	var secondVaultRow = "<tr class=\"vault-row\">";
 	for (i=1; i<=3; i++) {
 		if(i<=highestVault) {
-			firstVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 36px;\"/></td>";
+			firstVaultRow += "<td id=\"vault"+i+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		} else {
-			firstVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+i+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 36px;\"/></td>";
+			firstVaultRow += "<td id=\"vault"+i+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img src=\"./img/icons/"+i+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		}
-		//<td><img id="vault2" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
-		//<td><img id="vault3" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
 	}
 	firstVaultRow += "</tr>";
 	
 	for (j=4; j<=6; j++) {
 		if(j<=highestVault) {
-			secondVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 36px;\"/></td>";
+			secondVaultRow += "<td id=\"vault"+j+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		} else {
-			secondVaultRow += "<td><img style=\"position: relative; top: 0; left: 0;\" id=\"vault"+j+"\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosed.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 36px;\"/></td>";
+			secondVaultRow += "<td id=\"vault"+j+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img src=\"./img/icons/"+j+".svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		}
-		//<td><img id="vault2" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
-		//<td><img id="vault3" class="vault-img" src="./img/icons/SafeLargeClosed.svg" /></td>
 	}
 	secondVaultRow += "</tr>";
-	tempVaultDiv += firstVaultRow + secondVaultRow + "</tbody></table>" + "<div style=\"text-decoration:underline; cursor:pointer;\" id=\"resetGame\">Reset Game</div>";
+	tempVaultDiv += firstLabelRow + firstVaultRow + secondLabelRow + secondVaultRow + "</tbody></table>" + "<div style=\"text-decoration:underline; cursor:pointer;\" id=\"resetGame\">Reset Game</div>";
 	return tempVaultDiv;
 }
 
@@ -86,7 +86,7 @@ function createLevelDiv(vault) {
 		if(i <= highestLevel) {
 			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTick.svg\" /></td>";
 		} else {
-			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/Padlock.svg\" /></td>";
+			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockGrey.svg\" /></td>";
 		}
 		numStars = 0;
 		numStars = storage.getItem('level'+i);
@@ -110,7 +110,7 @@ function createLevelDiv(vault) {
 		if(j <= highestLevel) {
 			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/PadlockOpenTick.svg\" /></td>";
 		} else {
-			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/Padlock.svg\" /></td>";
+			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/PadlockGrey.svg\" /></td>";
 		}
 		numStars = 0;
 		numStars = storage.getItem('level'+j);
@@ -342,6 +342,7 @@ function addBoard() {
 	$('.super-container').css('box-shadow','0 3px 6px #000000');
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
+	$('.controls-lower').html(controls);
 	$('.controls-lower').css('display','block');	
 	$('.super-container').css('display','block');	
 	//$('#pie-container').html(pie);
@@ -440,10 +441,12 @@ function onReady() {
 	highestLevel = storage.getItem('highestLevel');
 	if(highestLevel == null) {
 		highestLevel = 1;
+		storage.setItem('highestLevel', highestLevel);
 	}
 	highestVault = storage.getItem('highestVault');
 	if(highestVault == null) {
 		highestVault = 1;
+		storage.setItem('highestVault', highestVault);
 	}
 	
 	$('.vaults').html(createVaultDiv());
@@ -483,7 +486,8 @@ function onReady() {
 		}, 1000);
 	};
 
-    $('.leaderboard').on('click', function(e) {
+	$('body').on('click', '.leaderboard', function(e) {
+    //$('.leaderboard').on('click', function(e) {
     	var data = {
     		leaderboardId: "NLLB1234"
 		};
@@ -498,7 +502,8 @@ function onReady() {
 		};
     });
     
-    $(".pause").on('click', function(e) {
+    $('body').on('click', '.pause', function(e) {
+    //$(".pause").on('click', function(e) {
 	    pauseTimer();
     	pauseModal.style.display = "block";
     	$('#levelTitle').html(currentLevel.substr(5));
@@ -533,7 +538,8 @@ function onReady() {
 		//addSwipeTo('.tile');
 	});
     
-    $("#levelSelect").on('click', function(e) {
+    $('body').on('click', '#levelSelect', function(e) {
+    //$("#levelSelect").on('click', function(e) {
     	e.preventDefault();
 		pauseModal.style.display = "none";
 		$('.control-container').css('display','none');	
@@ -575,7 +581,9 @@ function onReady() {
 		//addSwipeTo('.tile');
 	});
 	
-	$("#vault1, #vault2, #vault3, #vault4, #vault5, #vault6").on('click', function(e) {
+	$('body').on('click', '#vault1, #vault2, #vault3, #vault4, #vault5, #vault6', function(e) {
+	console.log("helllo");
+	//$("#vault1, #vault2, #vault3, #vault4, #vault5, #vault6").on('click', function(e) {
 		currentVault = $(this).attr('id');
 		currentVaultNumber = parseInt(currentVault.substr(5),10);
 		if (currentVaultNumber <= highestVault) {
@@ -586,13 +594,14 @@ function onReady() {
 		}
 	});
 	
-	$('#return').on('click', function(e) {
+	$('body').on('click', '#return', function(e) {
 		e.preventDefault();
 		isPaused = false;
 		pauseModal.style.display = "none";
 	});
 	
-	$('#restart').on('click', function(e) {
+	$('body').on('click', '#restart', function(e) {
+	//$('#restart').on('click', function(e) {
 		e.preventDefault();
 		pauseModal.style.display = "none";
 		var size;
@@ -751,7 +760,7 @@ function onReady() {
 						highestLevel = getCurrentLevelNumber();
 						if (highestLevel % 10 === 0){
     						highestVault = (highestLevel/10)+1;
-    						storage.setItem('highestVault', highestVault)
+    						storage.setItem('highestVault', highestVault);
     						$('#vault' + highestVault).attr("src", "./img/icons/SafeLargeOpen.svg");
     						currentVaultNumber++;
 							//$('.levels').hide();

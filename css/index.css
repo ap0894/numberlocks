@@ -8,7 +8,7 @@ src: local('Berlin Sans FB Demi Bold'), url('./font/BRLNSDB.woff') format('woff'
 body {
   margin: 0;
   padding: 0;
-  background-color: #e4eff9;
+  background-color: #BFE5F6	;
   font-family:'Berlin Sans FB Demi Bold';
   font-weight:normal;
   font-size: 18px;
@@ -31,10 +31,14 @@ body {
 }
 
 .vaults td {
-	padding-bottom: 30px
+	font-size: 14px;
 }
 
 .star-row td {
+	padding-bottom: 30px;
+}
+
+.vault-row td {
 	padding-bottom: 30px;
 }
 
@@ -127,7 +131,7 @@ h1.title {
 
 .diagonal-right-lines-container {
     position: absolute;
-    top:38px;
+    top:3	8px;
     left: 5px;
     z-index: 1;
     float: left;
@@ -479,7 +483,7 @@ strong.important {
 }
 
 .tile-tick:before {
-	content:url("../img/tick.png");
+	content:url("../img/icons/Tick2NoCircle.svg");
 	line-height: 65px;
 }
 
