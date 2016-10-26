@@ -84,7 +84,7 @@ function createLevelDiv(vault) {
 	{
 		firstLabelRow +=  "<td>Level "+i+"</td>";
 		if(i <= highestLevel) {
-			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTick.svg\" /></td>";
+			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\" /></td>";
 		} else {
 			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockGrey.svg\" /></td>";
 		}
@@ -108,7 +108,7 @@ function createLevelDiv(vault) {
 	{
 		secondLabelRow +=  "<td>Level "+j+"</td>";
 		if(j <= highestLevel) {
-			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/PadlockOpenTick.svg\" /></td>";
+			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\" /></td>";
 		} else {
 			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/PadlockGrey.svg\" /></td>";
 		}
@@ -344,7 +344,12 @@ function addBoard() {
 	$('.game-container').css('display','block');
 	$('.controls-lower').html(controls);
 	$('.controls-lower').css('display','block');	
-	$('.super-container').css('display','block');	
+	$('.super-container').css('display','block');
+	if(	currentLevel === "level1" ) {
+		$('.tutorial-container').html("<img style=\"position: relative; width: 28px; bottom: 22px; right: 20px;\" src=\"./img/icons/HandPointer.svg\"/>");
+	} else {
+		$('.tutorial-container').html("");
+	}
 	//$('#pie-container').html(pie);
 	
 	//moves = 0;
@@ -582,7 +587,6 @@ function onReady() {
 	});
 	
 	$('body').on('click', '#vault1, #vault2, #vault3, #vault4, #vault5, #vault6', function(e) {
-	console.log("helllo");
 	//$("#vault1, #vault2, #vault3, #vault4, #vault5, #vault6").on('click', function(e) {
 		currentVault = $(this).attr('id');
 		currentVaultNumber = parseInt(currentVault.substr(5),10);
@@ -769,7 +773,7 @@ function onReady() {
 						highestLevel++;
 						storage.setItem('highestLevel', highestLevel);
 						//var levToUpdate = currentLevel+1;
-						$('#level' + highestLevel).attr("src", "./img/icons/PadlockOpenTick.svg");
+						$('#level' + highestLevel).attr("src", "./img/icons/PadlockOpenTickNoShadow.svg");
 					}
 					currentLevel = incrementLevel();
 				}
