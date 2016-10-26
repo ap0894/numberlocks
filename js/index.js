@@ -48,18 +48,18 @@ function createVaultDiv() {
 	var secondVaultRow = "<tr class=\"vault-row\">";
 	for (i=1; i<=3; i++) {
 		if(i<=highestVault) {
-			firstVaultRow += "<td id=\"vault"+i+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"open.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
+			firstVaultRow += "<td id=\"vault"+i+"\"><img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Open.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		} else {
-			firstVaultRow += "<td id=\"vault"+i+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"lock.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
+			firstVaultRow += "<td id=\"vault"+i+"\"><img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		}
 	}
 	firstVaultRow += "</tr>";
 	
 	for (j=4; j<=6; j++) {
 		if(j<=highestVault) {
-			secondVaultRow += "<td id=\"vault"+j+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img id=\"vault"+j+"overlay\" src=\"./img/icons/"+j+"open.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
+			secondVaultRow += "<td id=\"vault"+j+"\"><img id=\"vault"+j+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img id=\"vault"+j+"overlay\" src=\"./img/icons/"+j+"Open.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		} else {
-			secondVaultRow += "<td id=\"vault"+j+"\"><img style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img id=\"vault"+j+"overlay\" src=\"./img/icons/"+j+"lock.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
+			secondVaultRow += "<td id=\"vault"+j+"\"><img id=\"vault"+j+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img id=\"vault"+j+"overlay\" src=\"./img/icons/"+j+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
 		}
 	}
 	secondVaultRow += "</tr>";
@@ -775,7 +775,7 @@ function onReady() {
 						if (highestLevel % 10 === 0){
     						highestVault = (highestLevel/10)+1;
     						storage.setItem('highestVault', highestVault);
-    						$('#vault' + highestVault).attr("src", "./img/icons/SafeLargeOpen.svg");
+    						$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
     						$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
     						currentVaultNumber++;
 							//$('.levels').hide();
