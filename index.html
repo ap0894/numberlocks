@@ -26,7 +26,7 @@
 		<meta name="theme-color" content="#ffffff">
 		
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Number Lock</title>
+        <title>Number Locks</title>
     </head>
     <body>
 		<div class="container">
@@ -38,22 +38,16 @@
 			<div class="controls-lower"></div>
 			<div class="super-container">
 			<div id="pie-container"></div>
-				<!--<div class="control-container">
-					<div class="current-level"></div>
-					<div class="restart-container"><img src="./img/reload.png" /></div>
-					<div class=" level-selector"><span>Back</span></div>
-					<div class=" leaderboard"><span>Leaderboard</span></div>
-				</div>-->
-				<div class="game-container">
-					<div class="moves-label control text"><div id="move-text" style="display:inline-block">Moves: </div>&nbsp;<div id="move-num" style="display:inline-block"> </div></div>
-					<div class="grid-container"></div>
-					<div class="tile-container"></div>
-					<div class="lines-container"></div>
-					<div class="vertical-lines-container"></div>
-					<div class="diagonal-left-lines-container"></div>
-					<div class="diagonal-right-lines-container"></div>
-					<div class="tutorial-container"></div>
-				</div>	
+			<div class="game-container">
+				<div class="moves-label control text"><div id="move-text" style="display:inline-block">Moves: </div>&nbsp;<div id="move-num" style="display:inline-block"> </div></div>
+				<div class="grid-container"></div>
+				<div class="tile-container"></div>
+				<div class="lines-container"></div>
+				<div class="vertical-lines-container"></div>
+				<div class="diagonal-left-lines-container"></div>
+				<div class="diagonal-right-lines-container"></div>
+				<div class="tutorial-container"></div>
+			</div>	
 			</div>			
 			<div class="moves-legend-container text"></div>
 		  	<!--<p class="game-explanation"></p>
@@ -62,15 +56,28 @@
 		</div>
 		
 		<!-- Game Over Modal -->
-		<div id="gameOverModal" class="modal">
+		<div id="gameOverModal" class="modal text">
 			<!--Modal Content -->
 			<div id="gameOverContent" class="modal-content">
-				<span class="close GameOverClose">x</span>
+				<!--<span class="close GameOverClose">x</span>-->
+				<p class="">CONGRATULATIONS <br />LEVEL <span id="levelNum"></span> COMPLETE!</p>
 				<div class="score-container">
-					<p>Complete Bonus: <span class="count" id="complete"></span></p>
+					<div class="">Moves Remaining: <span class="" id="moves"></span></div><br />
+					<div class="inline">
+						Stars Collected: &nbsp;
+						<div class="inline" id="starsCollected"></div>
+					</div><br /><br />
+					<div style="display:inline-block">
+						<img style="margin-right:40px" id="next" class="GameOverClose pause-img" src="./img/icons/Tick2.svg" />
+						<img id="restart" class="pause-img" src="./img/icons/Restart.svg" />
+					</div>
+					<div style="display:inline-block">
+						<p><span style="margin-right:20px">Next Level</span><span>Retry Level</span></p>
+					</div>
+					<!--<div class="pause-item" id="restart"><img class="pause-img" src="./img/icons/Restart.svg" />Restart level</div>-->
+					<!--<p>Complete Bonus: <span class="count" id="complete"></span></p>
 					<p>Remainder Bonus: <span class="count" id="remainder"></span></p>
-					<p>Moves Bonus: <span class="count" id="moves"></span></p>
-					<p>Total: <span class="count" id="total"></span></p>
+					<p>Total: <span class="count" id="total"></span></p>-->
 				</div>
 			</div>
 		</div>
