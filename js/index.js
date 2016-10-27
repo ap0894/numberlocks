@@ -625,7 +625,6 @@ function onReady() {
 	$('body').on('click', '#restart', function(e) {
 	//$('#restart').on('click', function(e) {
 		e.preventDefault();
-		movesUp=0;
 		pauseModal.style.display = "none";
 		gameOverModal.style.display = "none";
 		var size;
@@ -640,7 +639,7 @@ function onReady() {
 		//addSwipeTo('.tile');
 		movesUp=0;
 		moves = levels[currentLevel]['tiles'].length-1;
-		$('.move-num').html(movesUp);
+		$('#move-num').html(movesUp);
 		isPaused = false;
 		//startTimer();
 	});     
