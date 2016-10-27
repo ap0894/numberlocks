@@ -625,6 +625,7 @@ function onReady() {
 	$('body').on('click', '#restart', function(e) {
 	//$('#restart').on('click', function(e) {
 		e.preventDefault();
+		movesUp=0;
 		pauseModal.style.display = "none";
 		gameOverModal.style.display = "none";
 		var size;
