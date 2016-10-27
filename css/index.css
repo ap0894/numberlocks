@@ -673,9 +673,12 @@ table {
 		  transition: transform 800ms ease-in;*/
 }
 
+/* Safari 4.0 - 8.0 */
 @-webkit-keyframes mymove {
-	-webkit-transform: translate(50px, 0);
-}
+    from {top: -25px;}
+    to {top: 30px;}
+} 
+
 
 @keyframes mymove {
     from {left: -25px;}
