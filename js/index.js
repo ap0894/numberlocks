@@ -329,7 +329,7 @@ function addBoard() {
 		width = width.toString() + 'px';
 		superWidth = superWidth.toString() + 'px';
 		var height = (46) + (12*2);
-		height = (height+39).toString() + 'px';
+		height = (height+24).toString() + 'px';
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
 		$('.super-container').css('padding','10px');
@@ -342,7 +342,7 @@ function addBoard() {
 		$('.lines-container').html(createLines(size));
 		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
-		var height = dimension + 39;
+		var height = dimension + 24;
 		if(currentVaultNumber > 1) {
 			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
 			$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
