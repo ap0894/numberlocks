@@ -24,7 +24,8 @@
 }
 
 .slick-prev{	
-    left: 36px;
+    left: 10px;
+    z-index: 1;
 }
 
 .single-item {
