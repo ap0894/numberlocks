@@ -457,6 +457,12 @@ function checkSurrounds(x,y) {
 
 function onReady() {
 
+	$('.slider').slick({
+    	centerMode: true,
+		centerPadding: '10px',
+		slidesToShow: 3
+  	});
+  	
 	storage = window.localStorage;
 	highestLevel = storage.getItem('highestLevel');
 	if(highestLevel == null) {

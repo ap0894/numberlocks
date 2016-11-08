@@ -1,0 +1,32 @@
+.panel {
+    background: #ccc;
+    height:200px;
+    margin: 10px;
+    font-size: 72px;
+    text-align: center;
+    line-height: 200px;
+}
+
+.vault-img {
+    //background: #ccc;
+    height:100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 200px;
+}
+
+.slick-prev:before, .slick-next:before{	
+    color:red;
+}
+
+.slick-next{	
+    right: 10px;
+}
+
+.slick-prev{	
+    left: 36px;
+}
+
+.single-item {
+    width: 40%;
+}
