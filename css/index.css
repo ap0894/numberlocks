@@ -8,7 +8,7 @@ src: local('Berlin Sans FB Demi Bold'), url('./font/BRLNSDB.woff') format('woff'
 body {
   margin: 0;
   padding: 0;
-  //background-color: #BFE5F6	;
+  background-color: #BFE5F6	;
   font-family:'Berlin Sans FB Demi Bold';
   font-weight:normal;
   font-size: 18px;
