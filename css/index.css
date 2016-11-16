@@ -725,6 +725,7 @@ table {
 .slider .slick-center span{
 	font-size:16px;
 	padding-bottom: 12px;
+	white-space: nowrap;
 }
 
 .slider img{
@@ -738,4 +739,5 @@ table {
 .slider span{
 	font-size: 12px;
 	padding-bottom: 12px;
+	white-space: nowrap;
 }
