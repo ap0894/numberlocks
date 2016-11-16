@@ -459,13 +459,36 @@ function checkSurrounds(x,y) {
 function onReady() {
 
 	$('.slider').slick({
+	  	centerMode: true,
+	  	centerPadding: '60px',
+	  	slidesToShow: 3,
+	  	slidesToScroll: 3,
 	  	asNavFor: '.levelsTest',
+	  	index: 2,
 	  	dots: true,
-	  	focusOnSelect: true,
-    	centerMode: true,
-		centerPadding: '10px',
-		slidesToScroll: 1,
-		slidesToShow: 3
+	  	infinite: true,
+	  	//focusOnSelect: true,
+		//slidesToScroll: 3,
+		  responsive: [
+			{
+			  breakpoint: 768,
+			  settings: {
+				arrows: true,
+				centerMode: true,
+				centerPadding: '40px',
+				slidesToShow: 3
+			  }
+			},
+			{
+			  breakpoint: 480,
+			  settings: {
+				arrows: true,
+				centerMode: true,
+				centerPadding: '40px',
+				slidesToShow: 1
+			  }
+			}
+		  ]
   	});
   	
   	$('.levelsTest').slick({
@@ -614,7 +637,7 @@ function onReady() {
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$('.levels').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23, #level24, #level25, #level26, #level27, #level28, #level29, #level30, #level31, #level32, #level33, #level34, #level35, #level36, #level37, #level38, #level39, #level40', function(e) {
+	$('body').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23, #level24, #level25, #level26, #level27, #level28, #level29, #level30, #level31, #level32, #level33, #level34, #level35, #level36, #level37, #level38, #level39, #level40', function(e) {
 		e.preventDefault();
 		currentLevel = $(this).attr('id');
 		if (getCurrentLevelNumber() <= highestLevel) {
