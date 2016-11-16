@@ -461,6 +461,7 @@ function onReady() {
 	$('.slider').slick({
 	  	centerMode: true,
 	  	centerPadding: '60px',
+	  	focusOnSelect: true,
 	  	slidesToShow: 3,
 	  	slidesToScroll: 3,
 	  	asNavFor: '.levelsTest',
@@ -476,6 +477,7 @@ function onReady() {
 				arrows: true,
 				centerMode: true,
 				centerPadding: '40px',
+	  			focusOnSelect: true,
 				slidesToShow: 3
 			  }
 			},
@@ -485,6 +487,7 @@ function onReady() {
 				arrows: true,
 				centerMode: true,
 				centerPadding: '40px',
+	  			focusOnSelect: true,
 				slidesToShow: 3
 			  }
 			}
