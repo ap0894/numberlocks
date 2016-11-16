@@ -2,7 +2,9 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 
 var controls = "<img id=\"restart\" class=\"pause-img\" src=\"./img/icons/Restart.svg\" /><img id=\"levelSelect\" class=\"pause-img\" src=\"./img/icons/Padlock.svg\" /><img id=\"vaultSelect\" class=\"pause-img\" src=\"./img/icons/SafeSmall.svg\" /><img class=\"pause-img leaderboard\" src=\"./img/icons/Trophy.svg\" />";
 
-var levelDiv = "";
+//var levelDiv = "";
+
+var levelsDiv = "<div class=\"slider\"><div><span>Subtract</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div><div><span>Subtract</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div><div><span>Subtract</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div><div><span>Subtract</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div></div>";	
 
 var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
 
@@ -310,7 +312,8 @@ function addBoard() {
 	$('.vertical-lines-container').html('');
 	$('.diagonal-left-lines-container').html('');
 	$('.diagonal-right-lines-container').html('');
-	$('.levels').css('display','none');
+	//$('.levels').css('display','none');
+	$('#levelsDiv').css('display','none');
 	var size;
 	if(levels[currentLevel]['tiles'].length<4) {
 		size = levels[currentLevel]['tiles'].length; 
@@ -458,6 +461,7 @@ function checkSurrounds(x,y) {
 
 function onReady() {
 
+	$('#levelsDiv').hide();
 	$('.slider').slick({
 	  	centerMode: true,
 	  	centerPadding: '60px',
@@ -570,6 +574,34 @@ function onReady() {
 		};
     });
     
+    $('body').on('click', '#campaign', function(e) {
+    	$('#challenge').css('display', 'none');	
+    	//$('#levelsDiv').show();
+    	$('#levelsDiv').html(levelsDiv);
+    	$('.slider').slick({
+	  	centerMode: true,
+	  	centerPadding: '60px',
+	  	focusOnSelect: true,
+	  	slidesToShow: 3,
+	  	slidesToScroll: 3,
+	  	//asNavFor: '.levelsTest',
+	  	index: 2,
+	  	dots: true,
+	  	infinite: true
+	  	//focusOnSelect: true,
+		//slidesToScroll: 3,
+  	});
+  	
+  	$('.levelsTest').slick({
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  arrows: false,
+	  fade: true,
+	  asNavFor: '.slider'
+  	});
+    	$('#levelsDiv').show();
+    });
+    
     $('body').on('click', '.pause', function(e) {
     //$(".pause").on('click', function(e) {
 	    pauseTimer();
@@ -623,13 +655,14 @@ function onReady() {
     $('body').on('click', '#vaultSelect', function(e) {
     	e.preventDefault();
 		pauseModal.style.display = "none";
-		$('.levels').hide();
+		//$('.levels').hide();
 		$('.control-container').css('display','none');	
 		$('.game-container').css('display','none');	
 		$('.controls-lower').css('display','none');	
 		$('.super-container').css('display','none');
 		$('.moves-legend-container').css('display','none');	
-		$('.vaults').css('display','block');
+		//$('.vaults').css('display','block');
+		$('#levelsDiv').css('display','block');
 		$('.title').show();
 	});
 	
