@@ -575,7 +575,7 @@ table {
 	width: 60px;
 	margin: 0px auto;
 	padding-top: 12px;
-	-webkit-box-reflect: below 2px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(250, 250, 250, 0.7)));
+	//-webkit-box-reflect: below 2px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(250, 250, 250, 0.7)));
 }
 
 .operation-img {
