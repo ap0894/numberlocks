@@ -553,7 +553,7 @@ function onReady() {
 			slidesToScroll: 3,
 			asNavFor: '.levelsTest',
 			index: 2,
-			//dots: true,
+			dots: true,
 			infinite: true
 			//focusOnSelect: true,
 			//slidesToScroll: 3,
