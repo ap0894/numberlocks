@@ -5,8 +5,8 @@ $(function () {
 	  asNavFor: '.slider-for',
 	  dots: true,
 	  arrows: true,
-	  centerMode: true,
-	  centerPadding: '60px',
+	  //centerMode: true,
+	  //centerPadding: '60px',
 	  focusOnSelect: true
     };
     

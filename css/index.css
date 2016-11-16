@@ -48,10 +48,12 @@ body {
 
 .star {
 	width: 16px;
+	display: inline-block !important;
 }
 
 .level-img-row img {
 	width: 32px;
+	margin: 0px auto;
 }
 
 .level-selector {
@@ -571,6 +573,7 @@ table {
 
 .vault-img {
 	width: 60px;
+	margin: 0px auto;
 }
 
 .operation-img {
@@ -693,4 +696,20 @@ table {
 
 .inline {
   display: inline-block;
+}
+
+.slick-next {
+	right: 0px !important;
+}
+
+.slick-prev {
+	left: 0px !important;
+}
+
+.levelsTest {
+	font-size: 14px;
+}
+
+.slider {
+	margin-bottom: 40px !important;
 }

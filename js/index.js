@@ -135,7 +135,8 @@ function createLevelDiv(vault) {
 	secondIconRow += "</tr>";
 	secondStarRow += "</tr>"
 	
-	tempLevelDiv += tempLevelDiv + vaultIcon + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
+	//tempLevelDiv += tempLevelDiv + vaultIcon + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
+	tempLevelDiv += tempLevelDiv + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
 	return tempLevelDiv;
 }
 
@@ -458,9 +459,21 @@ function checkSurrounds(x,y) {
 function onReady() {
 
 	$('.slider').slick({
+	  	asNavFor: '.levelsTest',
+	  	dots: true,
+	  	focusOnSelect: true,
     	centerMode: true,
 		centerPadding: '10px',
+		slidesToScroll: 1,
 		slidesToShow: 3
+  	});
+  	
+  	$('.levelsTest').slick({
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  arrows: false,
+	  fade: true,
+	  asNavFor: '.slider'
   	});
   	
 	storage = window.localStorage;
@@ -477,7 +490,10 @@ function onReady() {
 	
 	$('.vaults').html(createVaultDiv());
 	
-    $('.levels').css('display','none');
+    //$('.levels').css('display','none');
+	levelDiv = createLevelDiv(1);
+	//$('.levels').html(levelDiv);	
+	//$('.levels').css('display','block');
     
 	$('.controls-lower').css('display','none');	
 

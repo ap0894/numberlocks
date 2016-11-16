@@ -1,5 +1,19 @@
+@font-face {
+font-family: 'Berlin Sans FB Demi Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Berlin Sans FB Demi Bold'), url('./font/BRLNSDB.woff') format('woff');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #BFE5F6	;
+  font-family:'Berlin Sans FB Demi Bold';
+  font-weight:normal;
+  font-size: 18px;
+}
 .panel {
-    background: #ccc;
     height:200px;
     margin: 10px;
     font-size: 72px;
@@ -16,7 +30,7 @@
 }
 
 .slick-prev:before, .slick-next:before{	
-    color:red;
+    //color:red;
 }
 
 .slick-next{	
@@ -30,4 +44,21 @@
 
 .single-item {
     width: 40%;
+}
+
+.level-img-row img {
+	width: 32px;
+}
+
+.star-row td {
+	padding-bottom: 30px;
+}
+
+.star {
+	width: 16px;
+	display: inline-block !important;
+}
+
+table {
+	margin: 0 auto;
 }
