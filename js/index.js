@@ -547,7 +547,7 @@ function onReady() {
     	
     	$('.slider').slick({
 			centerMode: true,
-			centerPadding: '60px',
+			centerPadding: '70px',
 			focusOnSelect: true,
 			slidesToShow: 3,
 			slidesToScroll: 3,
