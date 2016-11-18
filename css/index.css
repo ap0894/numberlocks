@@ -771,7 +771,7 @@ hr{
 
 .slick-dots {
 	bottom: 0px !important;
-	z-index: -1 !important;
+	z-index: 0 !important;
 }
 
 .slick-prev:before, .slick-next:before {
