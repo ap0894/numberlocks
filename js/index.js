@@ -540,6 +540,7 @@ function addBoard() {
 		$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 		$('#tutorialText').html(level1Tutorial);
 		$('#tutorialTitle').html("<u>How To Win</u>");
+		$('.tutorial-modal').css('height', '75px');
 		howToWinModal.style.display = "block";
 		$('.object').css('left');
 		$('.object').addClass('horizTranslate');
