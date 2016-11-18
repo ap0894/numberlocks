@@ -558,7 +558,7 @@ function addBoard() {
 		howToWinModal.style.display = "block";
 		$('.object').css('left');
 		$('.object').addClass('horizTranslate');
-		$('.tutorial').css('padding-top', '252px');
+		$('.tutorial').css('padding-top', '256px');
 	}
 	else {
 		$('.tutorial-container').html("");
