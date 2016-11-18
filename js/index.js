@@ -584,7 +584,7 @@ function checkSurrounds(x,y) {
 		$(classIndex).addClass('pair');
 		$(classIndexBotMid).addClass('pair');
 	} 
-	if (currentVaultNumber > 1) {
+	if (currentVaultNumber > 2) {
 		if ($(classIndex).text() == $(classIndexTopLeft).text()) {
 			$(classIndex).addClass('pair');
 			$(classIndexTopLeft).addClass('pair');
@@ -789,7 +789,26 @@ function onReady() {
 	
 	$('body').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23, #level24, #level25, #level26, #level27, #level28, #level29, #level30, #level31, #level32, #level33, #level34, #level35, #level36, #level37, #level38, #level39, #level40', function(e) {
 		e.preventDefault();
+		
 		currentLevel = $(this).attr('id');
+		var levelNumber = getCurrentLevelNumber();
+		switch(true) {
+			case levelNumber < 4:
+				currentVaultNumber = 1;
+				break;
+			case levelNumber > 3 && levelNumber < 14:
+				currentVaultNumber = 2;
+				break;
+			case levelNumber > 13 && levelNumber < 24 :
+				currentVaultNumber = 3;
+				break;
+			case levelNumber > 23 :
+				currentVaultNumber = 4;
+				break;
+			default:
+				currentVaultNumber = 1;
+				break;
+		}
 		if (getCurrentLevelNumber() <= highestLevel) {
 			$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
 			remainingTiles = levels[currentLevel]['tiles'].length;
