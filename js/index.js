@@ -185,15 +185,19 @@ function createMainDiv() {
 		switch(i) {
 			case 1:
 				tempSpan = "<span>Tutorial</span>";
+				tempExpl = "<span class=\"explanation\">Learn How To Play</span>"
 				break;
 			case 2:
 				tempSpan = "<span>Subtract</span>";
+				tempExpl = "<span class=\"explanation\">Subtract the numbers to eliminate all tiles</span>"
 				break;
 			case 3:
 				tempSpan = "<span>Diagonal</span>";
+				tempExpl = "<span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span>"
 				break;
 			case 4:
 				tempSpan = "<span>4x4</span>";
+				tempExpl = "<span class=\"explanation\">Complete the 4 by 4 boards</span>"
 				break;
 		}
 		if(i<=highestVault) {
@@ -201,7 +205,7 @@ function createMainDiv() {
 		} else {
 			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 44%; \"/>";
 		}
-		tempDiv = tempDiv + tempSpan + tempImg;
+		tempDiv = tempDiv + tempSpan + tempImg + tempExpl;
 		slider += tempDiv + "</div>";
 	}
 	slider += "</div>";

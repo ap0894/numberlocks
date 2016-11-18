@@ -777,3 +777,9 @@ hr{
 .slick-prev:before, .slick-next:before {
 	color: #27aae0 !important;
 }
+
+.explanation {
+	font-size: 10px !important;
+	color: #27aae0 !important;
+	white-space: normal !important;
+}
