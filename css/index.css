@@ -523,7 +523,7 @@ table {
 	display:none;
 	position:fixed;
 	z-index: 2;
-	padding-top: 172px;
+	padding-top: 192px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -682,6 +682,13 @@ table {
   font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
   font-size: 14px;
   color: #00b0f0
+}
+
+.level-number {
+  font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
+  font-size: 14px;
+  color: black;
+
 }
 
 .object {

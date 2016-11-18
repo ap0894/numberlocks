@@ -529,6 +529,7 @@ function addBoard() {
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
 	$('.controls-lower').html(controls);
+	$('.level-number').html("Level "+ getCurrentLevelNumber());
 	$('.controls-lower').css('display','block');
 	if(getCurrentLevelNumber() > 2) {
 		$('.moves-legend-container').html(movesLegend);
@@ -556,7 +557,7 @@ function addBoard() {
 		howToWinModal.style.display = "block";
 		$('.object').css('left');
 		$('.object').addClass('horizTranslate');
-		$('.tutorial').css('padding-top', '234px');
+		$('.tutorial').css('padding-top', '252px');
 	}
 	else {
 		$('.tutorial-container').html("");
