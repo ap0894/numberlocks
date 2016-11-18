@@ -1,3 +1,7 @@
+var level1Tutorial = "Swipe tiles to subtract the numbers and convert every tile to a tick";
+var level2Tutorial = "Subtract in either direction (there are no negatives)";
+var level3Tutorial = "Swipe horizontally or vertically";
+
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
 var controls = "<img id=\"restart\" class=\"pause-img\" src=\"./img/icons/Restart.svg\" /><img id=\"vaultSelect\" class=\"pause-img\" src=\"./img/icons/SafeSmall.svg\" /><img class=\"pause-img leaderboard\" src=\"./img/icons/Trophy.svg\" />";
@@ -185,19 +189,23 @@ function createMainDiv() {
 		switch(i) {
 			case 1:
 				tempSpan = "<span>Tutorial</span>";
-				tempExpl = "<span class=\"explanation\">Learn How To Play</span>"
+				tempExpl = "<span class=\"explanation\">Learn How To Play</span>";
+				tempStatus = "<span class=\"status\">Unlocked: </span>";
 				break;
 			case 2:
 				tempSpan = "<span>Subtract</span>";
-				tempExpl = "<span class=\"explanation\">Subtract the numbers to eliminate all tiles</span>"
+				tempExpl = "<span class=\"explanation\">Subtract the numbers to eliminate all tiles</span>";
+				tempStatus = "<span class=\"status\">Locked: </span>";
 				break;
 			case 3:
 				tempSpan = "<span>Diagonal</span>";
-				tempExpl = "<span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span>"
+				tempExpl = "<span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span>";
+				tempStatus = "<span class=\"status\">Locked: </span>";
 				break;
 			case 4:
 				tempSpan = "<span>4x4</span>";
-				tempExpl = "<span class=\"explanation\">Complete the 4 by 4 boards</span>"
+				tempExpl = "<span class=\"explanation\">Complete the 4 by 4 boards</span>";
+				tempStatus = "<span class=\"status\">Locked: </span>";
 				break;
 		}
 		if(i<=highestVault) {
@@ -205,7 +213,7 @@ function createMainDiv() {
 		} else {
 			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 44%; \"/>";
 		}
-		tempDiv = tempDiv + tempSpan + tempImg + tempExpl;
+		tempDiv = tempDiv + tempSpan + tempImg + tempExpl + tempStatus;
 		slider += tempDiv + "</div>";
 	}
 	slider += "</div>";
@@ -507,14 +515,35 @@ function addBoard() {
 	$('.game-container').css('display','block');
 	$('.controls-lower').html(controls);
 	$('.controls-lower').css('display','block');
-	$('.moves-legend-container').html(movesLegend);
-	$('.moves-legend-container').css('display','block');	
+	if(getCurrentLevelNumber() > 2) {
+		$('.moves-legend-container').html(movesLegend);
+		$('.moves-legend-container').css('display','block');	
+	}
 	$('.super-container').css('display','block');
-	if(	currentLevel === "level1" ) {
-		$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointer.svg\"/>");
+	if(currentLevel === "level1" ) {
+		$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+		$('#tutorialText').html(level1Tutorial);
+		$('#tutorialTitle').html("<u>How To Win</u>");
+		howToWinModal.style.display = "block";
 		$('.object').css('left');
 		$('.object').addClass('horizTranslate');
-	} else {
+	} else if(currentLevel === "level2" ) {
+		$('.tutorial-container').html("<img class=\"object2 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+		$('#tutorialText').html(level2Tutorial);
+		$('#tutorialTitle').html("");
+		howToWinModal.style.display = "block";
+		$('.object2').css('left');
+		$('.object2').addClass('horizTranslate2');
+	} else if(currentLevel === "level3" ) {
+		$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+		$('#tutorialText').html(level3Tutorial);
+		$('#tutorialTitle').html("");
+		howToWinModal.style.display = "block";
+		$('.object').css('left');
+		$('.object').addClass('horizTranslate');
+		$('.tutorial').css('padding-top', '234px');
+	}
+	else {
 		$('.tutorial-container').html("");
 	}
 	//$('#pie-container').html(pie);
@@ -632,6 +661,12 @@ function onReady() {
 		totalStars = parseInt(totalStars, 10);
 	}
 	
+	window.onclick = function(event) {
+		if(event.target==howToWinModal) {
+			howToWinModal.style.display = "none";
+		}
+	}
+	
 	//$('.vaults').html(createVaultDiv());
 	currentVaultNumber = 1;
 	
@@ -725,11 +760,15 @@ function onReady() {
 	    pauseTimer();
     	pauseModal.style.display = "block";
     	$('#levelTitle').html(currentLevel.substr(5));
-	});    
+	});  
 	
 	$(".pauseClose").on('click', function(e) {
 		isPaused = false;
 		pauseModal.style.display = "none";
+	});
+	
+	$(".tutorialClose").on('click', function(e) {
+		howToWinModal.style.display = "none";
 	});
 	
     $(".GameOverClose").on('click', function(e) {
