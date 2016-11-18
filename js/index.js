@@ -197,9 +197,9 @@ function createMainDiv() {
 				break;
 		}
 		if(i<=highestVault) {
-			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Open.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 46%;\"/>";
+			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Open.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 44%;\"/>";
 		} else {
-			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 46%; \"/>";
+			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 44%; \"/>";
 		}
 		tempDiv = tempDiv + tempSpan + tempImg;
 		slider += tempDiv + "</div>";
