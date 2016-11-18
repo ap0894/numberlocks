@@ -703,7 +703,7 @@ table {
 	position: relative; 
 	width: 28px; 
 	bottom: 25px; 
-	right: 50px;
+	left: 60px;
 	z-index: 2;
 }
 
@@ -759,14 +759,14 @@ table {
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes mymove2 {
-    from {left: -50px;}
-    to {left: 20px;}
+    from {left: 60px;}
+    to {left: 0px;}
 } 
 
 
 @keyframes mymove2 {
-    from {left: -50px;}
-    to {left: 20px;}
+    from {left: 60px;}
+    to {left: 0px;}
 }
 
 .left {
