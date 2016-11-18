@@ -702,19 +702,22 @@ table {
 
 .slick-next {
 	right: 0px !important;
+	top: 93% !important;
 }
 
 .slick-prev {
 	left: 0px !important;
+	top: 93% !important;
 }
 
 .levelsTest {
+	margin-top: 14px;
 	font-size: 14px;
 }
 
 .slider {
 	font-size: 16px;
-	margin-bottom: 40px !important;
+	margin-bottom: 20px !important;
 }
 
 .slider .slick-center img{
@@ -758,4 +761,17 @@ table {
 
 .slider .slick-list {
 	padding: 20px 40px !important;
+}
+
+hr{
+   border: 1px solid #27aae0;
+}
+
+.slick-dots {
+	bottom: 0px !important;
+	z-index: -1 !important;
+}
+
+.slick-prev:before, .slick-next:before {
+	color: #27aae0 !important;
 }
