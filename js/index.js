@@ -82,8 +82,23 @@ function calculateStars(currentLevel, movesUp) {
 function createLevelDiv (x,y) {
 	var div = "<div><table><tbody>";
 	
+	switch(x) {
+		case 1:
+			tempExpl = "<div><span class=\"explanation\">Learn How To Play</span></div><br/>";
+			break;
+		case 4:
+			tempExpl = "<div><span class=\"explanation\">Subtract the numbers to eliminate all tiles</span></div><br/>";
+			break;
+		case 14:
+			tempExpl = "<div><span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span></div><br/>";
+			break;
+		case 24:
+			tempExpl = "<div><span class=\"explanation\">Complete the 4 by 4 boards</span></div><br/>";
+			break;
+	}
+	
 	if((y-x)<=5) {	
-		var headerRow = "<tr>";
+		var headerRow = tempExpl + "<tr>";
 		var imageRow = "<tr class=\"level-img-row\">"
 		var starRow = "<tr class=\"star-row\">";
 	
@@ -116,7 +131,7 @@ function createLevelDiv (x,y) {
 		starRow = starRow + "</tr>";
 		div = div + headerRow + imageRow + starRow + "</tbody></table></div>";
 	} else {
-		var headerRow1 = "<tr>";
+		var headerRow1 = tempExpl + "<tr>";
 		var headerRow2 = "<tr>";
 		var imageRow1 = "<tr class=\"level-img-row\">"
 		var imageRow2 = "<tr class=\"level-img-row\">"
@@ -189,22 +204,22 @@ function createMainDiv() {
 		switch(i) {
 			case 1:
 				tempSpan = "<span>Tutorial</span>";
-				tempExpl = "<span class=\"explanation\">Learn How To Play</span>";
+				//tempExpl = "<span class=\"explanation\">Learn How To Play</span>";
 				tempStatus = "<span class=\"status\">Unlocked: </span>";
 				break;
 			case 2:
 				tempSpan = "<span>Subtract</span>";
-				tempExpl = "<span class=\"explanation\">Subtract the numbers to eliminate all tiles</span>";
+				//tempExpl = "<span class=\"explanation\">Subtract the numbers to eliminate all tiles</span>";
 				tempStatus = "<span class=\"status\">Locked: </span>";
 				break;
 			case 3:
 				tempSpan = "<span>Diagonal</span>";
-				tempExpl = "<span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span>";
+				//tempExpl = "<span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span>";
 				tempStatus = "<span class=\"status\">Locked: </span>";
 				break;
 			case 4:
 				tempSpan = "<span>4x4</span>";
-				tempExpl = "<span class=\"explanation\">Complete the 4 by 4 boards</span>";
+				//tempExpl = "<span class=\"explanation\">Complete the 4 by 4 boards</span>";
 				tempStatus = "<span class=\"status\">Locked: </span>";
 				break;
 		}
@@ -213,7 +228,7 @@ function createMainDiv() {
 		} else {
 			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 44%; \"/>";
 		}
-		tempDiv = tempDiv + tempSpan + tempImg + tempExpl + tempStatus;
+		tempDiv = tempDiv + tempSpan + tempImg + tempStatus;
 		slider += tempDiv + "</div>";
 	}
 	slider += "</div>";
