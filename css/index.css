@@ -720,6 +720,19 @@ table {
     transform: rotate(90deg);
 }
 
+.object4 {
+	position: relative; 
+	width: 28px; 
+	bottom: 115px; 
+	right: 55px;
+	z-index: 2;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 .horizTranslate {
   /*-webkit-transform: translate(50px, 0);
      -moz-transform: translate(50px, 0);
@@ -777,6 +790,15 @@ table {
 		  transition: transform 800ms ease-in;*/
 }
 
+.horizTranslate4 {
+ 
+	-webkit-animation: mymove4 1s ease-in;
+	-webkit-animation-iteration-count: 3;
+	
+	animation: mymove4 1s;
+    animation-iteration-count: 3;
+}
+
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes mymove {
     from {left: -25px;}
@@ -811,6 +833,24 @@ table {
 @keyframes mymove3 {
     from {bottom: 115px;}
     to {bottom: 50px;}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove4 {
+    from {bottom: 115px;}
+    to {bottom: 50px;}
+} 
+
+
+@keyframes mymove4 {
+    from {
+    	bottom: 115px;
+    	right: 55px;
+    }
+    to {
+    	bottom: 45px;
+    	right: -25px;
+    }
 }
 
 .left {

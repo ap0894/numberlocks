@@ -1,6 +1,7 @@
 var level1Tutorial = "Swipe tiles to subtract the numbers and convert every tile to a tick";
 var level2Tutorial = "Subtract in either direction (there are no negatives)";
 var level3Tutorial = "Swipe horizontally or vertically";
+var level14Tutorial = "You can now swipe diagonally";
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
@@ -558,6 +559,14 @@ function addBoard() {
 		howToWinModal.style.display = "block";
 		$('.object3').css('bottom');
 		$('.object3').addClass('horizTranslate3');
+		$('.tutorial').css('padding-top', '256px');
+	} else if(currentLevel === "level14" ) {
+		$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+		$('#tutorialText').html(level14Tutorial);
+		$('#tutorialTitle').html("");
+		howToWinModal.style.display = "block";
+		$('.object4').css('bottom');
+		$('.object4').addClass('horizTranslate4');
 		$('.tutorial').css('padding-top', '256px');
 	}
 	else {
