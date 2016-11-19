@@ -20,7 +20,7 @@ var remainderBonus = 1000;
 var moves;
 var movesUp;
 var testing = true;
-var testingLevels = false;
+var testingLevels;
 var total = 0;
 var myTimer;
 var timerDuration = 60*2;
@@ -121,7 +121,12 @@ function createLevelDiv (x,y) {
 				if(numStars > x) {
 					tempStars += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
 				} else {
-					tempStars += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+					if (i > highestLevel ) {
+						tempStars += "<img class = \"star\" src=\"./img/icons/StarOffGrey.svg\" />";
+					}	
+					else {
+						tempStars += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+					}
 				}
 			}
 			tempStars += "</td>";
@@ -170,12 +175,20 @@ function createLevelDiv (x,y) {
 				if(numStars1 > j) {
 					tempStars1 += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
 				} else {
-					tempStars1 += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+					if (i > highestLevel) {
+						tempStars1 += "<img class = \"star\" src=\"./img/icons/StarOffGrey.svg\" />";
+					} else {
+						tempStars1 += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+					}
 				}
 				if(numStars2 > j) {
 					tempStars2 += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
 				} else {
-					tempStars2 += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+					if (i > highestLevel) {
+						tempStars2 += "<img class = \"star\" src=\"./img/icons/StarOffGrey.svg\" />";
+					} else {
+						tempStars2 += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+					}
 				}
 			}
 			tempStars1 += "</td>";
@@ -670,23 +683,18 @@ function onReady() {
   	
 	storage = window.localStorage;
 	highestLevel = storage.getItem('highestLevel');
-	if(highestLevel == null) {
-		if(testingLevels) {
-			highestLevel = 33;
-		} else {
-			highestLevel = 1;
-		}
-		storage.setItem('highestLevel', highestLevel);
-	}
 	highestVault = storage.getItem('highestVault');
-	if(highestVault == null) {
-		if(testingLevels) {
-			highestVault = 4;		
-		} else {
-			highestVault = 1;
-		}
-		storage.setItem('highestVault', highestVault);
+	if(testingLevels) {
+		highestLevel = 33;
+		highestVault = 4;
+	} else if(highestLevel == null) {
+		highestLevel = 1;
 	}
+	if(highestVault == null) {
+		highestVault = 1;
+	}
+	storage.setItem('highestLevel', highestLevel);
+	storage.setItem('highestVault', highestVault);
 
 	totalStars = storage.getItem('totalStars');
 	if(totalStars == null) {
@@ -861,6 +869,14 @@ function onReady() {
 	$('body').on('click', '#resetGame', function(e) {
     	window.localStorage.clear();
     	location.reload();
+    });
+    
+    $('body').on('click', '#unlockAll', function(e) {
+    	//window.localStorage.clear();
+    	//alert('hello');
+    	testingLevels = true;
+    	onReady();
+    	//location.reload();
     });
     
 	$('.game-explanation').html(gameExplanation);

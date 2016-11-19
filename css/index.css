@@ -918,6 +918,7 @@ table {
 
 #challengeNames {
 	font-size: 14px;
+	font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
 	color: #27aae0;
 	
 }
@@ -951,6 +952,7 @@ hr{
 
 .slider .slick-center .explanation {
 	display: block;
+	font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
 }
 
 .slider .status {
@@ -959,6 +961,7 @@ hr{
 
 .slider .slick-center .status {
 	display: block;
+	font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
 	font-size: 10px !important;
 	color: #27aae0 !important;
 	white-space: normal !important;
@@ -968,4 +971,8 @@ hr{
 	font-family:'Berlin Sans FB Demi Bold';
 	font-size: 18px;
 	color: black;
+}
+
+#testingControls {
+	margin-top: 30px;
 }
