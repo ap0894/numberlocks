@@ -540,8 +540,8 @@ table {
 	border-radius: 10px;
 	color: #00b0f0;
 	text-align: center;
-	width: 155px;
-	height: 150px;
+	width: 210px;
+	height: 180px;
 	box-shadow: 0 3px 6px #000000;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -878,4 +878,10 @@ hr{
 	font-size: 10px !important;
 	color: #27aae0 !important;
 	white-space: normal !important;
+}
+
+.congrats {
+	font-family:'Berlin Sans FB Demi';
+	font-size: 18px;
+	color: black;
 }
