@@ -20,6 +20,7 @@ var remainderBonus = 1000;
 var moves;
 var movesUp;
 var testing = true;
+var testingLevels = false;
 var total = 0;
 var myTimer;
 var timerDuration = 60*2;
@@ -670,7 +671,7 @@ function onReady() {
 	storage = window.localStorage;
 	highestLevel = storage.getItem('highestLevel');
 	if(highestLevel == null) {
-		if(testing) {
+		if(testingLevels) {
 			highestLevel = 33;
 		} else {
 			highestLevel = 1;
@@ -679,7 +680,7 @@ function onReady() {
 	}
 	highestVault = storage.getItem('highestVault');
 	if(highestVault == null) {
-		if(testing) {
+		if(testingLevels) {
 			highestVault = 4;		
 		} else {
 			highestVault = 1;
@@ -1089,7 +1090,7 @@ function onReady() {
 					highestVault = storage.getItem('highestVault');
 					if(getCurrentLevelNumber() >= highestLevel || highestLevel === null) {
 						highestLevel = getCurrentLevelNumber();
-						switch(highestLevel) {
+						switch(totalStars) {
 							case 3:
 								highestVault = 2;
 								storage.setItem('highestVault', highestVault);
@@ -1097,14 +1098,14 @@ function onReady() {
 								$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 								currentVaultNumber++;
 								break;
-							case 13:
+							case 24:
 								highestVault = 3;
 								storage.setItem('highestVault', highestVault);
 								$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 								$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 								currentVaultNumber++;
 								break;
-							case 23:
+							case 40:
 								highestVault = 4;
 								storage.setItem('highestVault', highestVault);
 								$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
