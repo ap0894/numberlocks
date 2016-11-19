@@ -552,12 +552,12 @@ function addBoard() {
 		$('.object2').css('left');
 		$('.object2').addClass('horizTranslate2');
 	} else if(currentLevel === "level3" ) {
-		$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+		$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 		$('#tutorialText').html(level3Tutorial);
 		$('#tutorialTitle').html("");
 		howToWinModal.style.display = "block";
-		$('.object').css('left');
-		$('.object').addClass('horizTranslate');
+		$('.object3').css('bottom');
+		$('.object3').addClass('horizTranslate3');
 		$('.tutorial').css('padding-top', '256px');
 	}
 	else {
@@ -661,12 +661,20 @@ function onReady() {
 	storage = window.localStorage;
 	highestLevel = storage.getItem('highestLevel');
 	if(highestLevel == null) {
-		highestLevel = 1;
+		if(testing) {
+			highestLevel = 33;
+		} else {
+			highestLevel = 1;
+		}
 		storage.setItem('highestLevel', highestLevel);
 	}
 	highestVault = storage.getItem('highestVault');
 	if(highestVault == null) {
-		highestVault = 1;
+		if(testing) {
+			highestVault = 4;		
+		} else {
+			highestVault = 1;
+		}
 		storage.setItem('highestVault', highestVault);
 	}
 

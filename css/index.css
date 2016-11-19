@@ -685,7 +685,7 @@ table {
 }
 
 .level-number {
-  font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
+  //font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
   font-size: 14px;
   color: black;
 
@@ -705,6 +705,19 @@ table {
 	bottom: 25px; 
 	left: 60px;
 	z-index: 2;
+}
+
+.object3 {
+	position: relative; 
+	width: 28px; 
+	bottom: 115px; 
+	right: 55px;
+	z-index: 2;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .horizTranslate {
@@ -745,6 +758,25 @@ table {
 		  transition: transform 800ms ease-in;*/
 }
 
+.horizTranslate3 {
+  /*-webkit-transform: translate(50px, 0);
+     -moz-transform: translate(50px, 0);
+      -ms-transform: translate(50px, 0);
+       -o-transform: translate(50px, 0);
+          transform: translate(50px, 0);*/
+	  
+	-webkit-animation: mymove3 1s ease-in;
+	-webkit-animation-iteration-count: 3;
+	
+	animation: mymove3 1s;
+    animation-iteration-count: 3;
+    
+	/* -moz-transition: -moz-transform 800ms ease-in;
+	   -ms-transition: -o-transform 800ms ease-in;
+	   -o-transition: -o-transform 800ms ease-in;
+		  transition: transform 800ms ease-in;*/
+}
+
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes mymove {
     from {left: -25px;}
@@ -767,6 +799,18 @@ table {
 @keyframes mymove2 {
     from {left: 60px;}
     to {left: 0px;}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove3 {
+    from {bottom: 115px;}
+    to {bottom: 50px;}
+} 
+
+
+@keyframes mymove3 {
+    from {bottom: 115px;}
+    to {bottom: 50px;}
 }
 
 .left {
@@ -881,7 +925,7 @@ hr{
 }
 
 .congrats {
-	font-family:'Berlin Sans FB Demi';
+	font-family:'Berlin Sans FB Demi Bold';
 	font-size: 18px;
 	color: black;
 }
