@@ -1109,7 +1109,7 @@ function onReady() {
 					highestVault = storage.getItem('highestVault');
 					if(getCurrentLevelNumber() >= highestLevel || highestLevel === null) {
 						highestLevel = getCurrentLevelNumber();
-						switch(totalStars) {
+						switch(highestLevel) {
 							case 3:
 								highestVault = 2;
 								storage.setItem('highestVault', highestVault);
@@ -1117,14 +1117,14 @@ function onReady() {
 								$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 								currentVaultNumber++;
 								break;
-							case 24:
+							case 13:
 								highestVault = 3;
 								storage.setItem('highestVault', highestVault);
 								$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 								$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 								currentVaultNumber++;
 								break;
-							case 40:
+							case 23:
 								highestVault = 4;
 								storage.setItem('highestVault', highestVault);
 								$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
