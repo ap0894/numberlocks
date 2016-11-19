@@ -108,10 +108,11 @@ function createLevelDiv (x,y) {
 		var tempImg = "";
 		var tempStars = "";
 		for (i=x; i<=y; i++) {
-			tempHeader += "<td>Level "+i+"</td>";
 			if (i <= highestLevel ) {
+				tempHeader += "<td id=\"levelHeader"+i+"\">Level "+i+"</td>";
 				tempImg += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td>";
-			} else {
+			} else {		
+				tempHeader += "<td id=\"levelHeader"+i+"\" style=\"color: #BFBFBF;\">Level "+i+"</td>";
 				tempImg += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockGrey.svg\"></td>";
 			}
 			tempStars = "<td id=\""+i+"stars\">";
@@ -153,16 +154,18 @@ function createLevelDiv (x,y) {
 		var tempStars2 = "";
 		
 		for (i=x; i<=(x+4); i++) {
-			tempHeader1 += "<td>Level "+i+"</td>";
-			tempHeader2 += "<td>Level "+(i+5)+"</td>";
 			if (i <= highestLevel ) {
+				tempHeader1 += "<td id=\"levelHeader"+i+"\">Level "+i+"</td>";
 				tempImg1 += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td>";
 			} else {
+				tempHeader1 += "<td id=\"levelHeader"+i+"\" style=\"color: #BFBFBF;\">Level "+i+"</td>";
 				tempImg1 += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockGrey.svg\"></td>";
 			}
 			if ((i+5) <= highestLevel ) {
+				tempHeader2 += "<td id=\"levelHeader"+(i+5)+"\">Level "+(i+5)+"</td>";
 				tempImg2 += "<td><img id=\"level"+(i+5)+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td>";
 			} else {
+				tempHeader2 += "<td id=\"levelHeader"+(i+5)+"\" style=\"color: #BFBFBF;\">Level "+(i+5)+"</td>";
 				tempImg2 += "<td><img id=\"level"+(i+5)+"\" src=\"./img/icons/PadlockGrey.svg\"></td>";
 			}
 			tempStars1 = "<td id=\""+i+"stars\">";
@@ -1142,6 +1145,8 @@ function onReady() {
 						storage.setItem('highestLevel', highestLevel);
 						//var levToUpdate = currentLevel+1;
 						$('#level' + highestLevel).attr("src", "./img/icons/PadlockOpenTickNoShadow.svg");
+						$('#' + highestLevel + 'stars').children().attr("src", "./img/icons/StarOff.svg");
+						$('#levelHeader' + highestLevel).css("color", "black");
 					}
 					//currentLevel = incrementLevel();
 				}
