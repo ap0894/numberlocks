@@ -1139,6 +1139,7 @@ function onReady() {
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							currentVaultNumber++;
 							if (currentHighestLevel < 4) {
+								alert('opening subtract vault');
 								unlockPreviousLevels(currentHighestLevel, 4);
 							}
 						} 
@@ -1149,6 +1150,7 @@ function onReady() {
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							currentVaultNumber++;
 							if (currentHighestLevel < 14) {
+								alert('opening subtract vault');
 								unlockPreviousLevels(currentHighestLevel, 14);
 							}
 						}
@@ -1159,6 +1161,7 @@ function onReady() {
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							currentVaultNumber++;
 							if (currentHighestLevel < 24) {
+								alert('opening subtract vault');
 								unlockPreviousLevels(currentHighestLevel, 24);
 							}
 						}
