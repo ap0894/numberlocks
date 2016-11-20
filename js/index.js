@@ -1137,9 +1137,9 @@ function onReady() {
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-							currentVaultNumber++;
+							//currentVaultNumber++;
 							if (currentHighestLevel < 4) {
-								alert('opening subtract vault');
+								alert('Opening Subtract vault');
 								unlockPreviousLevels(currentHighestLevel, 4);
 							}
 						} 
@@ -1148,9 +1148,9 @@ function onReady() {
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-							currentVaultNumber++;
+							//currentVaultNumber++;
 							if (currentHighestLevel < 14) {
-								alert('opening subtract vault');
+								alert('Opening Diagonal vault');
 								unlockPreviousLevels(currentHighestLevel, 14);
 							}
 						}
@@ -1159,9 +1159,9 @@ function onReady() {
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-							currentVaultNumber++;
+							//currentVaultNumber++;
 							if (currentHighestLevel < 24) {
-								alert('opening subtract vault');
+								alert('Opening 4x4 vault');
 								unlockPreviousLevels(currentHighestLevel, 24);
 							}
 						}
