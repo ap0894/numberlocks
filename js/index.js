@@ -332,6 +332,20 @@ function createMainDiv() {
 	return tempLevelDiv;
 }*/
 
+function unlockPreviousLevels(from, to) {
+
+	for (i=(from+1); i<=to; i++) {		
+		$('#level' + i).attr("src", "./img/icons/PadlockOpenTickNoShadow.svg");
+		$('#' + i + 'stars').children().attr("src", "./img/icons/StarOff.svg");
+		$('#levelHeader' + i).css("color", "black");
+	}
+	highestLevel = to;
+	storage.setItem('highestLevel', highestLevel);
+	return true;
+}
+
+
+
 function updateLevelDiv(level, stars) {
 	
 	var newStars = "";
@@ -1108,8 +1122,48 @@ function onReady() {
 					highestLevel = storage.getItem('highestLevel');
 					highestVault = storage.getItem('highestVault');
 					if(getCurrentLevelNumber() >= highestLevel || highestLevel === null) {
-						highestLevel = getCurrentLevelNumber();
-						switch(highestLevel) {
+						highestLevel = getCurrentLevelNumber();	
+							
+						highestLevel++;
+						storage.setItem('highestLevel', highestLevel);
+						//var levToUpdate = currentLevel+1;
+						$('#level' + highestLevel).attr("src", "./img/icons/PadlockOpenTickNoShadow.svg");
+						$('#' + highestLevel + 'stars').children().attr("src", "./img/icons/StarOff.svg");
+						$('#levelHeader' + highestLevel).css("color", "black");
+						var currentHighestLevel = highestLevel;
+						
+						if(totalStars>=3 && highestVault < 2) {	
+							highestVault = 2;
+							storage.setItem('highestVault', highestVault);
+							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
+							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
+							currentVaultNumber++;
+							if (currentHighestLevel < 4) {
+								unlockPreviousLevels(currentHighestLevel, 4);
+							}
+						} 
+						if(totalStars>=24 && highestVault < 3) {	
+							highestVault = 3;
+							storage.setItem('highestVault', highestVault);
+							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
+							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
+							currentVaultNumber++;
+							if (currentHighestLevel < 14) {
+								unlockPreviousLevels(currentHighestLevel, 14);
+							}
+						}
+						if(totalStars>=40 && highestVault < 4) {	
+							highestVault = 4;
+							storage.setItem('highestVault', highestVault);
+							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
+							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
+							currentVaultNumber++;
+							if (currentHighestLevel < 24) {
+								unlockPreviousLevels(currentHighestLevel, 24);
+							}
+						}
+						
+						/*switch(highestLevel) {
 							case 3:
 								highestVault = 2;
 								storage.setItem('highestVault', highestVault);
@@ -1133,20 +1187,7 @@ function onReady() {
 								break;
 							default:
 								break;
-						}
-						/*if (highestLevel % 10 === 0){
-    						highestVault = (highestLevel/10)+1;
-    						storage.setItem('highestVault', highestVault);
-    						$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
-    						$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-    						currentVaultNumber++;
-						}*/
-						highestLevel++;
-						storage.setItem('highestLevel', highestLevel);
-						//var levToUpdate = currentLevel+1;
-						$('#level' + highestLevel).attr("src", "./img/icons/PadlockOpenTickNoShadow.svg");
-						$('#' + highestLevel + 'stars').children().attr("src", "./img/icons/StarOff.svg");
-						$('#levelHeader' + highestLevel).css("color", "black");
+						} */
 					}
 					//currentLevel = incrementLevel();
 				}
