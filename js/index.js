@@ -212,7 +212,7 @@ function createLevelDiv (x,y) {
 }
 
 function createMainDiv() {
-	var total = "<div style=\"text-align:right;\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"/> Total: <span id=\"totalStars\"></span></div>";
+	$('#totalDiv').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"/> Total: <span id=\"totalStars\"></span>");
 	
 	//var slider = "<div class=\"slider\"><div id=\"vault1\"><span>Tutorial</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div><div id=\"vault2\"><span>Subtract</span><img id=\"vault2img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault3\"><span>Diagonal</span><img id=\"vault3img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault4\"><span>4x4</span><img id=\"vault4img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div></div>";
 	
@@ -222,23 +222,19 @@ function createMainDiv() {
 		switch(i) {
 			case 1:
 				tempSpan = "<span>Tutorial</span>";
-				//tempExpl = "<span class=\"explanation\">Learn How To Play</span>";
-				tempStatus = "<span class=\"status\">Unlocked: </span>";
+				tempStatus = "<span class=\"status\"></span>";
 				break;
 			case 2:
 				tempSpan = "<span>Subtract</span>";
-				//tempExpl = "<span class=\"explanation\">Subtract the numbers to eliminate all tiles</span>";
-				tempStatus = "<span class=\"status\">Locked: </span>";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOffGrey.svg\">";
 				break;
 			case 3:
 				tempSpan = "<span>Diagonal</span>";
-				//tempExpl = "<span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span>";
-				tempStatus = "<span class=\"status\">Locked: </span>";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOffGrey.svg\">";
 				break;
 			case 4:
 				tempSpan = "<span>4x4</span>";
-				//tempExpl = "<span class=\"explanation\">Complete the 4 by 4 boards</span>";
-				tempStatus = "<span class=\"status\">Locked: </span>";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOffGrey.svg\">";
 				break;
 		}
 		if(i<=highestVault) {
@@ -262,7 +258,7 @@ function createMainDiv() {
 	levels = levels + levels1to3 + levels4to13 + levels14to23 + levels24to33;
 	
 	//"<div><table><tbody></tbody></table><table><tbody><tr><td>Level 24</td><td>Level 25</td><td>Level 26</td><td>Level 27</td><td>Level 28</td></tr><tr class=\"level-img-row\"><td><img id=\"level24\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level25\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level26\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level27\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level28\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"24stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"25stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"26stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"27stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"28stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr><tr><td>Level 29</td><td>Level 30</td><td>Level 31</td><td>Level 32</td><td>Level 33</td></tr><tr class=\"level-img-row\"><td><img id=\"level29\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level30\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level31\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level32\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level22\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"29stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"30stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"31stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"32stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"33stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr></tbody></table></div></div>";
-	return total + slider + hr + levels;
+	return slider + hr + levels;
 
 }
 
@@ -562,6 +558,7 @@ function addBoard() {
 	$('.game-container').css('display','block');
 	$('.controls-lower').html(controls);
 	$('.level-number').html("Level "+ getCurrentLevelNumber());
+	$('.level-number').css('display','block');
 	$('.controls-lower').css('display','block');
 	if(getCurrentLevelNumber() > 2) {
 		$('.moves-legend-container').html(movesLegend);
@@ -865,6 +862,7 @@ function onReady() {
 		$('.controls-lower').css('display','none');	
 		$('.super-container').css('display','none');
 		$('.moves-legend-container').css('display','none');	
+		$('.level-number').css('display','none');
 		$('.levels').css('display','block');
 		$('.title').show();
     });
@@ -878,6 +876,7 @@ function onReady() {
 		$('.controls-lower').css('display','none');	
 		$('.super-container').css('display','none');
 		$('.moves-legend-container').css('display','none');	
+		$('.level-number').css('display','none');
 		//$('.vaults').css('display','block');
 		$('#levelsDiv').css('display','block');
 		$('.title').show();
@@ -1137,6 +1136,9 @@ function onReady() {
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
+							$('#vault' + highestVault).find('.status').html('Unlocked: 3');
+							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
+							$('#vault' + highestVault).find('.star').attr('src', './img/icons/StarOnNoShadow.svg');
 							//currentVaultNumber++;
 							if (currentHighestLevel < 4) {
 								alert('Opening Subtract vault');
@@ -1148,6 +1150,9 @@ function onReady() {
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
+							$('#vault' + highestVault).find('.status').html('Unlocked: 24');
+							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
+							//$('#vault' + highestVault).find('.status');
 							//currentVaultNumber++;
 							if (currentHighestLevel < 14) {
 								alert('Opening Diagonal vault');
@@ -1159,6 +1164,8 @@ function onReady() {
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
+							$('#vault' + highestVault).find('.status').html('Unlocked: 40');
+							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
 							//currentVaultNumber++;
 							if (currentHighestLevel < 24) {
 								alert('Opening 4x4 vault');
