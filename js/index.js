@@ -845,6 +845,7 @@ function onReady() {
     	
 		gameOverModal.style.display = "none";
     	if(continueFlag) {
+    		continueFlag = false;
     		//alert('need to open new vault');	
 			//e.preventDefault();
 			//$('.levels').hide();
