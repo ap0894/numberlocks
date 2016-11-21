@@ -966,7 +966,7 @@ hr{
 .slider .slick-center .status {
 	display: inline-block;
 	font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
-	font-size: 11px !important;
+	font-size: 10px !important;
 	color: #27aae0 !important;
 	white-space: normal !important;
 }
@@ -974,6 +974,7 @@ hr{
 .slider .slick-center .star {
 	display:inline-block !important;
 	margin-left: 4px;
+	width: 12px;
 }
 
 .congrats {
