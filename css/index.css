@@ -740,10 +740,10 @@ table {
        -o-transform: translate(50px, 0);
           transform: translate(50px, 0);*/
 	  
-	-webkit-animation: mymove 1s ease-in;
+	-webkit-animation: mymove 1500ms ease-in;
 	-webkit-animation-iteration-count: 3;
 	
-	animation: mymove 1s;
+	animation: mymove 1500ms;
     animation-iteration-count: 3;
     
 	/* -moz-transition: -moz-transform 800ms ease-in;
@@ -759,10 +759,10 @@ table {
        -o-transform: translate(50px, 0);
           transform: translate(50px, 0);*/
 	  
-	-webkit-animation: mymove2 1s ease-in;
+	-webkit-animation: mymove2 1500ms ease-in;
 	-webkit-animation-iteration-count: 3;
 	
-	animation: mymove2 1s;
+	animation: mymove2 1500ms;
     animation-iteration-count: 3;
     
 	/* -moz-transition: -moz-transform 800ms ease-in;
@@ -778,10 +778,10 @@ table {
        -o-transform: translate(50px, 0);
           transform: translate(50px, 0);*/
 	  
-	-webkit-animation: mymove3 1s ease-in;
+	-webkit-animation: mymove3 1500ms ease-in;
 	-webkit-animation-iteration-count: 3;
 	
-	animation: mymove3 1s;
+	animation: mymove3 1500ms;
     animation-iteration-count: 3;
     
 	/* -moz-transition: -moz-transform 800ms ease-in;

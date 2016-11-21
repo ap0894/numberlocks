@@ -1101,7 +1101,7 @@ function onReady() {
 					});*/
 					var stars = storage.getItem(currentLevel);
 					starsUpdate = calculateStars(currentLevel, movesUp);
-					if (starsUpdate > stars) {
+					if (starsUpdate > stars && getCurrentLevelNumber() > 2) {
 						totalStars = totalStars + (starsUpdate - stars);
 						storage.setItem('totalStars', totalStars);
 						$('#totalStars').html(totalStars);
@@ -1140,7 +1140,7 @@ function onReady() {
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
 							$('#vault' + highestVault).find('.star').attr('src', './img/icons/StarOnNoShadow.svg');
 							//currentVaultNumber++;
-							if (currentHighestLevel < 4) {
+							if (currentHighestLevel <= 4) {
 								alert('Opening Subtract vault');
 								unlockPreviousLevels(currentHighestLevel, 4);
 							}
