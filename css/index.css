@@ -564,6 +564,20 @@ table {
 	box-shadow: 0 3px 6px #000000;
 }
 
+.vault-open-modal {
+	position: relative;
+	background-color: white;
+	margin: auto;
+	padding: 20px;
+	font-size: 14px;
+	border-radius: 10px;
+	color: #00b0f0;
+	text-align: center;
+	width: 285px;
+	height: 140px;
+	box-shadow: 0 3px 6px #000000;
+}
+
 .score-container{
 	position: relative;
 }

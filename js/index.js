@@ -7,6 +7,7 @@ var gameExplanation = "<strong class=\"important\">How to play </strong> swipe t
 
 var controls = "<img id=\"restart\" class=\"pause-img\" src=\"./img/icons/Restart.svg\" /><img id=\"vaultSelect\" class=\"pause-img\" src=\"./img/icons/SafeSmall.svg\" /><img class=\"pause-img leaderboard\" src=\"./img/icons/Trophy.svg\" />";
 
+
 //var levelsDiv = "<div style=\"text-align:right;\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"/> Total: <span id=\"totalStars\"></span></div><div class=\"slider\"><div id=\"vault1\"><span>Tutorial</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div><div id=\"vault2\"><span>Subtract</span><img id=\"vault2img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault3\"><span>Diagonal</span><img id=\"vault3img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault4\"><span>4x4</span><img id=\"vault4img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div></div><hr></hr><div class=\"levelsTest\"><div><table><tbody><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td></tr><tr class=\"level-img-row\"><td><img id=\"level1\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td><td><img id=\"level2\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level3\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"1stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"2stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"3stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr></tbody></table></div><div><table><tbody></tbody></table><table><tbody><tr><td>Level 4</td><td>Level 5</td><td>Level 6</td><td>Level 7</td><td>Level 8</td></tr><tr class=\"level-img-row\"><td><img id=\"level4\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level5\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level6\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level7\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level8\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"4stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"5stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"6stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"7stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"8stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr><tr><td>Level 9</td><td>Level 10</td><td>Level 11</td><td>Level 12</td><td>Level 13</td></tr><tr class=\"level-img-row\"><td><img id=\"level9\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level10\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level11\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level12\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level13\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"9stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"10stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"11stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"12stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"13stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr></tbody></table></div><div><table><tbody></tbody></table><table><tbody><tr><td>Level 14</td><td>Level 15</td><td>Level 16</td><td>Level 17</td><td>Level 18</td></tr><tr class=\"level-img-row\"><td><img id=\"level14\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level15\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level16\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level16\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level18\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"14stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"15stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"16stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"17stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"18stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr><tr><td>Level 19</td><td>Level 20</td><td>Level 21</td><td>Level 22</td><td>Level 23</td></tr><tr class=\"level-img-row\"><td><img id=\"level19\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level20\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level21\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level22\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level23\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"19stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"20stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"21stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"22stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"23stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr></tbody></table></div><div><table><tbody></tbody></table><table><tbody><tr><td>Level 24</td><td>Level 25</td><td>Level 26</td><td>Level 27</td><td>Level 28</td></tr><tr class=\"level-img-row\"><td><img id=\"level24\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level25\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level26\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level27\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level28\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"24stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"25stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"26stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"27stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"28stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr><tr><td>Level 29</td><td>Level 30</td><td>Level 31</td><td>Level 32</td><td>Level 33</td></tr><tr class=\"level-img-row\"><td><img id=\"level29\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level30\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level31\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level32\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level22\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"29stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"30stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"31stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"32stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"33stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr></tbody></table></div></div>";	
 
 var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
@@ -29,6 +30,7 @@ var storage;
 var highestLevel;
 var highestVault;
 var totalStars = 0;
+var continueFlag = false;
 
 if (testing) {
 	AdMob = false;
@@ -214,6 +216,8 @@ function createLevelDiv (x,y) {
 function createMainDiv() {
 	$('#totalDiv').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"/> Total: <span id=\"totalStars\"></span>");
 	
+	//var tester = "<button id=\"tester\" type=\"button\">Click Me!</button>";
+	
 	//var slider = "<div class=\"slider\"><div id=\"vault1\"><span>Tutorial</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div><div id=\"vault2\"><span>Subtract</span><img id=\"vault2img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault3\"><span>Diagonal</span><img id=\"vault3img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault4\"><span>4x4</span><img id=\"vault4img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div></div>";
 	
 	var slider = "<div class=\"slider\">";
@@ -226,15 +230,15 @@ function createMainDiv() {
 				break;
 			case 2:
 				tempSpan = "<span>Subtract</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOffGrey.svg\">";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
 				break;
 			case 3:
 				tempSpan = "<span>Diagonal</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOffGrey.svg\">";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
 				break;
 			case 4:
 				tempSpan = "<span>4x4</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOffGrey.svg\">";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
 				break;
 		}
 		if(i<=highestVault) {
@@ -764,6 +768,11 @@ function onReady() {
 			}
 		}, 1000);
 	};
+	
+	/*$('body').on('click', '#tester', function(e) {
+		//alert('hello');
+		$('.slider').slick('slickGoTo', '3');
+	});*/
 
 	$('body').on('click', '.leaderboard', function(e) {
     //$('.leaderboard').on('click', function(e) {
@@ -829,28 +838,46 @@ function onReady() {
 	});
 	
     $(".GameOverClose").on('click', function(e) {
-		currentLevel = incrementLevel();
-    	gameOverModal.style.display = "none";
+    	
+		gameOverModal.style.display = "none";
+    	if(continueFlag) {
+    		//alert('need to open new vault');	
+			//e.preventDefault();
+			//$('.levels').hide();
+			$('.control-container').css('display','none');	
+			$('.game-container').css('display','none');	
+			$('.controls-lower').css('display','none');	
+			$('.super-container').css('display','none');
+			$('.moves-legend-container').css('display','none');	
+			$('.level-number').css('display','none');
+			//$('.vaults').css('display','block');
+			$('#levelsDiv').css('display','block');
+			$('.title').show();
+			vaultOpenModal.style.display = "block";
+			$('.slider').slick('slickGoTo', (highestVault-1));
+    	} else {
+			currentLevel = incrementLevel();
 
-		var data = {
-			score: total,
-			leaderboardId: "NLLB1234"
-		};
-		if(!testing) gamecenter.submitScore(successCallback, failureCallback, data);
+			var data = {
+				score: total,
+				leaderboardId: "NLLB1234"
+			};
+			if(!testing) gamecenter.submitScore(successCallback, failureCallback, data);
 		
-		var successCallback = function (e) {
-			//alert("Successfully submitted score" + e);
-		};
+			var successCallback = function (e) {
+				//alert("Successfully submitted score" + e);
+			};
 	
-		var failureCallback = function (e) {
-			//alert("Failed to submit score " + e);
-		};
+			var failureCallback = function (e) {
+				//alert("Failed to submit score " + e);
+			};
 		
-    	// check and show it at end of a game level
-    	showInterstitial();
-		remainingTiles = levels[currentLevel]['tiles'].length;
-		addBoard();	
-		//addSwipeTo('.tile');
+			// check and show it at end of a game level
+			showInterstitial();
+			remainingTiles = levels[currentLevel]['tiles'].length;
+			addBoard();	
+			//addSwipeTo('.tile');
+		}
 	});
     
     $('body').on('click', '#levelSelect', function(e) {
@@ -1081,14 +1108,12 @@ function onReady() {
 				}
 				if(remainingTiles === 0) {
 					//calculateTotal();
-					gameOverModal.style.display = "block";
 					//$('#complete').html(completeBonus);
 					//$('#remainder').html(remainderBonus);
 					//$('#moves').html(((levels[currentLevel]['tiles'].length-1)-moves) * 75);
-					$('#moves').html(((levels[currentLevel]['tiles'].length-1)-movesUp));
-					$('#levelNum').html(getCurrentLevelNumber());
-					
 					//$('#total').html(total);
+					
+
 					/*$('.count').each(function () {
 					  var $this = $(this);
 					  jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
@@ -1099,6 +1124,9 @@ function onReady() {
 						}
 					  });
 					});*/
+					
+					$('#moves').html(((levels[currentLevel]['tiles'].length-1)-movesUp));
+					$('#levelNum').html(getCurrentLevelNumber());
 					var stars = storage.getItem(currentLevel);
 					starsUpdate = calculateStars(currentLevel, movesUp);
 					if (starsUpdate > stars && getCurrentLevelNumber() > 2) {
@@ -1141,7 +1169,8 @@ function onReady() {
 							$('#vault' + highestVault).find('.star').attr('src', './img/icons/StarOnNoShadow.svg');
 							//currentVaultNumber++;
 							if (currentHighestLevel <= 4) {
-								alert('Opening Subtract vault');
+								//alert('Opening Subtract vault');
+								continueFlag = true;
 								unlockPreviousLevels(currentHighestLevel, 4);
 							}
 						} 
@@ -1155,7 +1184,8 @@ function onReady() {
 							//$('#vault' + highestVault).find('.status');
 							//currentVaultNumber++;
 							if (currentHighestLevel < 14) {
-								alert('Opening Diagonal vault');
+								//alert('Opening Diagonal vault');
+								continueFlag = true;
 								unlockPreviousLevels(currentHighestLevel, 14);
 							}
 						}
@@ -1168,7 +1198,8 @@ function onReady() {
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
 							//currentVaultNumber++;
 							if (currentHighestLevel < 24) {
-								alert('Opening 4x4 vault');
+								//alert('Opening 4x4 vault');
+								continueFlag = true;
 								unlockPreviousLevels(currentHighestLevel, 24);
 							}
 						}
@@ -1200,6 +1231,8 @@ function onReady() {
 						} */
 					}
 					//currentLevel = incrementLevel();
+					
+					gameOverModal.style.display = "block";
 				}
 			}
 		});
