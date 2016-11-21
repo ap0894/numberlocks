@@ -985,3 +985,7 @@ hr{
 #testingControls {
 	margin-top: 30px;
 }
+
+svg image{
+	fill: red;
+}
