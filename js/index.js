@@ -837,6 +837,10 @@ function onReady() {
 		howToWinModal.style.display = "none";
 	});
 	
+	$(".vaultOpenClose").on('click', function(e) {
+		vaultOpenModal.style.display = "none";
+	});
+	
     $(".GameOverClose").on('click', function(e) {
     	
 		gameOverModal.style.display = "none";
