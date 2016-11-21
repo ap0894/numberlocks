@@ -122,20 +122,21 @@ function createLevelDiv (x,y) {
 			numStars = 0;
 			numStars = storage.getItem('level'+i);
 			for (j=0; j<3; j++) {
-				if(numStars > x) {
-					tempStars += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
-				} else {
-					if (i > highestLevel ) {
-						tempStars += "<img class = \"star\" src=\"./img/icons/StarOffGrey.svg\" />";
-					}	
-					else {
-						tempStars += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+				if(i>2) {
+					if(numStars > x) {
+						tempStars += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
+					} else {
+						if (i > highestLevel ) {
+							tempStars += "<img class = \"star\" src=\"./img/icons/StarOffGrey.svg\" />";
+						}	
+						else {
+							tempStars += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
+						}
 					}
 				}
 			}
 			tempStars += "</td>";
 			starRow = starRow + tempStars;
-	
 		}
 		headerRow = headerRow + tempHeader + "</tr>";
 		imageRow = imageRow + tempImg + "</tr>";
@@ -823,8 +824,13 @@ function onReady() {
 		});
     });
     
+    $('body').on('click', '.hamburger', function(e) {
+	    //pauseTimer();
+    	pauseModal.style.display = "block";
+    	//$('#levelTitle').html(currentLevel.substr(5));
+	}); 
+    
     $('body').on('click', '.pause', function(e) {
-    //$(".pause").on('click', function(e) {
 	    pauseTimer();
     	pauseModal.style.display = "block";
     	$('#levelTitle').html(currentLevel.substr(5));
@@ -841,6 +847,7 @@ function onReady() {
 	
 	$(".vaultOpenClose").on('click', function(e) {
 		vaultOpenModal.style.display = "none";
+		$('.slider').slick('slickGoTo', (highestVault-1));
 	});
 	
     $(".GameOverClose").on('click', function(e) {
@@ -861,7 +868,7 @@ function onReady() {
 			$('#levelsDiv').css('display','block');
 			$('.title').show();
 			vaultOpenModal.style.display = "block";
-			$('.slider').slick('slickGoTo', (highestVault-1));
+			//$('.slider').slick('slickGoTo', (highestVault-1));
     	} else {
 			currentLevel = incrementLevel();
 
@@ -899,6 +906,19 @@ function onReady() {
 		$('.level-number').css('display','none');
 		$('.levels').css('display','block');
 		$('.title').show();
+    });
+    
+    $('body').on('click', '#home', function(e) {
+    	e.preventDefault();
+		pauseModal.style.display = "none";
+		$('.control-container').css('display','none');	
+		$('.game-container').css('display','none');	
+		$('.controls-lower').css('display','none');	
+		$('.super-container').css('display','none');
+		$('.moves-legend-container').css('display','none');	
+		$('#totalDiv').css('display','none');
+		$('.level-number').css('display','none');
+		$('#challenge').css('display','block');	
     });
     
     $('body').on('click', '#vaultSelect', function(e) {
@@ -1153,7 +1173,9 @@ function onReady() {
 							displayStars += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
 						}
 					}
-					$('#starsCollected').html(displayStars);
+					if(getCurrentLevelNumber() > 2) {
+						$('#starsCollected').html(displayStars);
+					}
 					highestLevel = storage.getItem('highestLevel');
 					highestVault = storage.getItem('highestVault');
 					if(getCurrentLevelNumber() >= highestLevel || highestLevel === null) {
