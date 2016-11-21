@@ -696,7 +696,8 @@ function checkSurrounds(x,y) {
 }
 
 function onReady() {
-
+	var swipeSound = new Audio("./audio/swipe.mp3"); // buffers automatically when created
+	
 	//$('#levelsDiv').show();
   	
 	storage = window.localStorage;
@@ -1089,6 +1090,7 @@ function onReady() {
 			default:
 			} 
 			if(move) {
+			swipeSound.play();
 			moves--;	
 			movesUp++;			
 			newClassIndex = 'tile-position-'+x+'-'+y;
