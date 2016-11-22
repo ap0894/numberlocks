@@ -1110,12 +1110,12 @@ function onReady() {
 			break;
 			default:
 			} 
-			if(move) {
-			swipeSound.play();
-			moves--;	
-			movesUp++;			
+			if(move) {		
 			newClassIndex = 'tile-position-'+x+'-'+y;
-				if ($('.'+newClassIndex).text()) {
+				if ($('.'+newClassIndex).text()) {				
+					swipeSound.play();
+					moves--;	
+					movesUp++;	
 					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 					$('.'+newClassIndex).remove();
 					$(this).removeClass(classIndex);
@@ -1153,7 +1153,8 @@ function onReady() {
 					  });
 					});*/
 					
-					$('#moves').html(((levels[currentLevel]['tiles'].length-1)-movesUp));
+					//$('#moves').html(((levels[currentLevel]['tiles'].length-1)-movesUp));
+					$('#moves').html(movesUp);
 					$('#levelNum').html(getCurrentLevelNumber());
 					var stars = storage.getItem(currentLevel);
 					starsUpdate = calculateStars(currentLevel, movesUp);
