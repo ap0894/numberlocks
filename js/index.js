@@ -1249,7 +1249,7 @@ function onReady() {
 							$('#vault' + highestVault).find('.status').html('Unlocked: 3');
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
 							$('#vault' + highestVault).find('.star').attr('src', './img/icons/StarOn.svg');
-							//currentVaultNumber++;
+							currentVaultNumber++;
 							if (currentHighestLevel <= 4) {
 								//alert('Opening Subtract vault');
 								continueFlag = true;
@@ -1264,7 +1264,7 @@ function onReady() {
 							$('#vault' + highestVault).find('.status').html('Unlocked: 24');
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
 							//$('#vault' + highestVault).find('.status');
-							//currentVaultNumber++;
+							currentVaultNumber++;
 							if (currentHighestLevel < 14) {
 								//alert('Opening Diagonal vault');
 								continueFlag = true;
@@ -1278,7 +1278,7 @@ function onReady() {
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							$('#vault' + highestVault).find('.status').html('Unlocked: 40');
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
-							//currentVaultNumber++;
+							currentVaultNumber++;
 							if (currentHighestLevel < 24) {
 								//alert('Opening 4x4 vault');
 								continueFlag = true;
