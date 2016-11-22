@@ -575,7 +575,7 @@ function addBoard() {
 		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
 		var height = dimension + 39;
-		if(currentVaultNumber > 2) {
+		if(getCurrentLevelNumber() > 13) {
 			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
 			$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
 		}
@@ -715,7 +715,7 @@ function checkSurrounds(x,y) {
 		$(classIndex).addClass('pair');
 		$(classIndexBotMid).addClass('pair');
 	} 
-	if (currentVaultNumber > 2) {
+	if (getCurrentLevelNumber() > 13) {
 		if ($(classIndex).text() == $(classIndexTopLeft).text()) {
 			$(classIndex).addClass('pair');
 			$(classIndexTopLeft).addClass('pair');
@@ -1075,7 +1075,7 @@ function onReady() {
 			var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 				return v.indexOf("tile-position") === 0;
 			}).join();
-			if(currentVaultNumber > 2) {
+			if(getCurrentLevelNumber() > 13) {
 				var angle = ev.originalEvent.gesture.angle;
 				if(angle > -157.5 && angle < -112.5) {
 					direction = "swipeupleft"; 
