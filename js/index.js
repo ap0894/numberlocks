@@ -47,16 +47,16 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
     onReady();
 }
 
-function getStarVaules(currentLevel) {
+function setStarVaules(currentLevel) {
 	
 	three = levels[currentLevel]['three'];
-	if(three.includes('-')) {
+	/*if(three.includes('-')) {
 		three = three.split('-'); 
 		three[0] = parseInt(three[0],10);
 		three[1] = parseInt(three[1],10);
 	} else {
 		three = parseInt(levels[currentLevel]['three'], 10);
-	}
+	}*/
 
 	two = levels[currentLevel]['two'];
 	if(two.includes('-')) {
@@ -663,7 +663,7 @@ function addBoard() {
 		$('#starCounter').html(tempStarsCounter);
 	}
 	//startTimer();
-	getStarVaules(currentLevel);
+	setStarVaules(currentLevel);
 }
 
 function generateLevel(size) {
