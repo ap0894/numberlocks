@@ -265,7 +265,7 @@ function createMainDiv() {
 				if(i<=highestVault) {
 					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 3</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				} else {
-					tempStatus = "<span style=\"color:#BFBFBF !important\" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				}
 				break;
 			case 3:
@@ -273,7 +273,7 @@ function createMainDiv() {
 				if(i<=highestVault) {
 					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				} else {
-					tempStatus = "<span style=\"color:#BFBFBF !important\" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				}
 				break;
 			case 4:
@@ -281,7 +281,7 @@ function createMainDiv() {
 				if(i<=highestVault) {
 					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				} else {
-					tempStatus = "<span style=\"color:#BFBFBF !important\" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				}
 				break;
 		}
@@ -1176,10 +1176,10 @@ function onReady() {
 					starsUpdate = calculateStars(movesUp);
 					if(starsUpdate < 3 && starsUpdate > 1) {
 						//$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
-						$('#starCounter').html('This is a test for bretts shitty iPad');
+						$('#starCounter').html('2 STARS');
 					} else if (starsUpdate < 2) {
 						//$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
-						$('#starCounter').html('This is another test for bretts shitty iPad');
+						$('#starCounter').html('1 STAR');
 					}
 					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 					$('.'+newClassIndex).remove();
@@ -1222,7 +1222,7 @@ function onReady() {
 					$('#moves').html(movesUp);
 					$('#levelNum').html(getCurrentLevelNumber());
 					var stars = storage.getItem(currentLevel);
-					starsUpdate = calculateStars(movesUp);
+					//starsUpdate = calculateStars(movesUp);
 					if (starsUpdate > stars && getCurrentLevelNumber() > 2) {
 						totalStars = totalStars + (starsUpdate - stars);
 						storage.setItem('totalStars', totalStars);
