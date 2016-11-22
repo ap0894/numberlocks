@@ -32,6 +32,10 @@ var highestLevel;
 var highestVault;
 var totalStars = 0;
 var continueFlag = false;
+var one;
+var two;
+var three;
+var starsUpdate;
 
 if (testing) {
 	AdMob = false;
@@ -43,17 +47,43 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
     onReady();
 }
 
-function calculateStars(currentLevel, movesUp) {
-	var three = parseInt(levels[currentLevel]['three'], 10);
-	var two = parseInt(levels[currentLevel]['two'], 10);
-	var one = parseInt(levels[currentLevel]['one'], 10);
+function getStarVaules(currentLevel) {
 	
+	three = levels[currentLevel]['three'];
+	if(three.includes('-')) {
+		three = three.split('-'); 
+		three[0] = parseInt(three[0],10);
+		three[1] = parseInt(three[1],10);
+	} else {
+		three = parseInt(levels[currentLevel]['three'], 10);
+	}
+
+	two = levels[currentLevel]['two'];
+	if(two.includes('-')) {
+		two = two.split('-'); 
+		two = parseInt(two[1],10);
+	} else {
+		two = parseInt(levels[currentLevel]['two'], 10);
+	}
+
+	one = levels[currentLevel]['one'];
+	if(one.includes('-')) {
+		one = one.split('-'); 
+		one = parseInt(one[1],10);
+	} else {
+		one = parseInt(levels[currentLevel]['one'], 10);
+	}
+}
+
+function calculateStars(movesUp) {	
 	if (movesUp <= three ) {
 		return 3;
 	} else if (movesUp > three && movesUp <= two) {
 		return 2;
-	} else {
+	} else if (movesUp > two && movesUp <= one) {
 		return 1;
+	} else {
+		return 0;
 	}
 }
 
@@ -531,7 +561,7 @@ function addBoard() {
 		width = width.toString() + 'px';
 		superWidth = superWidth.toString() + 'px';
 		var height = (46) + (12*2);
-		height = (height+24).toString() + 'px';
+		height = (height+39).toString() + 'px';
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
 		$('.super-container').css('padding','10px');
@@ -544,7 +574,7 @@ function addBoard() {
 		$('.lines-container').html(createLines(size));
 		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
-		var height = dimension + 24;
+		var height = dimension + 39;
 		if(currentVaultNumber > 2) {
 			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
 			$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
@@ -593,7 +623,7 @@ function addBoard() {
 		howToWinModal.style.display = "block";
 		$('.object3').css('bottom');
 		$('.object3').addClass('horizTranslate3');
-		$('.tutorial').css('padding-top', '256px');
+		$('.tutorial').css('padding-top', '290px');
 	} else if(currentLevel === "level14" ) {
 		$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 		$('#tutorialText').html(level14Tutorial);
@@ -601,7 +631,7 @@ function addBoard() {
 		howToWinModal.style.display = "block";
 		$('.object4').css('bottom');
 		$('.object4').addClass('horizTranslate4');
-		$('.tutorial').css('padding-top', '256px');
+		$('.tutorial').css('padding-top', '290px');
 	}
 	else {
 		$('.tutorial-container').html("");
@@ -609,11 +639,19 @@ function addBoard() {
 	//$('#pie-container').html(pie);
 	
 	movesUp = 0;
+	starsUpdate = 3;
 	moves = levels[currentLevel]['tiles'].length-1;
 	$('#move-num').html(movesUp);
 	isPaused = false;
+	if(getCurrentLevelNumber() > 2) {
+		var tempStarsCounter = "";
+		for (z=0; z<3; z++ ) {
+			tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
+		}
+		$('#starCounter').html(tempStarsCounter);
+	}
 	//startTimer();
-	
+	getStarVaules(currentLevel);
 }
 
 function generateLevel(size) {
@@ -1017,7 +1055,14 @@ function onReady() {
 		//addSwipeTo('.tile');
 		movesUp=0;
 		moves = levels[currentLevel]['tiles'].length-1;
-		$('#move-num').html(movesUp);
+		$('#move-num').html(movesUp);		
+		if(getCurrentLevelNumber() > 2) {
+			var tempStarsCounter = "";
+			for (z=0; z<3; z++ ) {
+				tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
+			}
+			$('#starCounter').html(tempStarsCounter);
+		}
 		isPaused = false;
 		//startTimer();
 	});     
@@ -1114,8 +1159,14 @@ function onReady() {
 			newClassIndex = 'tile-position-'+x+'-'+y;
 				if ($('.'+newClassIndex).text()) {				
 					swipeSound.play();
-					moves--;	
-					movesUp++;	
+					moves--;
+					movesUp++;
+					starsUpdate = calculateStars(movesUp);
+					if(starsUpdate === 2) {
+						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\"><img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
+					} else if (starsUpdate === 1) {
+						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
+					}
 					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 					$('.'+newClassIndex).remove();
 					$(this).removeClass(classIndex);
@@ -1157,7 +1208,7 @@ function onReady() {
 					$('#moves').html(movesUp);
 					$('#levelNum').html(getCurrentLevelNumber());
 					var stars = storage.getItem(currentLevel);
-					starsUpdate = calculateStars(currentLevel, movesUp);
+					starsUpdate = calculateStars(movesUp);
 					if (starsUpdate > stars && getCurrentLevelNumber() > 2) {
 						totalStars = totalStars + (starsUpdate - stars);
 						storage.setItem('totalStars', totalStars);

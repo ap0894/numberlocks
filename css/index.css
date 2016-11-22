@@ -123,7 +123,7 @@ h1.title {
 
 .vertical-lines-container {
     position: absolute;
-    top:27px;
+    top:48px;
     left: 5px;
     z-index: 1;
     float: left;
@@ -131,7 +131,7 @@ h1.title {
 
 .diagonal-left-lines-container {
     position: absolute;
-    top: 27px;
+    top: 48px;
     left: 5px;
     z-index: 1;
     float: left;
@@ -139,7 +139,7 @@ h1.title {
 
 .diagonal-right-lines-container {
     position: absolute;
-    top:27px;
+    top:48px;
     left: 5px;
     z-index: 1;
     float: left;
@@ -1011,4 +1011,9 @@ svg image{
 
 #gameOverContent {
 	height: 190px !important;
+}
+
+#starCounter {
+    position: relative;
+    bottom: 10px;
 }
