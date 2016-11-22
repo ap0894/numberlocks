@@ -262,15 +262,15 @@ function createMainDiv() {
 				break;
 			case 2:
 				tempSpan = "<span>Subtract</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				break;
 			case 3:
 				tempSpan = "<span>Diagonal</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				break;
 			case 4:
 				tempSpan = "<span>4x4</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
+				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				break;
 		}
 		if(i<=highestVault) {
@@ -646,7 +646,7 @@ function addBoard() {
 	if(getCurrentLevelNumber() > 2) {
 		var tempStarsCounter = "";
 		for (z=0; z<3; z++ ) {
-			tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
+			tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 		}
 		$('#starCounter').html(tempStarsCounter);
 	}
@@ -1059,7 +1059,7 @@ function onReady() {
 		if(getCurrentLevelNumber() > 2) {
 			var tempStarsCounter = "";
 			for (z=0; z<3; z++ ) {
-				tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\">";
+				tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 			}
 			$('#starCounter').html(tempStarsCounter);
 		}
@@ -1163,9 +1163,9 @@ function onReady() {
 					movesUp++;
 					starsUpdate = calculateStars(movesUp);
 					if(starsUpdate === 2) {
-						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\"><img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
+						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
 					} else if (starsUpdate === 1) {
-						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOnNoShadow.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
+						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
 					}
 					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 					$('.'+newClassIndex).remove();
@@ -1248,7 +1248,7 @@ function onReady() {
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							$('#vault' + highestVault).find('.status').html('Unlocked: 3');
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
-							$('#vault' + highestVault).find('.star').attr('src', './img/icons/StarOnNoShadow.svg');
+							$('#vault' + highestVault).find('.star').attr('src', './img/icons/StarOn.svg');
 							//currentVaultNumber++;
 							if (currentHighestLevel <= 4) {
 								//alert('Opening Subtract vault');
