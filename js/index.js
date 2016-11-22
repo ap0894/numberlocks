@@ -1223,7 +1223,7 @@ function onReady() {
 					$('#moves').html(movesUp);
 					$('#levelNum').html(getCurrentLevelNumber());
 					var stars = storage.getItem(currentLevel);
-					//starsUpdate = calculateStars(movesUp);
+					starsUpdate = calculateStars(movesUp);
 					if (starsUpdate > stars && getCurrentLevelNumber() > 2) {
 						totalStars = totalStars + (starsUpdate - stars);
 						storage.setItem('totalStars', totalStars);
