@@ -1174,10 +1174,10 @@ function onReady() {
 					moves--;
 					movesUp++;
 					starsUpdate = calculateStars(movesUp);
-					if(starsUpdate === 2) {
+					if(starsUpdate < 3 && starsUpdate > 1) {
 						//$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
 						$('#starCounter').html('This is a test for bretts shitty iPad');
-					} else if (starsUpdate === 1) {
+					} else if (starsUpdate < 2) {
 						//$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
 						$('#starCounter').html('This is another test for bretts shitty iPad');
 					}
@@ -1261,7 +1261,7 @@ function onReady() {
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							$('#vault' + highestVault).find('.status').html('Unlocked: 3');
-							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
+							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
 							$('#vault' + highestVault).find('.star').attr('src', './img/icons/StarOn.svg');
 							currentVaultNumber++;
 							if (currentHighestLevel <= 4) {
@@ -1276,7 +1276,7 @@ function onReady() {
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							$('#vault' + highestVault).find('.status').html('Unlocked: 24');
-							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
+							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
 							//$('#vault' + highestVault).find('.status');
 							currentVaultNumber++;
 							if (currentHighestLevel < 14) {
@@ -1291,7 +1291,7 @@ function onReady() {
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							$('#vault' + highestVault).find('.status').html('Unlocked: 40');
-							$('#vault' + highestVault).find('.status').css('color', '#27aae0');
+							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
 							currentVaultNumber++;
 							if (currentHighestLevel < 24) {
 								//alert('Opening 4x4 vault');
