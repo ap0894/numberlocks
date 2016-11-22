@@ -49,7 +49,8 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
 
 function setStarVaules(currentLevel) {
 	
-	three = levels[currentLevel]['three'];
+	//three = levels[currentLevel]['three'];
+	two = parseInt(levels[currentLevel]['three'], 10);
 	/*if(three.includes('-')) {
 		three = three.split('-'); 
 		three[0] = parseInt(three[0],10);
