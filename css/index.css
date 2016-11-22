@@ -611,6 +611,10 @@ table {
     cursor: pointer;
 }
 
+.pauseClose {
+	color: black;
+}
+
 .count {
 	font-weight: bold;
 }
@@ -1003,4 +1007,8 @@ hr{
 
 svg image{
 	fill: red;
+}
+
+#gameOverContent {
+	height: 190px !important;
 }

@@ -796,7 +796,7 @@ function onReady() {
     $('body').on('click', '#campaign', function(e) {
     	$('#challenge').css('display', 'none');	
     	$('#levelsDiv').html(createMainDiv());
-    	
+		$('#totalDiv').css('display','block');
 		$('#totalStars').html(totalStars);
     	$('.heading').hide();
     	$('#levelsDiv').show();
