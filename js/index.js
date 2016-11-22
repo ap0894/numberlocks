@@ -1175,7 +1175,8 @@ function onReady() {
 					movesUp++;
 					starsUpdate = calculateStars(movesUp);
 					if(starsUpdate === 2) {
-						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
+						//$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
+						$('#starCounter').html('This is a test for bretts shitty iPad');
 					} else if (starsUpdate === 1) {
 						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
 					}
