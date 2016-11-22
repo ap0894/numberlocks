@@ -262,15 +262,27 @@ function createMainDiv() {
 				break;
 			case 2:
 				tempSpan = "<span>Subtract</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				if(i<=highestVault) {
+					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 3</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				} else {
+					tempStatus = "<span style=\"color:#BFBFBF !important\" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				}
 				break;
 			case 3:
 				tempSpan = "<span>Diagonal</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				if(i<=highestVault) {
+					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				} else {
+					tempStatus = "<span style=\"color:#BFBFBF !important\" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				}
 				break;
 			case 4:
 				tempSpan = "<span>4x4</span>";
-				tempStatus = "<span style=\"color:#BFBFBF !important;\" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				if(i<=highestVault) {
+					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				} else {
+					tempStatus = "<span style=\"color:#BFBFBF !important\" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+				}
 				break;
 		}
 		if(i<=highestVault) {
