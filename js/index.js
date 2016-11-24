@@ -21,7 +21,7 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves;
 var movesUp;
-var testing = true;
+var testing = false;
 var testingLevels;
 var total = 0;
 var myTimer;
