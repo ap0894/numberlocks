@@ -19,8 +19,8 @@
 		S-189.4,351.5-214.4,351.5L-214.4,351.5z"/>
 </g>
 <g>
-	<rect x="-234.8" y="389.9" class="st0" width="39.9" height="29.6"/>
-	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-221.9424" y1="410.5725" x2="-207.4353" y2="410.5725">
+	<rect x="-238.5" y="387" class="st0" width="47.9" height="35.6"/>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-222.8862" y1="411.8109" x2="-205.8672" y2="411.8109">
 		<stop  offset="1" style="stop-color:#FFFFFF"/>
 		<stop  offset="1" style="stop-color:#F6F6F6"/>
 		<stop  offset="1" style="stop-color:#C8C8C8"/>
@@ -34,14 +34,14 @@
 		<stop  offset="1" style="stop-color:#020202"/>
 		<stop  offset="1" style="stop-color:#000000"/>
 	</linearGradient>
-	<rect x="-220.9" y="400.6" class="st3" width="12.5" height="20"/>
-	<rect x="-203.6" y="376.9" class="st0" width="5.9" height="11.2"/>
-	<line class="st1" x1="-240.4" y1="388.7" x2="-214.9" y2="370"/>
-	<line class="st1" x1="-214.9" y1="370" x2="-190.4" y2="389.9"/>
-	<line class="st1" x1="-218.3" y1="383.3" x2="-193.8" y2="403.2"/>
-	<line class="st1" x1="-208.4" y1="391.3" x2="-210.1" y2="376.6"/>
-	<line class="st1" x1="-222.4" y1="375.4" x2="-228.5" y2="379.9"/>
-	<line class="st1" x1="-223.1" y1="371.8" x2="-200.3" y2="375.4"/>
-	<polygon class="st0" points="-238.9,392.7 -214.7,373.1 -190.4,392.7 	"/>
+	<rect x="-221.9" y="399.8" class="st3" width="15" height="24"/>
+	<rect x="-201.1" y="371.4" class="st0" width="7" height="13.5"/>
+	<line class="st1" x1="-245.3" y1="385.5" x2="-214.7" y2="363"/>
+	<line class="st1" x1="-214.7" y1="363" x2="-185.3" y2="387"/>
+	<line class="st1" x1="-218.7" y1="379" x2="-189.2" y2="403"/>
+	<line class="st1" x1="-206.9" y1="388.6" x2="-208.8" y2="371"/>
+	<line class="st1" x1="-223.6" y1="369.6" x2="-231" y2="375"/>
+	<line class="st1" x1="-224.5" y1="365.2" x2="-197.1" y2="369.6"/>
+	<polygon class="st0" points="-243.4,390.3 -214.3,366.8 -185.3,390.3 	"/>
 </g>
 </svg>

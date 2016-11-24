@@ -884,7 +884,7 @@ function onReady() {
     $('body').on('click', '.hamburger', function(e) {
 	    //pauseTimer();
     	pauseModal.style.display = "block";
-    	//$('#levelTitle').html(currentLevel.substr(5));
+    	$('#levelTitle').html(currentLevel.substr(5));
 	}); 
     
     $('body').on('click', '.pause', function(e) {
@@ -933,7 +933,7 @@ function onReady() {
 				score: total,
 				leaderboardId: "NLLB1234"
 			};
-			if(!testing) gamecenter.submitScore(successCallback, failureCallback, data);
+			/*if(!testing) gamecenter.submitScore(successCallback, failureCallback, data);
 		
 			var successCallback = function (e) {
 				//alert("Successfully submitted score" + e);
@@ -944,7 +944,7 @@ function onReady() {
 			};
 		
 			// check and show it at end of a game level
-			showInterstitial();
+			showInterstitial();*/
 			remainingTiles = levels[currentLevel]['tiles'].length;
 			addBoard();	
 			//addSwipeTo('.tile');
