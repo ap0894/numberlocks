@@ -21,7 +21,7 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves;
 var movesUp;
-var testing = true;
+var testing = false;
 var testingLevels;
 var total = 0;
 var myTimer;
@@ -36,12 +36,14 @@ var one;
 var two;
 var three;
 var starsUpdate;
+var AdMob = false;
 
 if (testing) {
 	AdMob = false;
 	onReady();
 }
 else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
+	//AdMob = true;
     document.addEventListener('deviceready', onDeviceReady, false);
 } else {
     onReady();
@@ -417,18 +419,21 @@ function update(percent){
 }
 
 function onDeviceReady () {
-	var successCallback = function (user) {
+	/*var successCallback = function (user) {
 		//alert(user.alias);
 		// user.alias, user.player, user.displayName
 	};
 	
 	var failureCallback = function (e) {
 		//alert("Failed to authenticate " + e);
-	}
+	}*/
 
-	gamecenter.auth(successCallback, failureCallback);
-	AndroidFullScreen.immersiveMode();
-	showBanner();
+	//gamecenter.auth(successCallback, failureCallback);
+	//AndroidFullScreen.immersiveMode();
+	console.log(StatusBar);
+	StatusBar.hide();
+	//alert('hiding status bar');
+	//showBanner();
 	onReady();
 }
 
@@ -833,7 +838,7 @@ function onReady() {
     	var data = {
     		leaderboardId: "NLLB1234"
 		};
-		if(!testing) gamecenter.showLeaderboard(successCallback, failureCallback, data);
+		/*if(!testing) gamecenter.showLeaderboard(successCallback, failureCallback, data);
 		
 		var successCallback = function (e) {
 			//alert("Successfully showed Leaderboard" + e);
@@ -841,7 +846,7 @@ function onReady() {
 	
 		var failureCallback = function (e) {
 			//alert("Failed to show Leaderboard " + e);
-		};
+		};*/
     });
     
     $('body').on('click', '#campaign', function(e) {
