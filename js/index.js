@@ -755,6 +755,7 @@ function checkSurrounds(x,y) {
 
 function onReady() {
 	var swipeSound = new Audio("./audio/swipe.mp3"); // buffers automatically when created
+	var lockSound = new Audio("./audio/lock.m4a"); // buffers automatically when created
 	
 	//$('#levelsDiv').show();
   	
@@ -1034,6 +1035,8 @@ function onReady() {
 			remainingTiles = levels[currentLevel]['tiles'].length;
 			addBoard();	
 			$('.title').hide();
+		} else {
+			lockSound.play();
 		}
 		//addSwipeTo('.tile');
 	});
