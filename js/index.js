@@ -38,6 +38,7 @@ var two;
 var three;
 var starsUpdate;
 var AdMob = false;
+var soundFx;
 
 if (testing) {
 	AdMob = false;
@@ -844,6 +845,17 @@ function onReady() {
 		totalStars = parseInt(totalStars, 10);
 	}
 	
+	soundFx = storage.getItem('soundFx');
+	if(soundFx == null) {
+		soundFx = "true";
+		$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound on");
+		storage.setItem('soundFx', soundFx);
+	} else if (soundFx == "true") {
+		$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound on");
+	} else if (soundFx == "false") {
+		$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound off");
+	}
+	
 	window.onclick = function(event) {
 		if(event.target==howToWinModal) {
 			howToWinModal.style.display = "none";
@@ -941,6 +953,18 @@ function onReady() {
 			fade: true,
 			asNavFor: '.slider'
 		});
+    });
+    
+    $('body').on('click', '#sound', function(e) {
+		if(soundFx == "true") {
+			soundFx = "false";
+			$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound off");
+			storage.setItem('soundFx', soundFx);
+		} else if (soundFx == "false") {
+			soundFx = "true";
+			$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound on");
+			storage.setItem('soundFx', soundFx);
+		}
     });
     
     $('body').on('click', '.hamburger', function(e) {
@@ -1110,7 +1134,9 @@ function onReady() {
 			addBoard();	
 			$('.title').hide();
 		} else {
-			lockSound.play();
+			if(soundFx == "true") {
+				lockSound.play();
+			}
 		}
 		//addSwipeTo('.tile');
 	});
@@ -1259,7 +1285,9 @@ function onReady() {
 			if(move) {		
 			newClassIndex = 'tile-position-'+x+'-'+y;
 				if ($('.'+newClassIndex).text()) {				
-					swipeSound.play();
+					if(soundFx == "true") {
+						swipeSound.play();
+					}
 					moves--;
 					movesUp++;
 					starsUpdate = calculateStars(movesUp);
