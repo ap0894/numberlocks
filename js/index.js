@@ -969,9 +969,21 @@ function onReady() {
 		$('.slider').slick('slickGoTo', (highestVault-1));
 	});
 	
+	$(".gameCompleteClose").on('click', function(e) {
+		gameCompleteModal.style.display = "none";
+	});
+	
     $(".GameOverClose").on('click', function(e) {
     	
 		gameOverModal.style.display = "none";
+		
+		if (getCurrentLevelNumber() === 33 ) {
+			if(totalStars === 93) {
+				$('#gameCompleteHeader').html("AMAZING YOU'RE A NUMBER LOCKS LEGEND!");
+				$('#gameCompleteText').html("<p>You've completed our pilot with 3 STARS on ALL levels</p>Now you've had a taste for Number Locks, look out for our new release with even harder levels and multi-player games");
+			}
+			gameCompleteModal.style.display = "block";
+		}
     	if(continueFlag) {
     		continueFlag = false;
     		//alert('need to open new vault');	
