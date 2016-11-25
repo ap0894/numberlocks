@@ -1184,11 +1184,11 @@ function onReady() {
 					movesUp++;
 					starsUpdate = calculateStars(movesUp);
 					if(starsUpdate < 3 && starsUpdate > 1) {
-						//$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
-						$('#starCounter').html('2 STARS');
+						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
+						//$('#starCounter').html('2 STARS');
 					} else if (starsUpdate < 2) {
-						//$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
-						$('#starCounter').html('1 STAR');
+						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/StarOn.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\">");
+						//$('#starCounter').html('1 STAR');
 					}
 					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
 					$('.'+newClassIndex).remove();
