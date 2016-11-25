@@ -551,7 +551,6 @@ table {
 
 .tutorial-modal {
 	position: relative;
-	background-color: white;
 	margin: auto;
 	padding: 20px;
 	font-size: 14px;
@@ -559,8 +558,8 @@ table {
 	background-color: #00b0f0;
 	color: white;
 	text-align: center;
-	width: 194px;
-	height: 80px;
+	width: 222px;
+	height: 100px;
 	box-shadow: 0 3px 6px #000000;
 }
 
@@ -572,6 +571,20 @@ table {
 	font-size: 14px;
 	border-radius: 10px;
 	color: #00b0f0;
+	text-align: center;
+	width: 285px;
+	height: 140px;
+	box-shadow: 0 3px 6px #000000;
+}
+
+.game-complete-modal {
+	position: relative;
+	background-color: #00b0f0;
+	margin: auto;
+	padding: 20px;
+	font-size: 14px;
+	border-radius: 10px;
+	color: white;
 	text-align: center;
 	width: 285px;
 	height: 140px;
