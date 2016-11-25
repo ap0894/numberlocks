@@ -13,6 +13,7 @@ var controls = "<img id=\"restart\" class=\"pause-img\" src=\"./img/icons/Restar
 
 var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
 
+var size;
 var currentLevel;
 var currentVault;
 var currentVaultNumber;
@@ -568,7 +569,7 @@ function addBoard() {
 	$('.diagonal-right-lines-container').html('');
 	//$('.levels').css('display','none');
 	$('#levelsDiv').css('display','none');
-	var size;
+	//var size;
 	if(levels[currentLevel]['tiles'].length<4) {
 		size = levels[currentLevel]['tiles'].length; 
 		$('.grid-container').html(createLine(size));
@@ -670,6 +671,13 @@ function addBoard() {
 	}
 	//startTimer();
 	setStarVaules(currentLevel);
+	
+	//Check if there are any adjacent numbers
+	for(a=1; a<=size; a++) {
+		for (b=1; b<=size; b++) {
+			checkSurrounds(a,b);
+		}
+	}
 }
 
 function generateLevel(size) {
@@ -700,6 +708,60 @@ function incrementLevel() {
 
 function getCurrentLevelNumber () {
 	return parseInt(currentLevel.substr(5),10);
+}
+
+function clearSurrounds(x,y) {
+	/*var leftX = parseInt(x,10)-1;
+	var rightX = parseInt(x,10)+1;
+	var upY = parseInt(y,10)-1;
+	var downY = parseInt(y,10)+1;
+	var classIndexTopLeft = '.'+'tile-position-'+leftX+'-'+upY;
+	var classIndexTopMid = '.'+'tile-position-'+x+'-'+upY;
+	var classIndexTopRight = '.'+'tile-position-'+rightX+'-'+upY;
+	var classIndexMidLeft = '.'+'tile-position-'+leftX+'-'+y;*/
+	var classIndex = '.'+'tile-position-'+x+'-'+y;
+	if($(classIndex).hasClass('pair')) {
+		$(classIndex).removeClass('pair');
+	}
+	/*var classIndexMidRight = '.'+'tile-position-'+rightX+'-'+y;
+	var classIndexBotLeft = '.'+'tile-position-'+leftX+'-'+downY;
+	var classIndexBotMid = '.'+'tile-position-'+x+'-'+downY;
+	var classIndexBotRight = '.'+'tile-position-'+rightX+'-'+downY;*/
+	
+	/*if ($(classIndex).text() == $(classIndexTopMid).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexTopMid).addClass('pair');
+	} 
+	if ($(classIndex).text() == $(classIndexMidLeft).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexMidLeft).addClass('pair');
+	} 
+	if ($(classIndex).text() == $(classIndexMidRight).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexMidRight).addClass('pair');
+	} 
+	if ($(classIndex).text() == $(classIndexBotMid).text()) {
+		$(classIndex).addClass('pair');
+		$(classIndexBotMid).addClass('pair');
+	} 
+	if (getCurrentLevelNumber() > 13) {
+		if ($(classIndex).text() == $(classIndexTopLeft).text()) {
+			$(classIndex).addClass('pair');
+			$(classIndexTopLeft).addClass('pair');
+		} 
+		if ($(classIndex).text() == $(classIndexTopRight).text()) {
+			$(classIndex).addClass('pair');
+			$(classIndexTopRight).addClass('pair');
+		} 
+		if ($(classIndex).text() == $(classIndexBotLeft).text()) {
+			$(classIndex).addClass('pair');
+			$(classIndexBotLeft).addClass('pair');
+		} 
+		if ($(classIndex).text() == $(classIndexBotRight).text()) {
+			$(classIndex).addClass('pair');
+			$(classIndexBotRight).addClass('pair');
+		} 
+	}*/
 }
 
 function checkSurrounds(x,y) {
@@ -1084,6 +1146,12 @@ function onReady() {
 			}
 			$('#starCounter').html(tempStarsCounter);
 		}
+		//Check if there are any adjacent numbers
+		for(a=1; a<=size; a++) {
+			for (b=1; b<=size; b++) {
+				checkSurrounds(a,b);
+			}
+		}
 		isPaused = false;
 		//startTimer();
 	});     
@@ -1198,7 +1266,22 @@ function onReady() {
 					$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
 					if(newValue !=0){
 						$(this).text(newValue);
-						checkSurrounds(x,y);
+						
+		
+						//Check if there are any adjacent numbers
+						for(a=1; a<=size; a++) {
+							for (b=1; b<=size; b++) {
+								clearSurrounds(a,b);
+							}
+						}
+						
+						for(c=1; c<=size; c++) {
+							for (d=1; d<=size; d++) {
+								checkSurrounds(c,d);
+							}
+						}
+						
+						//checkSurrounds(x,y);
 						remainingTiles--;
 					} else {
 						$('.'+newClassIndex).remove();
