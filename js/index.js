@@ -1270,14 +1270,15 @@ function onReady() {
 							clearSurrounds(a,b);
 						}
 					}
+					if(newValue !=0){
+						$(this).text(newValue);	
+						
 					
 					for(c=1; c<=size; c++) {
 						for (d=1; d<=size; d++) {
 							checkSurrounds(c,d);
 						}
-					}
-					if(newValue !=0){
-						$(this).text(newValue);						
+					}					
 						//checkSurrounds(x,y);
 						remainingTiles--;
 					} else {
