@@ -1264,23 +1264,20 @@ function onReady() {
 					$(this).addClass(newClassIndex);
 					$(this).addClass('tile-merged');
 					$('.tile-container').append("<div class=\"tile "+classIndex+" tile-tick tile-complete\"></div>");
+					//Check if there are any adjacent numbers
+					for(a=1; a<=size; a++) {
+						for (b=1; b<=size; b++) {
+							clearSurrounds(a,b);
+						}
+					}
+					
+					for(c=1; c<=size; c++) {
+						for (d=1; d<=size; d++) {
+							checkSurrounds(c,d);
+						}
+					}
 					if(newValue !=0){
-						$(this).text(newValue);
-						
-		
-						//Check if there are any adjacent numbers
-						for(a=1; a<=size; a++) {
-							for (b=1; b<=size; b++) {
-								clearSurrounds(a,b);
-							}
-						}
-						
-						for(c=1; c<=size; c++) {
-							for (d=1; d<=size; d++) {
-								checkSurrounds(c,d);
-							}
-						}
-						
+						$(this).text(newValue);						
 						//checkSurrounds(x,y);
 						remainingTiles--;
 					} else {
