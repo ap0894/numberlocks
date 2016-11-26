@@ -856,11 +856,18 @@ function onReady() {
 		$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound off");
 	}
 	
-	window.onclick = function(event) {
+	/*window.onclick = function(event) {
 		if(event.target==howToWinModal) {
 			howToWinModal.style.display = "none";
 		}
-	}
+	}*/
+	
+	$(document).on('click touchstart', function (e) {
+		if(event.target==howToWinModal) {
+			howToWinModal.style.display = "none";
+			//alert("hello");
+		}
+	});
 	
 	//$('.vaults').html(createVaultDiv());
 	currentVaultNumber = 1;
