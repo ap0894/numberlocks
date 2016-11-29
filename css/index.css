@@ -1017,10 +1017,8 @@ svg image{
 	fill: red;
 }
 
-#gameOverModal {
-
+.transparent {
 	background-color: rgba(0,0,0,0.6);
-
 }
 
 #gameOverContent {
