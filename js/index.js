@@ -819,6 +819,7 @@ function checkSurrounds(x,y) {
 function onReady() {
 	var swipeSound = new Audio("./audio/swipe.mp3"); // buffers automatically when created
 	var lockSound = new Audio("./audio/lock.m4a"); // buffers automatically when created
+	var dingSound = new Audio("./audio/ding.m4a"); // buffers automatically when created
 	
 	//$('#levelsDiv').show();
   	
@@ -1473,8 +1474,11 @@ function onReady() {
 	
 						function load(elem, i) {
 							setTimeout(function() {
+								if(soundFx == "true") {
+									dingSound.play();
+								}
 								elem.classList.add("load");
-							},500 * i);
+							},1200 * i);
 						}
 					}());
 				}
