@@ -1044,7 +1044,7 @@ function onReady() {
 			//$('.vaults').css('display','block');
 			$('#levelsDiv').css('display','block');
 			$('.title').show();
-			$('.slider').slick('slickGoTo', (highestVault-1));
+			$('.slider').slick('slickGoTo', (currentVaultNumber));
     	}
     	else {
 			currentLevel = incrementLevel();
