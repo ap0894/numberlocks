@@ -1473,7 +1473,7 @@ function onReady() {
 	
 						function load(elem, i) {
 							setTimeout(function() {
-								if(soundFx == "true" && elem.classList.contains("on")) {
+								if(soundFx == "true" ) {
 									dingSound.play();
 								}
 								elem.classList.add("load");
