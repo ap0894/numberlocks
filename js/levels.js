@@ -15,7 +15,7 @@ var levels = {
   },
   "level3": 
   {
-	 "tiles": [7,3,9,5 ],
+	 "tiles": [7,3,9,5],
 	 "three": "3",
 	 "two": "3",
 	 "one": "3"
