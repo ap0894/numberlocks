@@ -1017,6 +1017,12 @@ svg image{
 	fill: red;
 }
 
+#gameOverModal {
+
+	background-color: rgba(0,0,0,0.4);
+
+}
+
 #gameOverContent {
 	height: 190px !important;
 }
