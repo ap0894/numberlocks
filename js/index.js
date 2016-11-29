@@ -942,16 +942,15 @@ function onReady() {
     	
     	$('.slider').slick({
 			centerMode: true,
-			centerPadding: '70px',
+			centerPadding: '10px',
 			focusOnSelect: true,
 			slidesToShow: 3,
 			slidesToScroll: 3,
 			asNavFor: '.levelsTest',
 			index: 2,
 			dots: true,
-			infinite: true
+			infinite: false
 			//focusOnSelect: true,
-			//slidesToScroll: 3,
 		});
 	
 		$('.levelsTest').slick({
@@ -1370,7 +1369,7 @@ function onReady() {
 					var displayStars = "";
 					for (i=0; i<3; i++) {
 						if(starsUpdate > i) {
-							displayStars += "<img class = \"star\" src=\"./img/icons/StarOn.svg\" />";
+							displayStars += "<img class = \"star on\" src=\"./img/icons/StarOn.svg\" />";
 						} else {
 							displayStars += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
 						}
@@ -1474,7 +1473,7 @@ function onReady() {
 	
 						function load(elem, i) {
 							setTimeout(function() {
-								if(soundFx == "true") {
+								if(soundFx == "true" && elem.classList.contains("on")) {
 									dingSound.play();
 								}
 								elem.classList.add("load");
