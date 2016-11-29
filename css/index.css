@@ -889,13 +889,13 @@ table {
 
 .slick-next {
 	right: 0px !important;
-	top: 93% !important;
+	top: 45% !important;
 	z-index: 1;
 }
 
 .slick-prev {
 	left: 0px !important;
-	top: 93% !important;
+	top: 45% !important;
 	z-index: 1;
 }
 
@@ -992,7 +992,7 @@ hr{
 .slider .slick-center .status {
 	display: inline-block;
 	font-family: "Helvetica Neue", Helvetica, Arial, Calibri, sans-serif;
-	font-size: 10px !important;
+	font-size: 11px !important;
 	color: #27aae0 !important;
 	white-space: normal !important;
 }
