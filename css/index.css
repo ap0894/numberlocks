@@ -1019,7 +1019,7 @@ svg image{
 
 #gameOverModal {
 
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.6);
 
 }
 
@@ -1030,4 +1030,29 @@ svg image{
 #starCounter {
     position: relative;
     bottom: 10px;
+}
+
+.starFade {
+    opacity: 1;
+    animation: fade 3s ease-in-out;
+}
+
+
+@keyframes fade {
+  0% { opacity: 0 }
+  50% { opacity: 0.5 }
+  100% { opacity: 1; width:40px; }
+}
+
+#starsCollected img {
+	opacity: 0;
+	-webkit-transition: opacity 1s ease-in;
+       -moz-transition: opacity 1s ease-in;
+        -ms-transition: opacity 1s ease-in;
+         -o-transition: opacity 1s ease-in;
+            transition: opacity 1s ease-in;
+}
+
+#starsCollected img.load {
+    opacity: 1;
 }

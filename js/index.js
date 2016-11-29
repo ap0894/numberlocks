@@ -1375,7 +1375,7 @@ function onReady() {
 						}
 					}
 					if(getCurrentLevelNumber() > 2) {
-						$('#starsCollected').html(displayStars);
+						$('#starsCollected').html("Stars Collected: &nbsp;" + displayStars);
 					}
 					highestLevel = storage.getItem('highestLevel');
 					highestVault = storage.getItem('highestVault');
@@ -1464,6 +1464,19 @@ function onReady() {
 					//currentLevel = incrementLevel();
 					
 					gameOverModal.style.display = "block";
+					(function() {
+						var elements = document.querySelectorAll("#starsCollected img");
+	
+						for (var i = 0; i < elements.length; i++) {
+							 load(elements[i], i);   
+						}
+	
+						function load(elem, i) {
+							setTimeout(function() {
+								elem.classList.add("load");
+							},500 * i);
+						}
+					}());
 				}
 			}
 		});
