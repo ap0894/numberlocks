@@ -33,6 +33,7 @@ var highestLevel;
 var highestVault;
 var totalStars = 0;
 var continueFlag = false;
+var backToVaultFlag = false;
 var one;
 var two;
 var three;
@@ -945,7 +946,7 @@ function onReady() {
 			centerPadding: '10px',
 			focusOnSelect: true,
 			slidesToShow: 3,
-			//slidesToScroll: 3,
+			slidesToScroll: 3,
 			asNavFor: '.levelsTest',
 			index: 2,
 			dots: true,
@@ -1031,7 +1032,20 @@ function onReady() {
 			$('.title').show();
 			vaultOpenModal.style.display = "block";
 			//$('.slider').slick('slickGoTo', (highestVault-1));
-    	} else {
+    	} else if (backToVaultFlag == true) {
+    		backToVaultFlag = false;
+    		//currentLevel = incrementLevel();
+			$('.control-container').css('display','none');	
+			$('.game-container').css('display','none');	
+			$('.controls-lower').css('display','none');	
+			$('.super-container').css('display','none');
+			$('.moves-legend-container').css('display','none');	
+			$('.level-number').css('display','none');
+			//$('.vaults').css('display','block');
+			$('#levelsDiv').css('display','block');
+			$('.title').show();
+    	}
+    	else {
 			currentLevel = incrementLevel();
 
 			var data = {
@@ -1354,6 +1368,7 @@ function onReady() {
 					});*/
 					
 					//$('#moves').html(((levels[currentLevel]['tiles'].length-1)-movesUp));
+					var currentLevel = getCurrentLevelNumber();
 					$('#moves').html(movesUp);
 					$('#levelNum').html(getCurrentLevelNumber());
 					var stars = storage.getItem(currentLevel);
@@ -1433,7 +1448,7 @@ function onReady() {
 								continueFlag = true;
 								unlockPreviousLevels(currentHighestLevel, 24);
 							}
-						}
+						} 
 						
 						/*switch(highestLevel) {
 							case 3:
@@ -1460,6 +1475,8 @@ function onReady() {
 							default:
 								break;
 						} */
+					} else if(currentLevel === 3 || currentLevel === 13 || currentLevel === 23) {
+							backToVaultFlag = true;
 					}
 					//currentLevel = incrementLevel();
 					
