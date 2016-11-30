@@ -670,6 +670,8 @@ function addBoard() {
 			tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 		}
 		$('#starCounter').html(tempStarsCounter);
+	} else {
+		$('#starCounter').html("");
 	}
 	//startTimer();
 	setStarVaules(currentLevel);
@@ -1205,6 +1207,8 @@ function onReady() {
 				tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 			}
 			$('#starCounter').html(tempStarsCounter);
+		} else {
+			$('#starCounter').html("");
 		}
 		//Check if there are any adjacent numbers
 		for(a=1; a<=size; a++) {
@@ -1392,6 +1396,8 @@ function onReady() {
 					}
 					if(getCurrentLevelNumber() > 2) {
 						$('#starsCollected').html("Stars Collected: &nbsp;" + displayStars);
+					} else {
+						$('#starsCollected').html("");
 					}
 					highestLevel = storage.getItem('highestLevel');
 					highestVault = storage.getItem('highestVault');
