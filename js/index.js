@@ -285,9 +285,9 @@ function createMainDiv() {
 			case 4:
 				tempSpan = "<span>4x4</span>";
 				if(i<=highestVault) {
-					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 50</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				} else {
-					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 50</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 40</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				}
 				break;
 		}
@@ -1044,7 +1044,7 @@ function onReady() {
 			//$('.vaults').css('display','block');
 			$('#levelsDiv').css('display','block');
 			$('.title').show();
-			$('.slider').slick('slickGoTo', (currentVaultNumber));
+			$('.slider').slick('slickGoTo', (highestVault-1));
     	}
     	else {
 			currentLevel = incrementLevel();
@@ -1436,12 +1436,12 @@ function onReady() {
 								unlockPreviousLevels(currentHighestLevel, 14);
 							}
 						}
-						if(totalStars>=50 && highestVault < 4) {	
+						if(totalStars>=40 && highestVault < 4) {	
 							highestVault = 4;
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-							$('#vault' + highestVault).find('.status').html('Unlocked: 50');
+							$('#vault' + highestVault).find('.status').html('Unlocked: 40');
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
 							currentVaultNumber++;
 							if (currentHighestLevel < 24) {
