@@ -487,6 +487,10 @@ strong.important {
 	background-color: #03dbd6;
 }
 
+.end {
+	background-color: red;
+}
+
 .game-explanation {
   margin-top: 12px;
 }

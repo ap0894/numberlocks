@@ -22,7 +22,7 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves;
 var movesUp;
-var testing = true;
+var testing = false;
 var testingLevels;
 var total = 0;
 var myTimer;
@@ -768,6 +768,148 @@ function clearSurrounds(x,y) {
 	}*/
 }
 
+function checkGameOver(x,y) {
+	
+	var toTrack = 0;
+	var blocked = 0;
+	var classIndex = '.'+'tile-position-'+x+'-'+y;
+	var end = false;
+	
+	if($(classIndex).hasClass('tile-complete')) {
+		return;
+	}
+	else {
+		var leftX = parseInt(x,10)-1;
+		var rightX = parseInt(x,10)+1;
+		var upY = parseInt(y,10)-1;
+		var downY = parseInt(y,10)+1;
+		var classIndexTopMid = '.'+'tile-position-'+x+'-'+upY;
+		var classIndexMidLeft = '.'+'tile-position-'+leftX+'-'+y;
+		var classIndexMidRight = '.'+'tile-position-'+rightX+'-'+y;
+		var classIndexBotMid = '.'+'tile-position-'+x+'-'+downY;
+		
+		
+		if( $(classIndexTopMid).length > 0) {
+			toTrack++;
+			if ($(classIndexTopMid).hasClass('tile-complete')) {
+				blocked++;
+			} else { }
+		}
+		
+		if( $(classIndexMidLeft).length > 0) {
+			toTrack++;
+			if ($(classIndexMidLeft).hasClass('tile-complete')) {
+				blocked++;
+			} else { }
+		}
+		
+		if( $(classIndexMidRight).length > 0) {
+			toTrack++;
+			if ($(classIndexMidRight).hasClass('tile-complete')) {
+				blocked++;
+			} else {  }
+		}
+		
+		if( $(classIndexBotMid).length > 0) {
+			toTrack++;
+			if ($(classIndexBotMid).hasClass('tile-complete')) {
+				blocked++
+			} else {  }
+		}
+		
+	}
+	if(blocked === toTrack) {
+		end=true;
+		$(classIndex).addClass('end');
+	}
+}
+
+function checkGameOverDiagonal(x,y) {
+	
+	var toTrack = 0;
+	var blocked = 0;
+	var classIndex = '.'+'tile-position-'+x+'-'+y;
+	var end = false;
+	
+	if($(classIndex).hasClass('tile-complete')) {
+		return;
+	}
+	else {
+		var leftX = parseInt(x,10)-1;
+		var rightX = parseInt(x,10)+1;
+		var upY = parseInt(y,10)-1;
+		var downY = parseInt(y,10)+1;
+		var classIndexTopLeft = '.'+'tile-position-'+leftX+'-'+upY;
+		var classIndexTopMid = '.'+'tile-position-'+x+'-'+upY;
+		var classIndexTopRight = '.'+'tile-position-'+rightX+'-'+upY;
+		var classIndexMidLeft = '.'+'tile-position-'+leftX+'-'+y;
+		var classIndexMidRight = '.'+'tile-position-'+rightX+'-'+y;
+		var classIndexBotLeft = '.'+'tile-position-'+leftX+'-'+downY;
+		var classIndexBotMid = '.'+'tile-position-'+x+'-'+downY;
+		var classIndexBotRight = '.'+'tile-position-'+rightX+'-'+downY;
+		
+		if( $(classIndexTopLeft).length > 0 ) {
+			toTrack++;
+			if ($(classIndexTopLeft).hasClass('tile-complete')) {
+				blocked++;
+			} else { }
+		}
+		
+		if( $(classIndexTopMid).length > 0) {
+			toTrack++;
+			if ($(classIndexTopMid).hasClass('tile-complete')) {
+				blocked++;
+			} else { }
+		}
+		
+		if( $(classIndexTopRight).length > 0) {
+			toTrack++;
+			if ($(classIndexTopRight).hasClass('tile-complete')) {
+				blocked++
+			} else {  }
+		}
+		
+		if( $(classIndexMidLeft).length > 0) {
+			toTrack++;
+			if ($(classIndexMidLeft).hasClass('tile-complete')) {
+				blocked++;
+			} else { }
+		}
+		
+		if( $(classIndexMidRight).length > 0) {
+			toTrack++;
+			if ($(classIndexMidRight).hasClass('tile-complete')) {
+				blocked++;
+			} else {  }
+		}
+		
+		if( $(classIndexBotLeft).length > 0) {
+			toTrack++;
+			if ($(classIndexBotLeft).hasClass('tile-complete')) {
+				blocked++;
+			} else {  }
+		}
+		
+		if( $(classIndexBotMid).length > 0) {
+			toTrack++;
+			if ($(classIndexBotMid).hasClass('tile-complete')) {
+				blocked++
+			} else {  }
+		}
+		
+		if( $(classIndexBotRight).length > 0) {
+			toTrack++
+			if ($(classIndexBotRight).hasClass('tile-complete')) {
+				blocked++;
+			} else { }
+		}
+	}
+	if(blocked === toTrack) {
+		end=true;
+		$(classIndex).addClass('end');
+	}
+}
+
 function checkSurrounds(x,y) {
 	var leftX = parseInt(x,10)-1;
 	var rightX = parseInt(x,10)+1;
@@ -1336,6 +1478,7 @@ function onReady() {
 							clearSurrounds(a,b);
 						}
 					}
+					
 					if(newValue !=0){
 						$(this).text(newValue);					
 						//checkSurrounds(x,y);
@@ -1345,6 +1488,19 @@ function onReady() {
 						$('.tile-container').append("<div class=\"tile "+newClassIndex+" tile-tick tile-complete\"></div>");
 						remainingTiles--;
 						remainingTiles--;
+					}
+					if(getCurrentLevelNumber() >= 14) {
+						for(e=1; e<=size; e++) {
+							for (f=1; f<=size; f++) {
+								checkGameOverDiagonal(e,f);
+							}
+						}
+					} else {
+						for(e=1; e<=size; e++) {
+							for (f=1; f<=size; f++) {
+								checkGameOver(e,f);
+							}
+						}
 					}
 					for(c=1; c<=size; c++) {
 						for (d=1; d<=size; d++) {
