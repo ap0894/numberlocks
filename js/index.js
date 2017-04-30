@@ -1,7 +1,7 @@
 var level1Tutorial = "Subtract the 3 from the 3 to reduce both numbers to 0 (represented by a tick).";
 var level2Tutorial = "You can subtract in either direction, the result is the same.";
 var level3Tutorial = "Matching adjacent numbers turn green as visual clue that one swipe will eliminate both tiles. Be careful though, it isn’t always the right move ";
-var level14Tutorial = "You can now swipe diagonally";
+var level4Tutorial = "You can swipe horizontally and vertically to subtract numbers";
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
@@ -616,7 +616,7 @@ function addBoard() {
 	if(getCurrentLevelNumber>0) {
 		$('.level-number').html("Level "+ getCurrentLevelNumber());
 	} else {
-		$('.level-number').html("Tutorial");
+		$('.level-number').html("Tutorial " + getCurrentLevelNumber()*-1+"/5");
 	}
 	$('.level-number').css('display','block');
 	$('.controls-lower').css('display','block');
@@ -650,7 +650,16 @@ function addBoard() {
 		$('.object3').css('bottom');
 		$('.object3').addClass('horizTranslate3');
 		$('.tutorial').css('padding-top', '290px');
-	} else if(currentLevel === "level11" ) {
+	} else if(currentLevel === "level-4" ) {
+		$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+		$('#tutorialText').html(level4Tutorial);
+		$('#tutorialTitle').html("<u>Lesson 4: Vertical</u>");
+		//$('.tutorial-modal').css('height', '120px');
+		howToWinModal.style.display = "block";
+		$('.object3').css('bottom');
+		$('.object3').addClass('horizTranslate3');
+		$('.tutorial').css('padding-top', '290px');
+	}else if(currentLevel === "level11" ) {
 		$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 		$('#tutorialText').html(level14Tutorial);
 		$('#tutorialTitle').html("");
@@ -1153,7 +1162,7 @@ function onReady() {
 		//$(".congrats-box").css('display', 'none');
 		tutorialOverModal.style.display = "none";
 		//alert("next lesson");
-		if (getCurrentLevelNumber() === -3 ) {
+		if (getCurrentLevelNumber() === -4 ) {
 			alert("end tutorial");
 		} else {
 			currentLevel = decrementLevel();
