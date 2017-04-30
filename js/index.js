@@ -1,6 +1,6 @@
-var level1Tutorial = "Swipe tiles to subtract the numbers and convert every tile to a tick";
-var level2Tutorial = "Subtract in either direction (there are no negatives)";
-var level3Tutorial = "Swipe horizontally or vertically";
+var level1Tutorial = "Subtract the 3 from the 3 to reduce both numbers to 0 (represented by a tick).";
+var level2Tutorial = "You can subtract in either direction, the result is the same.";
+var level3Tutorial = "Matching adjacent numbers turn green as visual clue that one swipe will eliminate both tiles. Be careful though, it isn’t always the right move ";
 var level14Tutorial = "You can now swipe diagonally";
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
@@ -124,16 +124,16 @@ function createLevelDiv (x,y) {
 	var div = "<div><table><tbody>";
 	
 	switch(x) {
-		case 1:
+		case 0:
 			tempExpl = "<div><span class=\"explanation\">Learn How To Play</span></div><br/>";
 			break;
-		case 4:
+		case 1:
 			tempExpl = "<div><span class=\"explanation\">Subtract the numbers to eliminate all tiles</span></div><br/>";
 			break;
-		case 14:
+		case 11:
 			tempExpl = "<div><span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span></div><br/>";
 			break;
-		case 24:
+		case 21:
 			tempExpl = "<div><span class=\"explanation\">Complete the 4 by 4 boards</span></div><br/>";
 			break;
 	}
@@ -304,12 +304,13 @@ function createMainDiv() {
 	var hr = "<hr></hr>";
 	var levels = "<div class=\"levelsTest\">"
 	
-	var levels1to3 = createLevelDiv(1,3);
-	var levels4to13 = createLevelDiv(4,13);
-	var levels14to23 = createLevelDiv(14,23);
-	var levels24to33 = createLevelDiv(24,33);
+	//var levels1to3 = createLevelDiv(1,3);
+	var levelsTutorial = "<div><table><tbody><div><span class=\"explanation\">Learn How To Play</span></div><br/><tr><td id=\"levelHeader0\">Start Tutorial</td></tr><tr class=\"level-img-row\"><td><img id=\"level-1\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td></tr></tbody></table><div id=\"\" class=\"info-box text\"><div id=\"\">Click the Lock to learn the key elements of the game</div><div class=\"dismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div></div></div>"
+	var levels1to10 = createLevelDiv(1,10);
+	var levels11to20 = createLevelDiv(11,20);
+	var levels21to30 = createLevelDiv(21,30);
 	
-	levels = levels + levels1to3 + levels4to13 + levels14to23 + levels24to33;
+	levels = levels + levelsTutorial + levels1to10 + levels11to20 + levels21to30;
 	
 	//"<div><table><tbody></tbody></table><table><tbody><tr><td>Level 24</td><td>Level 25</td><td>Level 26</td><td>Level 27</td><td>Level 28</td></tr><tr class=\"level-img-row\"><td><img id=\"level24\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level25\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level26\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level27\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level28\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"24stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"25stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"26stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"27stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"28stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr><tr><td>Level 29</td><td>Level 30</td><td>Level 31</td><td>Level 32</td><td>Level 33</td></tr><tr class=\"level-img-row\"><td><img id=\"level29\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level30\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level31\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level32\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level22\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"29stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"30stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"31stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"32stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td><td id=\"33stars\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"><img class=\"star\" src=\"./img/icons/StarOff.svg\"></td></tr></tbody></table></div></div>";
 	return slider + hr + levels;
@@ -393,8 +394,6 @@ function unlockPreviousLevels(from, to) {
 	storage.setItem('highestLevel', highestLevel);
 	return true;
 }
-
-
 
 function updateLevelDiv(level, stars) {
 	
@@ -614,7 +613,11 @@ function addBoard() {
 	$('.control-container').css('display','block');	
 	$('.game-container').css('display','block');
 	$('.controls-lower').html(controls);
-	$('.level-number').html("Level "+ getCurrentLevelNumber());
+	if(getCurrentLevelNumber>0) {
+		$('.level-number').html("Level "+ getCurrentLevelNumber());
+	} else {
+		$('.level-number').html("Tutorial");
+	}
 	$('.level-number').css('display','block');
 	$('.controls-lower').css('display','block');
 	if(getCurrentLevelNumber() > 2) {
@@ -622,30 +625,32 @@ function addBoard() {
 		$('.moves-legend-container').css('display','block');	
 	}
 	$('.super-container').css('display','block');
-	if(currentLevel === "level1" ) {
+	if(currentLevel === "level-1" ) {
 		$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 		$('#tutorialText').html(level1Tutorial);
-		$('#tutorialTitle').html("<u>How To Win</u>");
+		$('#tutorialTitle').html("<u>Lesson 1: Swipe Tiles To Subtract</u>");
+		$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
 		//$('.tutorial-modal').css('height', '75px');
 		howToWinModal.style.display = "block";
 		$('.object').css('left');
 		$('.object').addClass('horizTranslate');
-	} else if(currentLevel === "level2" ) {
+	} else if(currentLevel === "level-2" ) {
 		$('.tutorial-container').html("<img class=\"object2 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 		$('#tutorialText').html(level2Tutorial);
-		$('#tutorialTitle').html("");
+		$('#tutorialTitle').html("<u>Lesson 2: No Negatives</u>");
 		howToWinModal.style.display = "block";
 		$('.object2').css('left');
 		$('.object2').addClass('horizTranslate2');
-	} else if(currentLevel === "level3" ) {
+	} else if(currentLevel === "level-3" ) {
 		$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 		$('#tutorialText').html(level3Tutorial);
-		$('#tutorialTitle').html("");
+		$('#tutorialTitle').html("<u>Lesson 3: Green Tiles</u>");
+		$('.tutorial-modal').css('height', '144px');
 		howToWinModal.style.display = "block";
 		$('.object3').css('bottom');
 		$('.object3').addClass('horizTranslate3');
 		$('.tutorial').css('padding-top', '290px');
-	} else if(currentLevel === "level14" ) {
+	} else if(currentLevel === "level11" ) {
 		$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 		$('#tutorialText').html(level14Tutorial);
 		$('#tutorialTitle').html("");
@@ -707,6 +712,11 @@ function calculateTotal() {
 
 function incrementLevel() {
 	var newNum = parseInt(currentLevel.substr(5),10)+1;
+	return "level"+newNum;
+}
+
+function decrementLevel() {
+	var newNum = parseInt(currentLevel.substr(5),10)-1;
 	return "level"+newNum;
 }
 
@@ -972,7 +982,7 @@ function onReady() {
 	highestLevel = storage.getItem('highestLevel');
 	highestVault = storage.getItem('highestVault');
 	if(testingLevels) {
-		highestLevel = 33;
+		highestLevel = 30;
 		highestVault = 4;
 	} else if(highestLevel == null) {
 		highestLevel = 1;
@@ -1129,7 +1139,28 @@ function onReady() {
 	    pauseTimer();
     	pauseModal.style.display = "block";
     	$('#levelTitle').html(currentLevel.substr(5));
-	});  
+	}); 
+	
+	$('body').on('click', '.dismiss', function(e) {
+		$(".info-box").css('display', 'none');
+	}); 
+	
+	$('body').on('click', '.Tutorialdismiss', function(e) {
+		$(".tutorial").css('display', 'none');
+	}); 
+	
+	$('body').on('click', '.next-lesson', function(e) {
+		//$(".congrats-box").css('display', 'none');
+		tutorialOverModal.style.display = "none";
+		//alert("next lesson");
+		if (getCurrentLevelNumber() === -3 ) {
+			alert("end tutorial");
+		} else {
+			currentLevel = decrementLevel();
+			remainingTiles = levels[currentLevel]['tiles'].length;
+			addBoard();	
+		}
+	});
 	
 	$(".pauseClose").on('click', function(e) {
 		isPaused = false;
@@ -1153,8 +1184,8 @@ function onReady() {
     	
 		gameOverModal.style.display = "none";
 		
-		if (getCurrentLevelNumber() === 33 ) {
-			if(totalStars === 93) {
+		if (getCurrentLevelNumber() === 30 ) {
+			if(totalStars === 90) {
 				$('#gameCompleteHeader').html("AMAZING YOU'RE A NUMBER LOCKS LEGEND!");
 				$('#gameCompleteText').html("<p>You've completed our pilot with 3 STARS on ALL levels</p>Now you've had a taste for Number Locks, look out for our new release with even harder levels and multi-player games");
 			}
@@ -1272,22 +1303,22 @@ function onReady() {
     
 	$('.game-explanation').html(gameExplanation);
 	
-	$('body').on('click', '#level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23, #level24, #level25, #level26, #level27, #level28, #level29, #level30, #level31, #level32, #level33, #level34, #level35, #level36, #level37, #level38, #level39, #level40', function(e) {
+	$('body').on('click', '#level-1, #level1, #level2, #level3, #level4, #level5, #level6, #level7, #level8, #level9, #level10, #level11, #level12, #level13, #level14, #level15, #level16, #level17, #level18, #level19, #level20, #level21, #level22, #level23, #level24, #level25, #level26, #level27, #level28, #level29, #level30, #level31, #level32, #level33, #level34, #level35, #level36, #level37, #level38, #level39, #level40', function(e) {
 		e.preventDefault();
 		
 		currentLevel = $(this).attr('id');
 		var levelNumber = getCurrentLevelNumber();
 		switch(true) {
-			case levelNumber < 4:
+			case levelNumber < 1:
 				currentVaultNumber = 1;
 				break;
-			case levelNumber > 3 && levelNumber < 14:
+			case levelNumber > 1 && levelNumber < 11:
 				currentVaultNumber = 2;
 				break;
-			case levelNumber > 13 && levelNumber < 24 :
+			case levelNumber > 11 && levelNumber < 21 :
 				currentVaultNumber = 3;
 				break;
-			case levelNumber > 23 :
+			case levelNumber > 21 :
 				currentVaultNumber = 4;
 				break;
 			default:
@@ -1489,7 +1520,7 @@ function onReady() {
 						remainingTiles--;
 						remainingTiles--;
 					}
-					if(getCurrentLevelNumber() >= 14) {
+					if(getCurrentLevelNumber() >= 11) {
 						for(e=1; e<=size; e++) {
 							for (f=1; f<=size; f++) {
 								checkGameOverDiagonal(e,f);
@@ -1583,7 +1614,7 @@ function onReady() {
 								unlockPreviousLevels(currentHighestLevel, 4);
 							}
 						} 
-						if(totalStars>=24 && highestVault < 3) {	
+						if(totalStars>=21 && highestVault < 3) {	
 							highestVault = 3;
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
@@ -1592,13 +1623,13 @@ function onReady() {
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
 							//$('#vault' + highestVault).find('.status');
 							currentVaultNumber++;
-							if (currentHighestLevel < 14) {
+							if (currentHighestLevel < 11) {
 								//alert('Opening Diagonal vault');
 								continueFlag = true;
-								unlockPreviousLevels(currentHighestLevel, 14);
+								unlockPreviousLevels(currentHighestLevel, 11);
 							}
 						}
-						if(totalStars>=50 && highestVault < 4) {	
+						if(totalStars>=47 && highestVault < 4) {	
 							highestVault = 4;
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
@@ -1606,10 +1637,10 @@ function onReady() {
 							$('#vault' + highestVault).find('.status').html('Unlocked: 50');
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
 							currentVaultNumber++;
-							if (currentHighestLevel < 24) {
+							if (currentHighestLevel < 21) {
 								//alert('Opening 4x4 vault');
 								continueFlag = true;
-								unlockPreviousLevels(currentHighestLevel, 24);
+								unlockPreviousLevels(currentHighestLevel, 21);
 							}
 						} 
 						
@@ -1642,8 +1673,12 @@ function onReady() {
 							backToVaultFlag = true;
 					}
 					//currentLevel = incrementLevel();
-					
-					gameOverModal.style.display = "block";
+					abc = getCurrentLevelNumber();
+					if(getCurrentLevelNumber()>0) {
+						gameOverModal.style.display = "block";
+					} else {
+						tutorialOverModal.style.display = "block";
+					}
 					(function() {
 						var elements = document.querySelectorAll("#starsCollected img");
 	
