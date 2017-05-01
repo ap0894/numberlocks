@@ -564,8 +564,7 @@ function createLine(size) {
 
 function addBoard() {
 	if (getCurrentLevelNumber() === -1) {
-		$('.container').css('display','none');
-		alert("First Tutorial");		
+		$('.container').css('display','none');	
 		$('#tutorialText').html(level0Tutorial);
 		$('#tutorialTitle').html("<u>Welcome To Number Locks</u>");
 		$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
