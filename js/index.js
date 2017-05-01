@@ -608,7 +608,7 @@ function addBoard() {
 		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
 		var height = dimension + 39;
-		if(getCurrentLevelNumber() > 13) {
+		if(getCurrentLevelNumber() > 10) {
 			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
 			$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
 		}
@@ -629,7 +629,7 @@ function addBoard() {
 		$('.moves-legend-container').html(movesLegend);
 		$('.moves-legend-container').css('display','block');
 	} else {
-		$('.level-number').html("Tutorial " + getCurrentLevelNumber()*-1+"/5");
+		$('.level-number').html("Tutorial " + getCurrentLevelNumber()*-1+"/4");
 	}
 	if(welcomed || getCurrentLevelNumber()>0) {	
 		$('.container').css('display','block');
