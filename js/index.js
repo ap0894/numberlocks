@@ -284,9 +284,9 @@ function createMainDiv() {
 			case 3:
 				tempSpan = "<span>Diagonal</span>";
 				if(i<=highestVault) {
-					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 21</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				} else {
-					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 24</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
+					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 21</span><img class=\"star\" src=\"./img/icons/StarOn.svg\">";
 				}
 				break;
 			case 4:
@@ -1149,7 +1149,16 @@ function onReady() {
 		tutorialOverModal.style.display = "none";
 		//alert("next lesson");
 		if (getCurrentLevelNumber() === -3 ) {
-			alert("end tutorial");
+			//alert("end tutorial");
+			$('.control-container').css('display','none');	
+			$('.game-container').css('display','none');	
+			$('.controls-lower').css('display','none');	
+			$('.super-container').css('display','none');
+			$('.moves-legend-container').css('display','none');	
+			$('.level-number').css('display','none');
+			$('#levelsDiv').css('display','block');
+			$('.title').show();
+			$('.slider').slick('slickGoTo', (currentVaultNumber));
 		} else {
 			currentLevel = decrementLevel();
 			remainingTiles = levels[currentLevel]['tiles'].length;
@@ -1642,7 +1651,7 @@ function onReady() {
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-							$('#vault' + highestVault).find('.status').html('Unlocked: 24');
+							$('#vault' + highestVault).find('.status').html('Unlocked: 21');
 							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
 							//$('#vault' + highestVault).find('.status');
 							currentVaultNumber++;
@@ -1692,7 +1701,7 @@ function onReady() {
 							default:
 								break;
 						} */
-					} else if(getCurrentLevelNumber() === 3 || getCurrentLevelNumber() === 13 || getCurrentLevelNumber() === 23) {
+					} else if(getCurrentLevelNumber() === 10 || getCurrentLevelNumber() === 20 || getCurrentLevelNumber() === 30) {
 							backToVaultFlag = true;
 					}
 					//currentLevel = incrementLevel();
