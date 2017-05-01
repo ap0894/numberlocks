@@ -1,7 +1,9 @@
+var level0Tutorial = "How To Win: Eliminate numbered tiles using subtraction in fewer moves than granted.";
 var level1Tutorial = "Subtract the 3 from the 3 to reduce both numbers to 0 (represented by a tick).";
 var level2Tutorial = "You can subtract in either direction, the result is the same.";
 var level3Tutorial = "Matching adjacent numbers turn green as visual clue that one swipe will eliminate both tiles. Be careful though, it isn’t always the right move ";
 var level4Tutorial = "You can swipe horizontally and vertically to subtract numbers";
+var welcomed = false;
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
@@ -561,16 +563,23 @@ function createLine(size) {
 }
 
 function addBoard() {
-
+	if (getCurrentLevelNumber() === -1) {
+		$('.container').css('display','none');
+		alert("First Tutorial");		
+		$('#tutorialText').html(level0Tutorial);
+		$('#tutorialTitle').html("<u>Welcome To Number Locks</u>");
+		$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
+		//$('.tutorial-modal').css('height', '75px');
+		$(".info-box").css('display', 'none');
+		howToWinModal.style.display = "block";
+	}
 	var movesLegend = "<table><tbody><tr><td>Moves</td><td>"+levels[currentLevel]['three']+"</td><td>"+levels[currentLevel]['two']+"</td><td>"+levels[currentLevel]['one']+"</td></tr><tr><td>Stars</td><td><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOn.svg\" /></td><td><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOff.svg\" /></td><td><img class = \"star\" src=\"./img/icons/StarOn.svg\" /><img class = \"star\" src=\"./img/icons/StarOff.svg\" /><img class = \"star\" src=\"./img/icons/StarOff.svg\" /></td></tr></tbody></table>";
 	prepInterstitial();	
 	$('.lines-container').html('');
 	$('.vertical-lines-container').html('');
 	$('.diagonal-left-lines-container').html('');
 	$('.diagonal-right-lines-container').html('');
-	//$('.levels').css('display','none');
 	$('#levelsDiv').css('display','none');
-	//var size;
 	if(levels[currentLevel]['tiles'].length<4) {
 		size = levels[currentLevel]['tiles'].length; 
 		$('.grid-container').html(createLine(size));
@@ -610,66 +619,67 @@ function addBoard() {
 		$('.super-container').css('width',height);
 	}
 	$('.super-container').css('box-shadow','0 3px 6px #000000');
-	$('.control-container').css('display','block');	
-	$('.game-container').css('display','block');
 	$('.controls-lower').html(controls);
-	if(getCurrentLevelNumber>0) {
+	if(getCurrentLevelNumber()>0) {
 		$('.level-number').html("Level "+ getCurrentLevelNumber());
+		$('.moves-legend-container').html(movesLegend);
+		$('.moves-legend-container').css('display','block');
 	} else {
 		$('.level-number').html("Tutorial " + getCurrentLevelNumber()*-1+"/5");
 	}
-	$('.level-number').css('display','block');
-	$('.controls-lower').css('display','block');
-	if(getCurrentLevelNumber() > 2) {
-		$('.moves-legend-container').html(movesLegend);
-		$('.moves-legend-container').css('display','block');	
-	}
-	$('.super-container').css('display','block');
-	if(currentLevel === "level-1" ) {
-		$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-		$('#tutorialText').html(level1Tutorial);
-		$('#tutorialTitle').html("<u>Lesson 1: Swipe Tiles To Subtract</u>");
-		$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
-		//$('.tutorial-modal').css('height', '75px');
-		howToWinModal.style.display = "block";
-		$('.object').css('left');
-		$('.object').addClass('horizTranslate');
-	} else if(currentLevel === "level-2" ) {
-		$('.tutorial-container').html("<img class=\"object2 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-		$('#tutorialText').html(level2Tutorial);
-		$('#tutorialTitle').html("<u>Lesson 2: No Negatives</u>");
-		howToWinModal.style.display = "block";
-		$('.object2').css('left');
-		$('.object2').addClass('horizTranslate2');
-	} else if(currentLevel === "level-3" ) {
-		$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-		$('#tutorialText').html(level3Tutorial);
-		$('#tutorialTitle').html("<u>Lesson 3: Green Tiles</u>");
-		$('.tutorial-modal').css('height', '144px');
-		howToWinModal.style.display = "block";
-		$('.object3').css('bottom');
-		$('.object3').addClass('horizTranslate3');
-		$('.tutorial').css('padding-top', '290px');
-	} else if(currentLevel === "level-4" ) {
-		$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-		$('#tutorialText').html(level4Tutorial);
-		$('#tutorialTitle').html("<u>Lesson 4: Vertical</u>");
-		//$('.tutorial-modal').css('height', '120px');
-		howToWinModal.style.display = "block";
-		$('.object3').css('bottom');
-		$('.object3').addClass('horizTranslate3');
-		$('.tutorial').css('padding-top', '290px');
-	}else if(currentLevel === "level11" ) {
-		$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-		$('#tutorialText').html(level14Tutorial);
-		$('#tutorialTitle').html("");
-		howToWinModal.style.display = "block";
-		$('.object4').css('bottom');
-		$('.object4').addClass('horizTranslate4');
-		$('.tutorial').css('padding-top', '290px');
-	}
-	else {
-		$('.tutorial-container').html("");
+	if(welcomed) {
+		$('.container').css('display','block');
+		$('.control-container').css('display','block');	
+		$('.game-container').css('display','block');
+		$('.level-number').css('display','block');
+		$('.controls-lower').css('display','block');
+		$('.super-container').css('display','block');
+		if(currentLevel === "level-1" ) {
+			$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+			$('#tutorialText').html(level1Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 1: Swipe Tiles To Subtract</u>");
+			$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
+			//$('.tutorial-modal').css('height', '75px');
+			howToWinModal.style.display = "block";
+			$('.object').css('left');
+			$('.object').addClass('horizTranslate');
+		} else if(currentLevel === "level-2" ) {
+			$('.tutorial-container').html("<img class=\"object2 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+			$('#tutorialText').html(level2Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 2: No Negatives</u>");
+			howToWinModal.style.display = "block";
+			$('.object2').css('left');
+			$('.object2').addClass('horizTranslate2');
+		} else if(currentLevel === "level-3" ) {
+			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+			$('#tutorialText').html(level3Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 3: Green Tiles</u>");
+			$('.tutorial-modal').css('height', '144px');
+			howToWinModal.style.display = "block";
+			$('.object3').css('bottom');
+			$('.object3').addClass('horizTranslate3');
+			$('.tutorial').css('padding-top', '290px');
+		} else if(currentLevel === "level-4" ) {
+			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+			$('#tutorialText').html(level4Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 4: Vertical</u>");
+			//$('.tutorial-modal').css('height', '120px');
+			howToWinModal.style.display = "block";
+			$('.object3').css('bottom');
+			$('.object3').addClass('horizTranslate3');
+			$('.tutorial').css('padding-top', '290px');
+		}else if(currentLevel === "level11" ) {
+			$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
+			$('#tutorialText').html(level14Tutorial);
+			$('#tutorialTitle').html("");
+			howToWinModal.style.display = "block";
+			$('.object4').css('bottom');
+			$('.object4').addClass('horizTranslate4');
+			$('.tutorial').css('padding-top', '290px');
+		}
+		else {
+			$('.tutorial-container').html("");
+		}
 	}
 	//$('#pie-container').html(pie);
 	
@@ -678,7 +688,7 @@ function addBoard() {
 	moves = levels[currentLevel]['tiles'].length-1;
 	$('#move-num').html(movesUp);
 	isPaused = false;
-	if(getCurrentLevelNumber() > 2) {
+	if(getCurrentLevelNumber() > 0) {
 		var tempStarsCounter = "";
 		for (z=0; z<3; z++ ) {
 			tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOn.svg\">";
@@ -1156,6 +1166,10 @@ function onReady() {
 	
 	$('body').on('click', '.Tutorialdismiss', function(e) {
 		$(".tutorial").css('display', 'none');
+		if(!welcomed) {
+			welcomed = true;
+			addBoard();
+		}
 	}); 
 	
 	$('body').on('click', '.next-lesson', function(e) {
@@ -1337,8 +1351,14 @@ function onReady() {
 		if (getCurrentLevelNumber() <= highestLevel) {
 			$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
 			remainingTiles = levels[currentLevel]['tiles'].length;
-			addBoard();	
-			$('.title').hide();
+			if (getCurrentLevelNumber() > 0 ) {
+				addBoard();	
+				$('.title').hide();
+			} else {
+				addBoard();
+				$('.title').hide();
+				//alert ("First Tutorial");	
+			}
 		} else {
 			if(soundFx == "true") {
 				lockSound.play();
@@ -1383,7 +1403,7 @@ function onReady() {
 		movesUp=0;
 		moves = levels[currentLevel]['tiles'].length-1;
 		$('#move-num').html(movesUp);		
-		if(getCurrentLevelNumber() > 2) {
+		if(getCurrentLevelNumber() > 0) {
 			var tempStarsCounter = "";
 			for (z=0; z<3; z++ ) {
 				tempStarsCounter += "<img class=\"star\" src=\"./img/icons/StarOn.svg\">";
@@ -1574,7 +1594,7 @@ function onReady() {
 					$('#levelNum').html(getCurrentLevelNumber());
 					var stars = storage.getItem(currentLevel);
 					starsUpdate = calculateStars(movesUp);
-					if (starsUpdate > stars && getCurrentLevelNumber() > 2) {
+					if (starsUpdate > stars && getCurrentLevelNumber() > 0) {
 						totalStars = totalStars + (starsUpdate - stars);
 						storage.setItem('totalStars', totalStars);
 						$('#totalStars').html(totalStars);
@@ -1590,7 +1610,7 @@ function onReady() {
 							displayStars += "<img class = \"star\" src=\"./img/icons/StarOff.svg\" />";
 						}
 					}
-					if(getCurrentLevelNumber() > 2) {
+					if(getCurrentLevelNumber() > 0) {
 						$('#starsCollected').html("Stars Collected: &nbsp;" + displayStars);
 					} else {
 						$('#starsCollected').html("");
