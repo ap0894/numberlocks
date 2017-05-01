@@ -626,7 +626,7 @@ function addBoard() {
 	} else {
 		$('.level-number').html("Tutorial " + getCurrentLevelNumber()*-1+"/5");
 	}
-	if(welcomed) {
+	if(welcomed || getCurrentLevelNumber()>0) {
 		$('.container').css('display','block');
 		$('.control-container').css('display','block');	
 		$('.game-container').css('display','block');
