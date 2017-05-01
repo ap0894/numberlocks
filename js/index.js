@@ -5,8 +5,10 @@ var level3Tutorial = "Matching adjacent numbers turn green as visual clue that o
 var level4Tutorial = "You can swipe horizontally and vertically to subtract numbers";
 var incorrectTutorial = "You’ve isolated a square, which means you can’t complete the level. We recommend hitting the restart button";
 
+var pairTutorial = false;
 var welcomed = false;
 var end = false;
+var pairTutorialShown = false;
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
 
@@ -654,14 +656,15 @@ function addBoard() {
 			$('.object2').addClass('horizTranslate2');
 		} else if(currentLevel === "level-3" ) {
 			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level3Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 3: Green Tiles</u>");
+			$('#tutorialText').html(level4Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 4: Vertical</u>");
 			$('.tutorial-modal').css('height', '144px');
 			howToWinModal.style.display = "block";
 			$('.object3').css('bottom');
 			$('.object3').addClass('horizTranslate3');
 			$('.tutorial').css('padding-top', '290px');
-		} else if(currentLevel === "level-4" ) {
+		} 
+		/*else if(currentLevel === "level-4" ) {
 			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 			$('#tutorialText').html(level4Tutorial);
 			$('#tutorialTitle').html("<u>Lesson 4: Vertical</u>");
@@ -670,7 +673,8 @@ function addBoard() {
 			$('.object3').css('bottom');
 			$('.object3').addClass('horizTranslate3');
 			$('.tutorial').css('padding-top', '290px');
-		}else if(currentLevel === "level11" ) {
+		} */
+		else if(currentLevel === "level11" ) {
 			$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 			$('#tutorialText').html(level14Tutorial);
 			$('#tutorialTitle').html("");
@@ -910,38 +914,46 @@ function checkSurrounds(x,y) {
 	var classIndexBotMid = '.'+'tile-position-'+x+'-'+downY;
 	var classIndexBotRight = '.'+'tile-position-'+rightX+'-'+downY;
 	
-	if ($(classIndex).text() == $(classIndexTopMid).text()) {
+	if ($(classIndex).text() == $(classIndexTopMid).text() && !$(classIndex).hasClass('tile-complete')) {
 		$(classIndex).addClass('pair');
 		$(classIndexTopMid).addClass('pair');
+		pairTutorial = true;
 	} 
 	if ($(classIndex).text() == $(classIndexMidLeft).text()) {
 		$(classIndex).addClass('pair');
 		$(classIndexMidLeft).addClass('pair');
+		pairTutorial = true;
 	} 
 	if ($(classIndex).text() == $(classIndexMidRight).text()) {
 		$(classIndex).addClass('pair');
 		$(classIndexMidRight).addClass('pair');
+		pairTutorial = true;
 	} 
 	if ($(classIndex).text() == $(classIndexBotMid).text()) {
 		$(classIndex).addClass('pair');
 		$(classIndexBotMid).addClass('pair');
+		pairTutorial = true;
 	} 
-	if (getCurrentLevelNumber() > 13) {
+	if (getCurrentLevelNumber() > 10) {
 		if ($(classIndex).text() == $(classIndexTopLeft).text()) {
 			$(classIndex).addClass('pair');
 			$(classIndexTopLeft).addClass('pair');
+			pairTutorial = true;
 		} 
 		if ($(classIndex).text() == $(classIndexTopRight).text()) {
 			$(classIndex).addClass('pair');
 			$(classIndexTopRight).addClass('pair');
+			pairTutorial = true;
 		} 
 		if ($(classIndex).text() == $(classIndexBotLeft).text()) {
 			$(classIndex).addClass('pair');
 			$(classIndexBotLeft).addClass('pair');
+			pairTutorial = true;
 		} 
 		if ($(classIndex).text() == $(classIndexBotRight).text()) {
 			$(classIndex).addClass('pair');
 			$(classIndexBotRight).addClass('pair');
+			pairTutorial = true;
 		} 
 	}
 }
@@ -1136,7 +1148,7 @@ function onReady() {
 		//$(".congrats-box").css('display', 'none');
 		tutorialOverModal.style.display = "none";
 		//alert("next lesson");
-		if (getCurrentLevelNumber() === -4 ) {
+		if (getCurrentLevelNumber() === -3 ) {
 			alert("end tutorial");
 		} else {
 			currentLevel = decrementLevel();
@@ -1529,7 +1541,19 @@ function onReady() {
 							checkSurrounds(c,d);
 						}
 					}
-					console.log(end);
+					if($('.tile-position-1-1').hasClass('tile-complete')) {
+						pairTutorial = false;
+					}
+					if(pairTutorial && getCurrentLevelNumber() == -2 && !pairTutorialShown) {
+						console.log("pair tutorial");
+						$('#tutorialText').html(level3Tutorial);
+						$('#tutorialTitle').html("<u>Lesson 3: Green Tiles</u>");
+						$('.tutorial-modal').css('height', '144px');
+						howToWinModal.style.display = "block";
+						pairTutorialShown = true;
+						pairTutorial = false;
+					}
+					//console.log(end);
 					//add interstitial for incorrect move	
 					if(end) {
 						$('#incorrectText').html(incorrectTutorial);

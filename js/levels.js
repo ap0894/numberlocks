@@ -15,14 +15,7 @@ var levels = {
   },
   "level-3": 
   {
-	 "tiles": [7,3,9,5],
-	 "three": "3",
-	 "two": "3",
-	 "one": "3"
-  },
-  "level-4": 
-  {
-	 "tiles": [2,3,3,1],
+	 "tiles": [2,4,3,1],
 	 "three": "3",
 	 "two": "3",
 	 "one": "3"
