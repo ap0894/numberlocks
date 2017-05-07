@@ -1411,7 +1411,7 @@ function onReady() {
 			var classIndex = $.grep($(this).attr('class').split(' '), function(v, i) {
 				return v.indexOf("tile-position") === 0;
 			}).join();
-			if(getCurrentLevelNumber() > 13) {
+			if(getCurrentLevelNumber() > 10) {
 				var angle = ev.originalEvent.gesture.angle;
 				if(angle > -157.5 && angle < -112.5) {
 					direction = "swipeupleft"; 
