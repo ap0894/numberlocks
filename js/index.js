@@ -3,6 +3,8 @@ var level1Tutorial = "Subtract the 3 from the 3 to reduce both numbers to 0 (rep
 var level2Tutorial = "You can subtract in either direction, the result is the same.";
 var level3Tutorial = "Matching adjacent numbers turn green as visual clue that one swipe will eliminate both tiles. Be careful though, it isn’t always the right move ";
 var level4Tutorial = "You can swipe horizontally and vertically to subtract numbers";
+var level5Tutorial = "Receive keys for completing every level. The fewer moves, the more keys received! The target is to collect 3 keys on each level. You will need multiple keys to unlock the next vault!";
+var level11Tutorial = "You can swipe diagonally";
 var incorrectTutorial = "You’ve isolated a square, which means you can’t complete the level. We recommend hitting the restart button";
 
 var pairTutorial = false;
@@ -624,8 +626,12 @@ function addBoard() {
 	}
 	$('.super-container').css('box-shadow','0 3px 6px #000000');
 	$('.controls-lower').html(controls);
-	if(getCurrentLevelNumber()>0) {
-		$('.level-number').html("Level "+ getCurrentLevelNumber());
+	if(getCurrentLevelNumber()>0 || getCurrentLevelNumber() === -4) {
+		if (getCurrentLevelNumber() === -4) {
+			$('.level-number').html("Tutorial " + getCurrentLevelNumber()*-1+"/4");
+		} else {		
+			$('.level-number').html("Level "+ getCurrentLevelNumber());
+		}
 		$('.moves-legend-container').html(movesLegend);
 		$('.moves-legend-container').css('display','block');
 	} else {
@@ -651,6 +657,7 @@ function addBoard() {
 			$('.tutorial-container').html("<img class=\"object2 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 			$('#tutorialText').html(level2Tutorial);
 			$('#tutorialTitle').html("<u>Lesson 2: No Negatives</u>");
+			$('.tutorial-modal').css('height', '108px');
 			howToWinModal.style.display = "block";
 			$('.object2').css('left');
 			$('.object2').addClass('horizTranslate2');
@@ -658,26 +665,25 @@ function addBoard() {
 			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
 			$('#tutorialText').html(level4Tutorial);
 			$('#tutorialTitle').html("<u>Lesson 4: Vertical</u>");
-			$('.tutorial-modal').css('height', '144px');
+			$('.tutorial-modal').css('height', '108px');
 			howToWinModal.style.display = "block";
 			$('.object3').css('bottom');
 			$('.object3').addClass('horizTranslate3');
 			$('.tutorial').css('padding-top', '290px');
 		} 
-		/*else if(currentLevel === "level-4" ) {
-			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level4Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 4: Vertical</u>");
-			//$('.tutorial-modal').css('height', '120px');
+		else if(currentLevel === "level-4" ) {
+			$('.tutorial-container').html("");
+			$('#tutorialText').html(level5Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 5: Moves & Keys</u>");
+			$('.tutorial-modal').css('height', '164px');
 			howToWinModal.style.display = "block";
-			$('.object3').css('bottom');
-			$('.object3').addClass('horizTranslate3');
-			$('.tutorial').css('padding-top', '290px');
-		} */
+			$('.tutorial').css('padding-top', '360px');
+		}
 		else if(currentLevel === "level11" ) {
 			$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level14Tutorial);
-			$('#tutorialTitle').html("");
+			$('#tutorialText').html(level11Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 6: Diagonal</u>");
+			$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
 			howToWinModal.style.display = "block";
 			$('.object4').css('bottom');
 			$('.object4').addClass('horizTranslate4');
@@ -1148,7 +1154,7 @@ function onReady() {
 		//$(".congrats-box").css('display', 'none');
 		tutorialOverModal.style.display = "none";
 		//alert("next lesson");
-		if (getCurrentLevelNumber() === -3 ) {
+		if (getCurrentLevelNumber() === -4 ) {
 			//alert("end tutorial");
 			$('.control-container').css('display','none');	
 			$('.game-container').css('display','none');	
