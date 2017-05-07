@@ -1,9 +1,9 @@
 var level0Tutorial = "How To Win: Eliminate numbered tiles using subtraction in fewer moves than granted.";
 var level1Tutorial = "Subtract the 3 from the 3 to reduce both numbers to 0 (represented by a tick).";
-var level2Tutorial = "You can subtract in either direction, the result is the same.";
-var level3Tutorial = "Matching adjacent numbers turn green as visual clue that one swipe will eliminate both tiles. Be careful though, it isn’t always the right move ";
-var level4Tutorial = "You can swipe horizontally and vertically to subtract numbers";
-var level5Tutorial = "Receive keys for completing every level. The fewer moves, the more keys received! The target is to collect 3 keys on each level. You will need multiple keys to unlock the next vault!";
+var level2aTutorial = "You can subtract in either direction, the result is the same.";
+var level2bTutorial = "Matching adjacent numbers turn green as visual clue that one swipe will eliminate both tiles. Be careful though, it isn’t always the right move ";
+var level3Tutorial = "You can swipe horizontally and vertically to subtract numbers";
+var level4Tutorial = "Receive keys for completing every level. The fewer moves, the more keys received! The target is to collect 3 keys on each level. You will need multiple keys to unlock the next vault!";
 var level11Tutorial = "You can swipe diagonally";
 var incorrectTutorial = "You’ve isolated a square, which means you can’t complete the level. We recommend hitting the restart button";
 
@@ -655,16 +655,16 @@ function addBoard() {
 			$('.object').addClass('horizTranslate');
 		} else if(currentLevel === "level-2" ) {
 			$('.tutorial-container').html("<img class=\"object2 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level2Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 2: No Negatives</u>");
+			$('#tutorialText').html(level2aTutorial);
+			$('#tutorialTitle').html("<u>Lesson 2a: No Negatives</u>");
 			$('.tutorial-modal').css('height', '108px');
 			howToWinModal.style.display = "block";
 			$('.object2').css('left');
 			$('.object2').addClass('horizTranslate2');
 		} else if(currentLevel === "level-3" ) {
 			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level4Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 4: Vertical</u>");
+			$('#tutorialText').html(level3Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 3: Vertical</u>");
 			$('.tutorial-modal').css('height', '108px');
 			howToWinModal.style.display = "block";
 			$('.object3').css('bottom');
@@ -673,8 +673,8 @@ function addBoard() {
 		} 
 		else if(currentLevel === "level-4" ) {
 			$('.tutorial-container').html("");
-			$('#tutorialText').html(level5Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 5: Moves & Keys</u>");
+			$('#tutorialText').html(level4Tutorial);
+			$('#tutorialTitle').html("<u>Lesson 4: Moves & Keys</u>");
 			$('.tutorial-modal').css('height', '164px');
 			howToWinModal.style.display = "block";
 			$('.tutorial').css('padding-top', '360px');
@@ -1561,8 +1561,8 @@ function onReady() {
 					}
 					if(pairTutorial && getCurrentLevelNumber() == -2 && !pairTutorialShown) {
 						console.log("pair tutorial");
-						$('#tutorialText').html(level3Tutorial);
-						$('#tutorialTitle').html("<u>Lesson 3: Green Tiles</u>");
+						$('#tutorialText').html(level2bTutorial);
+						$('#tutorialTitle').html("<u>Lesson 2b: Green Tiles</u>");
 						$('.tutorial-modal').css('height', '144px');
 						howToWinModal.style.display = "block";
 						pairTutorialShown = true;
