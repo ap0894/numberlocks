@@ -1667,7 +1667,7 @@ function onReady() {
 								unlockPreviousLevels(currentHighestLevel, 11);
 							}
 						}
-						if(totalStars>=47 && highestVault < 4) {	
+						if(totalStars>=44 && highestVault < 4) {	
 							highestVault = 4;
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
