@@ -1153,13 +1153,13 @@ table {
 }
 
 .slick-next {
-	right: 0px !important;
+	right: 25px !important;
 	top: 45% !important;
 	z-index: 1;
 }
 
 .slick-prev {
-	left: 0px !important;
+	left: 25px !important;
 	top: 45% !important;
 	z-index: 1;
 }
