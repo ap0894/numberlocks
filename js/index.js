@@ -1,11 +1,36 @@
-var level0Tutorial = "How To Win: Eliminate numbered tiles using subtraction in fewer moves than granted.";
-var level1Tutorial = "Subtract the 3 from the 3 to reduce both numbers to 0 (represented by a tick).";
-var level2aTutorial = "You can subtract in either direction, the result is the same.";
+var firstTimeTitle = "TUTORIAL";
+var firstTimeTutorial = "First time playing?<br />Take a quick tutorial and learn the basics";
+
+var lessonTitles = [
+	"",
+	"LESSON 1: SUBTRACTION",
+	"LESSON 2.1: NO NEGATIVES",
+	"LESSON 3: VERTICAL",
+	"LESSON 4: KEYS"
+];
+
+var lessonText = [
+	"",
+	"Swipe one tile onto another, they subtract! Clear all tiles to complete the level.",
+	"Subtract in either direction, the result is the same.",
+	"Swipe horizontally or vertically",
+	"Less moves = More keys! <br /><br />Keys unlock new levels!"
+];
+
+var gameCompleteHeader = "CONGRATULATIONS YOU'VE FINISHED EVERY LEVEL!";
+var gameCompleteText = "<p>Now try for 3 keys on every level!</p><p>Also, look out for our new release with even harder levels and multi-player games</p>";
+
 var level2bTutorial = "Matching adjacent numbers turn green as visual clue that one swipe will eliminate both tiles. Be careful though, it isn’t always the right move ";
-var level3Tutorial = "You can swipe horizontally and vertically to subtract numbers";
-var level4Tutorial = "Receive keys for completing every level. The fewer moves, the more keys received! The target is to collect 3 keys on each level. You will need multiple keys to unlock the next vault!";
 var level11Tutorial = "You can swipe diagonally";
 var incorrectTutorial = "You’ve isolated a square, which means you can’t complete the level. We recommend hitting the restart button";
+var tutorialComplete;
+
+var congratsTitle = "GREAT JOB!";
+var congratsText = "Ready for the next lesson?";
+
+var hamburger = "<nav role=\"navigation\"><div id=\"menuToggle\"><input id=\"checkbox\" type=\"checkbox\" /><span></span><span></span><span></span><ul id=\"menu\"><li id=\"restart\"><img id=\"\" class=\"pause-img\" src=\"./img/restartcircle.svg\">Retry Level</li><li id=\"vaultSelect\"><img id=\"\" class=\"pause-img\" src=\"./img/safesmallcircle.svg\">Change Level</li><li id=\"home\"><img id=\"\" class=\"pause-img\" src=\"./img/home.svg\">Home</li><li id=\"sound\"><img id=\"\" class=\"pause-img\" src=\"./img/speaker.svg\">Sound On</li><li id=\"redoTutorial\"><img id=\"\" class=\"pause-img\" src=\"./img/resetdata.svg\">Tutorial</li><li id=\"resetGame\"><img id=\"\" class=\"pause-img\" src=\"./img/resetdata.svg\">Reset Game</li></ul></div></nav>";
+
+var checkOne = 0;
 
 var pairTutorial = false;
 var welcomed = false;
@@ -13,13 +38,7 @@ var end = false;
 var pairTutorialShown = false;
 
 var gameExplanation = "<strong class=\"important\">How to play </strong> swipe tiles to subtract from each other. End up with 0 to get to next level";
-
-//var controls = "<img id=\"restart\" class=\"pause-img\" src=\"./img/icons/Restart.svg\" /><img id=\"vaultSelect\" class=\"pause-img\" src=\"./img/icons/SafeSmall.svg\" /><img class=\"pause-img leaderboard\" src=\"./img/icons/Trophy.svg\" />";
-
-var controls = "<img id=\"restart\" class=\"pause-img\" src=\"./img/icons/Restart.svg\" /><img id=\"vaultSelect\" class=\"pause-img\" src=\"./img/icons/SafeSmall.svg\" /><img class=\"pause-img hamburger\" src=\"./img/icons/Hamburger.svg\" />";
-
-//var levelsDiv = "<div style=\"text-align:right;\"><img class=\"star\" src=\"./img/icons/Key.svg\"/> Total: <span id=\"totalStars\"></span></div><div class=\"slider\"><div id=\"vault1\"><span>Tutorial</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div><div id=\"vault2\"><span>Subtract</span><img id=\"vault2img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault3\"><span>Diagonal</span><img id=\"vault3img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault4\"><span>4x4</span><img id=\"vault4img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div></div><hr></hr><div class=\"levelsTest\"><div><table><tbody><tr><td>Level 1</td><td>Level 2</td><td>Level 3</td></tr><tr class=\"level-img-row\"><td><img id=\"level1\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td><td><img id=\"level2\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level3\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"1stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"2stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"3stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr></tbody></table></div><div><table><tbody></tbody></table><table><tbody><tr><td>Level 4</td><td>Level 5</td><td>Level 6</td><td>Level 7</td><td>Level 8</td></tr><tr class=\"level-img-row\"><td><img id=\"level4\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level5\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level6\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level7\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level8\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"4stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"5stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"6stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"7stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"8stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr><tr><td>Level 9</td><td>Level 10</td><td>Level 11</td><td>Level 12</td><td>Level 13</td></tr><tr class=\"level-img-row\"><td><img id=\"level9\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level10\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level11\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level12\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level13\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"9stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"10stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"11stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"12stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"13stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr></tbody></table></div><div><table><tbody></tbody></table><table><tbody><tr><td>Level 14</td><td>Level 15</td><td>Level 16</td><td>Level 17</td><td>Level 18</td></tr><tr class=\"level-img-row\"><td><img id=\"level14\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level15\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level16\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level16\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level18\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"14stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"15stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"16stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"17stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"18stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr><tr><td>Level 19</td><td>Level 20</td><td>Level 21</td><td>Level 22</td><td>Level 23</td></tr><tr class=\"level-img-row\"><td><img id=\"level19\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level20\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level21\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level22\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level23\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"19stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"20stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"21stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"22stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"23stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr></tbody></table></div><div><table><tbody></tbody></table><table><tbody><tr><td>Level 24</td><td>Level 25</td><td>Level 26</td><td>Level 27</td><td>Level 28</td></tr><tr class=\"level-img-row\"><td><img id=\"level24\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level25\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level26\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level27\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level28\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"24stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"25stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"26stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"27stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"28stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr><tr><td>Level 29</td><td>Level 30</td><td>Level 31</td><td>Level 32</td><td>Level 33</td></tr><tr class=\"level-img-row\"><td><img id=\"level29\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level30\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level31\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level32\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level22\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"29stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"30stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"31stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"32stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"33stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr></tbody></table></div></div>";	
-
+var controls = "<div id=\"restart-div\"><img id=\"restart\" class=\"pause-img restart-img\" src=\"./img/restart.svg\" /></div><div class=\"level-number\"></div>";
 var pie = "<div id=\"pie\" class=\"pie degree middle\"><span class=\"block\"></span><span id=\"time\"></span></div>";
 
 var size;
@@ -31,7 +50,7 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves;
 var movesUp;
-var testing = true;
+var testing = false;
 var testingLevels;
 var total = 0;
 var myTimer;
@@ -49,6 +68,8 @@ var three;
 var starsUpdate;
 var AdMob = false;
 var soundFx;
+var movesSlider;
+var sliderOptions;
 
 if (testing) {
 	AdMob = false;
@@ -60,6 +81,103 @@ else if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) 
 } else {
     onReady();
 }
+
+function showModal(modalToShow, title, content, affirm, deny, affirmClass, denyClass) {
+	$('.'+modalToShow).css('display', 'block');
+	$('#modal-title').html(title);
+	$('#modal-text').html(content);
+	$('#affirm').html(affirm);
+	$('#affirm').removeClass();
+	$('#affirm').addClass(affirmClass);
+	if(deny != null) {
+		$('#deny').html(deny);
+		$('#deny').addClass(denyClass);
+		$('#deny').css('display','inline-block');
+	} else {
+		$('#deny').css('display','none');
+	}
+	
+}
+
+function hideDiv(divToHide) {
+	$('#'+divToHide).css('display', 'none');
+}
+
+function showVaults() {
+	$('#challenge').css('display', 'none');
+	$('#hamburger-div').css('display', 'none');	
+	$('#levelsDiv').html(createMainDiv());
+	$('.container').css('display','block');
+	$('#totalDiv').css('display','block');
+	$('#totalStars').html(totalStars);
+	$('.heading').hide();
+	$('#levelsDiv').show();
+	$('.title').css('display','block');	
+
+	$('.slider').slick({
+		centerMode: true,
+		centerPadding: '10px',
+		focusOnSelect: true,
+		slidesToShow: 1,
+		slidesToScroll: 3,
+		asNavFor: '.levelsTest',
+		index: 3,
+		//dots: true,
+		infinite: true
+		//focusOnSelect: true,
+	});
+
+	$('.levelsTest').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		fade: true,
+		asNavFor: '.slider'
+	});
+}
+
+$('body').on('click', '#redoTutorial', function(e) {
+   	$('#checkbox').prop('checked', false);
+	currentLevel = 'level0';
+	showModal('modal', firstTimeTitle, firstTimeTutorial, 'Okay', 'Skip', 'display-lesson','skipTutorial');
+   	welcomed = true;
+});
+
+$('body').on('click', '.skipTutorial', function(e) {
+	$('.modal').css('display', 'none');
+	$('.control-container').css('display','none');	
+	$('.game-container').css('display','none');	
+	$('.controls-lower').css('display','none');	
+	$('#starCounter').css('display','none');
+	$('.super-container').css('display','none');
+	$('.level-number').css('display','none');
+	tutorialComplete = 1;
+	storage.setItem('tutorialComplete', tutorialComplete);
+	showVaults();
+});
+
+$('body').on('click', '.display-lesson', function(e) {
+	$('.modal').css('display', 'none');
+	var index = (getCurrentLevelNumber()-1)*-1;
+	if (getCurrentLevelNumber() === -4 ) {
+		tutorialComplete = 1;
+		storage.setItem('tutorialComplete', tutorialComplete);
+		$('.control-container').css('display','none');	
+		$('.game-container').css('display','none');	
+		$('.controls-lower').css('display','none');	
+		$('#starCounter').css('display','none');
+		$('.super-container').css('display','none');
+		$('.moves-legend-container').css('display','none');	
+		$('.level-number').css('display','none');
+		showVaults();
+		$('.title').show();
+		$('.slider').slick('slickGoTo', (currentVaultNumber));
+	} else {
+		showModal('modal', lessonTitles[index], lessonText[index], 'Okay', null, 'next-lesson',null);
+	}
+});
+
+/*************OLD FUNCTIONS ***************/
 
 function setStarVaules(currentLevel) {
 	
@@ -102,48 +220,21 @@ function calculateStars(movesUp) {
 	}
 }
 
-/*function createVaultDiv() {
-	var tempVaultDiv = "<table style=\"border-spacing: 0px; font-size: 10px;\"><tbody>";
-	var firstLabelRow = "<tr><td>Subtraction</td><td>Diagonal</td><td>Multi-Select</td></tr>";
-	var secondLabelRow = "<tr><td>4x4 Grid</td><td>5x5 Grid</td><td>Division</td></tr>";
-	var firstVaultRow = "<tr class=\"vault-row\">";
-	var secondVaultRow = "<tr class=\"vault-row\">";
-	for (i=1; i<=3; i++) {
-		if(i<=highestVault) {
-			firstVaultRow += "<td id=\"vault"+i+"\"><img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Open.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
-		} else {
-			firstVaultRow += "<td id=\"vault"+i+"\"><img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
-		}
-	}
-	firstVaultRow += "</tr>";
-	
-	for (j=4; j<=6; j++) {
-		if(j<=highestVault) {
-			secondVaultRow += "<td id=\"vault"+j+"\"><img id=\"vault"+j+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\" /><img id=\"vault"+j+"overlay\" src=\"./img/icons/"+j+"Open.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
-		} else {
-			secondVaultRow += "<td id=\"vault"+j+"\"><img id=\"vault"+j+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\" /><img id=\"vault"+j+"overlay\" src=\"./img/icons/"+j+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 13px; right: 12px; margin-left: -24px;\"/></td>";
-		}
-	}
-	secondVaultRow += "</tr>";
-	tempVaultDiv += firstLabelRow + firstVaultRow + secondLabelRow + secondVaultRow + "</tbody></table>" + "<div style=\"text-decoration:underline; cursor:pointer;\" id=\"resetGame\">Reset Game</div>";
-	return tempVaultDiv;
-}*/
-
 function createLevelDiv (x,y) {
-	var div = "<div><table><tbody>";
+	var div = "<div><table class=\"levels-table\"><tbody>";
 	
 	switch(x) {
-		case 0:
-			tempExpl = "<div><span class=\"explanation\">Learn How To Play</span></div><br/>";
-			break;
 		case 1:
-			tempExpl = "<div><span class=\"explanation\">Subtract the numbers to eliminate all tiles</span></div><br/>";
+			tempExpl = "<div><span class=\"explanation\">Subtract the numbers to clear each level</span></div><br/>";
 			break;
 		case 11:
-			tempExpl = "<div><span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span></div><br/>";
+			tempExpl = "<div><span class=\"explanation\">Subtract diagonally now in addition to horizontally & vertically</span></div><br/>";
 			break;
 		case 21:
-			tempExpl = "<div><span class=\"explanation\">Complete the 4 by 4 boards</span></div><br/>";
+			tempExpl = "<div><span class=\"explanation\">Complete the 4x4 boards</span></div><br/>";
+			break;
+		case 31:
+			tempExpl = "<div><span class=\"explanation\">Complete the 5x5 boards</span></div><br/>";
 			break;
 	}
 	
@@ -158,10 +249,10 @@ function createLevelDiv (x,y) {
 		for (i=x; i<=y; i++) {
 			if (i <= highestLevel ) {
 				tempHeader += "<td id=\"levelHeader"+i+"\">Level "+i+"</td>";
-				tempImg += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td>";
+				tempImg += "<td><img id=\"level"+i+"\" src=\"./img/padlocknewopen.svg\"></td>";
 			} else {		
 				tempHeader += "<td id=\"levelHeader"+i+"\" style=\"color: #BFBFBF;\">Level "+i+"</td>";
-				tempImg += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockGrey.svg\"></td>";
+				tempImg += "<td><img id=\"level"+i+"\" src=\"./img/padlockgrey.svg\"></td>";
 			}
 			tempStars = "<td id=\""+i+"stars\">";
 			numStars = 0;
@@ -169,13 +260,13 @@ function createLevelDiv (x,y) {
 			for (j=0; j<3; j++) {
 				if(i>2) {
 					if(numStars > x) {
-						tempStars += "<img class = \"star\" src=\"./img/icons/Key.svg\" />";
+						tempStars += "<img class = \"star\" src=\"./img/key.svg\" />";
 					} else {
 						if (i > highestLevel ) {
-							tempStars += "<img class = \"star\" src=\"./img/icons/KeyOffGrey.svg\" />";
+							tempStars += "<img class = \"star\" src=\"./img/keyoffgrey.svg\" />";
 						}	
 						else {
-							tempStars += "<img class = \"star\" src=\"./img/icons/KeyOff.svg\" />";
+							tempStars += "<img class = \"star\" src=\"./img/keyoff.svg\" />";
 						}
 					}
 				}
@@ -205,17 +296,17 @@ function createLevelDiv (x,y) {
 		for (i=x; i<=(x+4); i++) {
 			if (i <= highestLevel ) {
 				tempHeader1 += "<td id=\"levelHeader"+i+"\">Level "+i+"</td>";
-				tempImg1 += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td>";
+				tempImg1 += "<td><img id=\"level"+i+"\" src=\"./img/padlocknewopen.svg\"></td>";
 			} else {
 				tempHeader1 += "<td id=\"levelHeader"+i+"\" style=\"color: #BFBFBF;\">Level "+i+"</td>";
-				tempImg1 += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockGrey.svg\"></td>";
+				tempImg1 += "<td><img id=\"level"+i+"\" src=\"./img/padlockgrey.svg\"></td>";
 			}
 			if ((i+5) <= highestLevel ) {
 				tempHeader2 += "<td id=\"levelHeader"+(i+5)+"\">Level "+(i+5)+"</td>";
-				tempImg2 += "<td><img id=\"level"+(i+5)+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td>";
+				tempImg2 += "<td><img id=\"level"+(i+5)+"\" src=\"./img/padlocknewopen.svg\"></td>";
 			} else {
 				tempHeader2 += "<td id=\"levelHeader"+(i+5)+"\" style=\"color: #BFBFBF;\">Level "+(i+5)+"</td>";
-				tempImg2 += "<td><img id=\"level"+(i+5)+"\" src=\"./img/icons/PadlockGrey.svg\"></td>";
+				tempImg2 += "<td><img id=\"level"+(i+5)+"\" src=\"./img/padlockgrey.svg\"></td>";
 			}
 			tempStars1 = "<td id=\""+i+"stars\">";
 			tempStars2 = "<td id=\""+(i+5)+"stars\">";
@@ -225,21 +316,21 @@ function createLevelDiv (x,y) {
 			numStars2 = storage.getItem('level'+(i+5));
 			for (j=0; j<3; j++) {
 				if(numStars1 > j) {
-					tempStars1 += "<img class = \"star\" src=\"./img/icons/Key.svg\" />";
+					tempStars1 += "<img class = \"star\" src=\"./img/key.svg\" />";
 				} else {
 					if (i > highestLevel) {
-						tempStars1 += "<img class = \"star\" src=\"./img/icons/KeyOffGrey.svg\" />";
+						tempStars1 += "<img class = \"star\" src=\"./img/keyoffgrey.svg\" />";
 					} else {
-						tempStars1 += "<img class = \"star\" src=\"./img/icons/KeyOff.svg\" />";
+						tempStars1 += "<img class = \"star\" src=\"./img/keyoff.svg\" />";
 					}
 				}
 				if(numStars2 > j) {
-					tempStars2 += "<img class = \"star\" src=\"./img/icons/Key.svg\" />";
+					tempStars2 += "<img class = \"star\" src=\"./img/key.svg\" />";
 				} else {
 					if (i > highestLevel) {
-						tempStars2 += "<img class = \"star\" src=\"./img/icons/KeyOffGrey.svg\" />";
+						tempStars2 += "<img class = \"star\" src=\"./img/keyoffgrey.svg\" />";
 					} else {
-						tempStars2 += "<img class = \"star\" src=\"./img/icons/KeyOff.svg\" />";
+						tempStars2 += "<img class = \"star\" src=\"./img/keyoff.svg\" />";
 					}
 				}
 			}
@@ -261,143 +352,65 @@ function createLevelDiv (x,y) {
 }
 
 function createMainDiv() {
-	$('#totalDiv').html("<img class=\"star\" src=\"./img/icons/Key.svg\"/> Total: <span id=\"totalStars\"></span>");
-	
-	//var tester = "<button id=\"tester\" type=\"button\">Click Me!</button>";
-	
-	//var slider = "<div class=\"slider\"><div id=\"vault1\"><span>Tutorial</span><img id=\"vault1img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img></div><div id=\"vault2\"><span>Subtract</span><img id=\"vault2img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault3\"><span>Diagonal</span><img id=\"vault3img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div><div id=\"vault4\"><span>4x4</span><img id=\"vault4img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img></div></div>";
-	
+	$('#totalDiv').html("<img class=\"star\" src=\"./img/key.svg\"/> Total: <span id=\"totalStars\"></span>");	
 	var slider = "<div class=\"slider\">";
-	for (i=1; i<=4; i++) {
+	//var tempExpl;
+	for (i=1; i<=3; i++) {
 		tempDiv = "<div id=\"vault"+i+"\">"
 		switch(i) {
 			case 1:
-				tempSpan = "<span>Tutorial</span>";
-				tempStatus = "<span class=\"status\"></span>";
+				tempSpan = "<span>Subtract</span>";
+				//tempExpl = "<div><span class=\"explanation\">Subtract the numbers to eliminate all tiles</span></div><br/>";
+				if(i<=highestVault) {
+					tempStatus = "<span class=\"status\">Unlocked: 3</span><img class=\"star\" src=\"./img/key.svg\">";
+				} else {
+					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/key.svg\">";
+				}
 				break;
 			case 2:
-				tempSpan = "<span>Subtract</span>";
+				tempSpan = "<span>Diagonal</span>";
+				//tempExpl = "<div><span class=\"explanation\">Subtract diagonally as well as horizontally & vertically</span></div><br/>";
 				if(i<=highestVault) {
-					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 3</span><img class=\"star\" src=\"./img/icons/Key.svg\">";
+					tempStatus = "<span class=\"status\">Unlocked: 21</span><img class=\"star\" src=\"./img/key.svg\">";
 				} else {
-					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 3</span><img class=\"star\" src=\"./img/icons/Key.svg\">";
+					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 21</span><img class=\"star\" src=\"./img/key.svg\">";
 				}
 				break;
 			case 3:
-				tempSpan = "<span>Diagonal</span>";
-				if(i<=highestVault) {
-					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 21</span><img class=\"star\" src=\"./img/icons/Key.svg\">";
-				} else {
-					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 21</span><img class=\"star\" src=\"./img/icons/Key.svg\">";
-				}
-				break;
-			case 4:
 				tempSpan = "<span>4x4</span>";
+				//tempExpl = "<div><span class=\"explanation\">Complete the 4 by 4 boards</span></div><br/>";
 				if(i<=highestVault) {
-					tempStatus = "<span style=\"color:#27aae0 !important\" class=\"status\">Unlocked: 50</span><img class=\"star\" src=\"./img/icons/Key.svg\">";
+					tempStatus = "<span class=\"status\">Unlocked: 50</span><img class=\"star\" src=\"./img/key.svg\">";
 				} else {
-					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 50</span><img class=\"star\" src=\"./img/icons/Key.svg\">";
+					tempStatus = "<span style=\"color:#BFBFBF \" class=\"status\">Locked: 50</span><img class=\"star\" src=\"./img/key.svg\">";
 				}
 				break;
 		}
 		if(i<=highestVault) {
-			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeOpen.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Open.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 44%;\"/>";
+			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/safelargeopen.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/"+i+"Open.svg\" style=\"width: 22px; position: relative; bottom: 36px; left: 49%;\"/>";
 		} else {
-			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/icons/SafeLargeClosedGrey.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/icons/"+i+"Lock.svg\" style=\"width: 24px; position: relative; bottom: 38px; left: 44%; \"/>";
+			tempImg = "<img id=\"vault"+i+"img\" style=\"position: relative; top: 0; left: 0;\" class=\"vault-img\" src=\"./img/safelargeclosedgrey.svg\"></img><img id=\"vault"+i+"overlay\" src=\"./img/"+i+"Lock.svg\" style=\"width: 22px; position: relative; bottom: 36px; left: 49%; \"/>";
 		}
 		tempDiv = tempDiv + tempSpan + tempImg + tempStatus;
 		slider += tempDiv + "</div>";
 	}
 	slider += "</div>";
-	
 	var hr = "<hr></hr>";
 	var levels = "<div class=\"levelsTest\">"
-	
-	//var levels1to3 = createLevelDiv(1,3);
-	var levelsTutorial = "<div><table><tbody><div><span class=\"explanation\">Learn How To Play</span></div><br/><tr><td id=\"levelHeader0\">Start Tutorial</td></tr><tr class=\"level-img-row\"><td><img id=\"level-1\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\"></td></tr></tbody></table><div id=\"\" class=\"info-box text\"><div id=\"\">Click the Lock to learn the key elements of the game</div><div class=\"dismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div></div></div>"
 	var levels1to10 = createLevelDiv(1,10);
 	var levels11to20 = createLevelDiv(11,20);
 	var levels21to30 = createLevelDiv(21,30);
-	
-	levels = levels + levelsTutorial + levels1to10 + levels11to20 + levels21to30;
-	
-	//"<div><table><tbody></tbody></table><table><tbody><tr><td>Level 24</td><td>Level 25</td><td>Level 26</td><td>Level 27</td><td>Level 28</td></tr><tr class=\"level-img-row\"><td><img id=\"level24\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level25\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level26\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level27\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level28\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"24stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"25stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"26stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"27stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"28stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr><tr><td>Level 29</td><td>Level 30</td><td>Level 31</td><td>Level 32</td><td>Level 33</td></tr><tr class=\"level-img-row\"><td><img id=\"level29\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level30\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level31\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level32\" src=\"./img/icons/PadlockGrey.svg\"></td><td><img id=\"level22\" src=\"./img/icons/PadlockGrey.svg\"></td></tr><tr class=\"star-row\"><td id=\"29stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"30stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"31stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"32stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td><td id=\"33stars\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"></td></tr></tbody></table></div></div>";
+	levels = levels + levels1to10 + levels11to20 + levels21to30;
 	return slider + hr + levels;
 
 }
 
-/*function createLevelDiv(vault) {
-	var tempLevelDiv = "<table><tbody>" ;
-	var numStars;
-	
-	var vaultIcon = "<tr style=\"text-align:right\"><td colspan=\"5\"><img id=\"vaultSelect\" style=\"width:32px; padding-right:12px; padding-bottom:32px;\"  src=\"./img/icons/SafeSmall.svg\"></td></tr>"
-	
-	var firstLabelRow = "<tr>";
-	var secondLabelRow = "<tr>";
-	var firstIconRow = "<tr class=\"level-img-row\">";
-	var secondIconRow = "<tr class=\"level-img-row\">";
-	var firstStarRow = "<tr class=\"star-row\">";
-	var secondStarRow = "<tr class=\"star-row\">";
-	
-	for (i=((10*vault)-9); i<=(10*vault)-5; i++)
-	{
-		firstLabelRow +=  "<td>Level "+i+"</td>";
-		if(i <= highestLevel) {
-			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\" /></td>";
-		} else {
-			firstIconRow += "<td><img id=\"level"+i+"\" src=\"./img/icons/PadlockGrey.svg\" /></td>";
-		}
-		numStars = 0;
-		numStars = storage.getItem('level'+i);
-		firstStarRow += "<td id=\""+i+"stars\">";
-		for (x=0; x<3; x++) {
-			if(numStars > x) {
-				firstStarRow += "<img class = \"star\" src=\"./img/icons/Key.svg\" />";
-			} else {
-				firstStarRow += "<img class = \"star\" src=\"./img/icons/KeyOff.svg\" />";
-			}
-		}
-		firstStarRow += "</td>";
-	}
-	firstLabelRow +="</tr>"
-	firstIconRow += "</tr>"
-	firstStarRow += "</tr>"
-	
-	for (j=((10*vault)-4); j<=(10*vault); j++)
-	{
-		secondLabelRow +=  "<td>Level "+j+"</td>";
-		if(j <= highestLevel) {
-			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/PadlockOpenTickNoShadow.svg\" /></td>";
-		} else {
-			secondIconRow += "<td><img id=\"level"+j+"\" src=\"./img/icons/PadlockGrey.svg\" /></td>";
-		}
-		numStars = 0;
-		numStars = storage.getItem('level'+j);
-		secondStarRow += "<td id=\""+j+"stars\">";
-		for (y=0; y<3; y++) {
-			if(numStars > y) {
-				secondStarRow += "<img class = \"star\" src=\"./img/icons/Key.svg\" />";
-			} else {
-				secondStarRow += "<img class = \"star\" src=\"./img/icons/KeyOff.svg\" />";
-			}
-		}
-		secondStarRow += "</td>";
-	}
-	secondLabelRow +="</tr>";
-	secondIconRow += "</tr>";
-	secondStarRow += "</tr>"
-	
-	//tempLevelDiv += tempLevelDiv + vaultIcon + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
-	tempLevelDiv += tempLevelDiv + firstLabelRow + firstIconRow + firstStarRow + secondLabelRow + secondIconRow + secondStarRow + "</tbody></table>";
-	return tempLevelDiv;
-}*/
-
 function unlockPreviousLevels(from, to) {
 
 	for (i=(from+1); i<=to; i++) {		
-		$('#level' + i).attr("src", "./img/icons/PadlockOpenTickNoShadow.svg");
-		$('#' + i + 'stars').children().attr("src", "./img/icons/KeyOff.svg");
-		$('#levelHeader' + i).css("color", "black");
+		$('#level' + i).attr("src", "./img/padlocknewopen.svg");
+		$('#' + i + 'stars').children().attr("src", "./img/keyoff.svg");
+		$('#levelHeader' + i).css("color", "inherit");
 	}
 	highestLevel = to;
 	storage.setItem('highestLevel', highestLevel);
@@ -409,9 +422,9 @@ function updateLevelDiv(level, stars) {
 	var newStars = "";
 	for (i=0; i<3; i++) {
 		if(stars > i) {
-			newStars += "<img class = \"star\" src=\"./img/icons/Key.svg\" />";
+			newStars += "<img class = \"star\" src=\"./img/key.svg\" />";
 		} else {
-			newStars += "<img class = \"star\" src=\"./img/icons/KeyOff.svg\" />";
+			newStars += "<img class = \"star\" src=\"./img/keyoff.svg\" />";
 		}
 	}
 	$('#'+level+'stars').html(newStars);
@@ -443,6 +456,12 @@ function onDeviceReady () {
 	//AndroidFullScreen.immersiveMode();
 	console.log(StatusBar);
 	StatusBar.hide();
+	
+	window.screen.orientation.lock('portrait').then(function success() {
+    	//alert("Successfully locked the orientation");
+	}, function error(errMsg) {
+		//alert("Error locking the orientation :: " + errMsg);
+	});
 	//alert('hiding status bar');
 	//showBanner();
 	onReady();
@@ -571,15 +590,46 @@ function createLine(size) {
 
 function addBoard() {
 	var end = false;
+	
+	hideDiv('challenge');
+	remainingTiles = levels[currentLevel]['tiles'].length;
 	if (getCurrentLevelNumber() === -1) {
 		$('.container').css('display','none');	
-		$('#tutorialText').html(level0Tutorial);
-		$('#tutorialTitle').html("<u>Welcome To Number Locks</u>");
-		$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
-		$(".info-box").css('display', 'none');
-		howToWinModal.style.display = "block";
 	}
-	var movesLegend = "<table><tbody><tr><td>Moves</td><td>"+levels[currentLevel]['three']+"</td><td>"+levels[currentLevel]['two']+"</td><td>"+levels[currentLevel]['one']+"</td></tr><tr><td>Stars</td><td><img class = \"star\" src=\"./img/icons/Key.svg\" /><img class = \"star\" src=\"./img/icons/Key.svg\" /><img class = \"star\" src=\"./img/icons/Key.svg\" /></td><td><img class = \"star\" src=\"./img/icons/Key.svg\" /><img class = \"star\" src=\"./img/icons/Key.svg\" /><img class = \"star\" src=\"./img/icons/KeyOff.svg\" /></td><td><img class = \"star\" src=\"./img/icons/Key.svg\" /><img class = \"star\" src=\"./img/icons/KeyOff.svg\" /><img class = \"star\" src=\"./img/icons/KeyOff.svg\" /></td></tr></tbody></table>";
+	var movesLegend = "<table style=\"font-size: 12px;\"><tbody><tr><td>Moves</td><td>"+levels[currentLevel]['three']+"</td><td>"+levels[currentLevel]['two']+"</td><td>"+levels[currentLevel]['one']+"</td></tr><tr><td>Keys</td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /></td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /></td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /></td></tr></tbody></table>";
+	
+	
+	sliderOptions = {
+		start: 0,
+		step: 1,
+		connect: [true, false],
+		direction: 'ltr',
+		tooltips: true,
+		range: {
+		  'min': 0,
+		  'max': parseInt(levels[currentLevel]['one'])
+		},
+		pips: {
+			mode: 'values',
+			values: [0, parseInt(levels[currentLevel]['two']), parseInt(levels[currentLevel]['one'])],
+			density: 100
+		},
+		format: {
+      to: function ( value ) {
+    	return parseInt(value) + '';
+      },
+      from: function ( value ) {
+        return parseInt(value.replace(',-', ''));
+      }
+    }
+	};
+	if (movesSlider.html() != "") {
+		console.log('got a slider');
+		movesSlider[0].noUiSlider.destroy();
+	} else {
+		console.log('no slider yet');
+	}	
+	
 	prepInterstitial();	
 	$('.lines-container').html('');
 	$('.vertical-lines-container').html('');
@@ -596,12 +646,13 @@ function addBoard() {
 		width = width.toString() + 'px';
 		superWidth = superWidth.toString() + 'px';
 		var height = (46) + (12*2);
-		height = (height+39).toString() + 'px';
+		height = (height+6).toString() + 'px';
 		$('.game-container').css('width',width);
 		$('.game-container').css('height',height);
 		$('.super-container').css('padding','10px');
 		$('.super-container').css('margin-bottom','20px');
 		$('.super-container').css('width',superWidth);
+		//$('.controls-lower').css('width',superWidth);
 	} else {
 		size = Math.sqrt(levels[currentLevel]['tiles'].length); 
 		$('.grid-container').html(createGrid(size));
@@ -609,7 +660,7 @@ function addBoard() {
 		$('.lines-container').html(createLines(size));
 		$('.vertical-lines-container').html(createVerticalLines(size));
 		var dimension = (12*(size+1))+(size*46);
-		var height = dimension + 39;
+		var height = dimension + 6;
 		if(getCurrentLevelNumber() > 10) {
 			$('.diagonal-left-lines-container').html(createDiagonalLeftLines(size));
 			$('.diagonal-right-lines-container').html(createDiagonalRightLines(size));
@@ -623,74 +674,71 @@ function addBoard() {
 		$('.super-container').css('padding','10px');
 		$('.super-container').css('margin-bottom','20px');
 		$('.super-container').css('width',height);
+		$('.controls-lower').css('width',height);
+		$('#starCounter').css('width',height);
 	}
-	$('.super-container').css('box-shadow','0 3px 6px #000000');
 	$('.controls-lower').html(controls);
 	if(getCurrentLevelNumber()>0 || getCurrentLevelNumber() === -4) {
 		if (getCurrentLevelNumber() === -4) {
-			$('.level-number').html("Tutorial " + getCurrentLevelNumber()*-1+"/4");
+			$('.level-number').html("Lesson " + getCurrentLevelNumber()*-1+"/4");
 		} else {		
-			$('.level-number').html("Level "+ getCurrentLevelNumber());
+			$('.level-number').html("LEVEL "+ getCurrentLevelNumber());
 		}
-		$('.moves-legend-container').html(movesLegend);
-		$('.moves-legend-container').css('display','block');
+		//$('.moves-legend-container').html(movesLegend);
+		//$('.moves-legend-container').css('display','block');
 	} else {
-		$('.level-number').html("Tutorial " + getCurrentLevelNumber()*-1+"/4");
+		$('.level-number').html("Lesson " + getCurrentLevelNumber()*-1+"/4");
 	}
 	if(welcomed || getCurrentLevelNumber()>0) {	
+		$('.title').css('display', 'none');
 		$('.container').css('display','block');
 		$('.control-container').css('display','block');	
 		$('.game-container').css('display','block');
-		$('.level-number').css('display','block');
-		$('.controls-lower').css('display','block');
-		$('.super-container').css('display','block');
-		if(currentLevel === "level-1" ) {
-			$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level1Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 1: Swipe Tiles To Subtract</u>");
-			$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
-			//$('.tutorial-modal').css('height', '75px');
-			howToWinModal.style.display = "block";
+		$('.level-number').css('display','inline-block');
+		$('.controls-lower').css('display','inline-block');
+		$('.super-container').css('display','block');	
+		$('#restart-div').css('right','-115px');
+		if(currentLevel === "level-1" ) {	
+			$('#restart-div').css('right','-100px');
+			$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/hand.svg\"/>");
 			$('.object').css('left');
 			$('.object').addClass('horizTranslate');
-		} else if(currentLevel === "level-2" ) {
-			$('.tutorial-container').html("<img class=\"object2 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level2aTutorial);
-			$('#tutorialTitle').html("<u>Lesson 2a: No Negatives</u>");
-			$('.tutorial-modal').css('height', '108px');
-			howToWinModal.style.display = "block";
+			$('#starCounter').css('display','none');
+		} else if(currentLevel === "level-2" ) {	
+			$('.tutorial-container').html("<img class=\"object2 animate\" src=\"./img/hand.svg\"/>");
 			$('.object2').css('left');
 			$('.object2').addClass('horizTranslate2');
+			$('#starCounter').css('display','none');
 		} else if(currentLevel === "level-3" ) {
-			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level3Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 3: Vertical</u>");
-			$('.tutorial-modal').css('height', '108px');
-			howToWinModal.style.display = "block";
+			$('.tutorial-container').html("<img class=\"object3 animate\" src=\"./img/hand.svg\"/>");
 			$('.object3').css('bottom');
 			$('.object3').addClass('horizTranslate3');
-			$('.tutorial').css('padding-top', '290px');
+			$('#starCounter').css('display','none');
 		} 
 		else if(currentLevel === "level-4" ) {
 			$('.tutorial-container').html("");
-			$('#tutorialText').html(level4Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 4: Moves & Keys</u>");
-			$('.tutorial-modal').css('height', '164px');
-			howToWinModal.style.display = "block";
-			$('.tutorial').css('padding-top', '360px');
+			$('#starCounter').css('display','block');
+			noUiSlider.create(movesSlider[0], sliderOptions);
+			movesSlider[0].setAttribute('disabled', true);
 		}
 		else if(currentLevel === "level11" ) {
-			$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/icons/HandPointerBlack.svg\"/>");
-			$('#tutorialText').html(level11Tutorial);
-			$('#tutorialTitle').html("<u>Lesson 6: Diagonal</u>");
-			$('#tutorialDismiss').html("<div class=\"Tutorialdismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
-			howToWinModal.style.display = "block";
+			$('.tutorial-container').html("<img class=\"object4 animate\" src=\"./img/hand.svg\"/>");
 			$('.object4').css('bottom');
 			$('.object4').addClass('horizTranslate4');
-			$('.tutorial').css('padding-top', '290px');
+			$('#hamburger-div').css('display', 'block');
+			$('#starCounter').css('display','block');
+			noUiSlider.create(movesSlider[0], sliderOptions);
+			movesSlider[0].setAttribute('disabled', true);
 		}
 		else {
+			if(getCurrentLevelNumber() > 20) {
+				$('#restart-div').css('right','-140px');
+			} 
+			$('#starCounter').css('display','block');
+			noUiSlider.create(movesSlider[0], sliderOptions);
+			movesSlider[0].setAttribute('disabled', true);
 			$('.tutorial-container').html("");
+			$('#hamburger-div').css('display', 'block');
 		}
 	}
 	//$('#pie-container').html(pie);
@@ -698,12 +746,12 @@ function addBoard() {
 	movesUp = 0;
 	starsUpdate = 3;
 	moves = levels[currentLevel]['tiles'].length-1;
-	$('#move-num').html(movesUp);
+	//$('#move-num').html(movesUp);
 	isPaused = false;
-	if(getCurrentLevelNumber() > 0) {
+	if(getCurrentLevelNumber() > 0 || getCurrentLevelNumber() === -4) {
 		var tempStarsCounter = "";
 		for (z=0; z<3; z++ ) {
-			tempStarsCounter += "<img class=\"star\" src=\"./img/icons/Key.svg\">";
+			tempStarsCounter += "<img class=\"star\" src=\"./img/key.svg\">";
 		}
 		$('#starCounter').html(tempStarsCounter);
 	} else {
@@ -715,7 +763,7 @@ function addBoard() {
 	//Check if there are any adjacent numbers
 	for(a=1; a<=size; a++) {
 		for (b=1; b<=size; b++) {
-			checkSurrounds(a,b);
+			//checkSurrounds(a,b);
 		}
 	}
 }
@@ -814,7 +862,6 @@ function checkGameOver(x,y) {
 	}
 	if(blocked === toTrack && $(classIndex).length>0) {
 		end=true;
-		console.log(classIndex + " " + $(classIndex).length);
 		$(classIndex).addClass('end');		
 	}
 }
@@ -965,23 +1012,33 @@ function checkSurrounds(x,y) {
 }
 
 function onReady() {
+	//movesSlider = document.getElementById('moves-slider');
+	movesSlider = $('#moves-slider');
+	//alert(movesSlider.html());
+	//pauseModal.style.display = "none";
+	$('#hamburger-div').html(hamburger);
 	var swipeSound = new Audio("./audio/swipe.mp3"); // buffers automatically when created
 	var lockSound = new Audio("./audio/lock.m4a"); // buffers automatically when created
 	var dingSound = new Audio("./audio/ding.m4a"); // buffers automatically when created
-	
-	//$('#levelsDiv').show();
-  	
+	  	
 	storage = window.localStorage;
+	
+	
+	tutorialComplete = storage.getItem('tutorialComplete');
+	if(tutorialComplete == null) {
+		tutorialComplete = 0;
+		storage.setItem('tutorialComplete', tutorialComplete);
+	}
 	highestLevel = storage.getItem('highestLevel');
 	highestVault = storage.getItem('highestVault');
 	if(testingLevels) {
 		highestLevel = 30;
-		highestVault = 4;
+		highestVault = 3;
 	} else if(highestLevel == null) {
 		highestLevel = 1;
 	}
 	if(highestVault == null) {
-		highestVault = 2;
+		highestVault = 1;
 	}
 	storage.setItem('highestLevel', highestLevel);
 	storage.setItem('highestVault', highestVault);
@@ -997,36 +1054,38 @@ function onReady() {
 	soundFx = storage.getItem('soundFx');
 	if(soundFx == null) {
 		soundFx = "true";
-		$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound on");
+		$('#sound').html("<img id=\"\" class=\"pause-img\" src=\"./img/speaker.svg\">Sound On");
 		storage.setItem('soundFx', soundFx);
 	} else if (soundFx == "true") {
-		$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound on");
+		$('#sound').html("<img id=\"\" class=\"pause-img\" src=\"./img/speaker.svg\">Sound On");
 	} else if (soundFx == "false") {
-		$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound off");
+		$('#sound').html("<img id=\"\" class=\"pause-img\" src=\"./img/speaker.svg\">Sound Off");
 	}
 	
-	/*window.onclick = function(event) {
-		if(event.target==howToWinModal) {
-			howToWinModal.style.display = "none";
+	window.onclick = function(event) {
+		if(event.target==genericModal) {
+			genericModal.style.display = "none";
 		}
-	}*/
+		/*if(event.target==pauseModal) {
+			pauseModal.style.display = "none";
+		}*/
+		/*if ( $( '#checkbox' ).prop( "checked" ) && checkOne === 1 ) {
+			console.log('hello');
+			$('#checkbox').prop('checked', false);
+			checkOne = 0;
+		} else if ( $( '#checkbox' ).prop( "checked" ) && checkOne < 1 ) {
+			checkOne = 1;
+		}*/
+	}
 	
 	$(document).on('click touchstart', function (e) {
-		if(event.target==howToWinModal) {
-			howToWinModal.style.display = "none";
-			//alert("hello");
+		if(event.target==genericModal) {
+			genericModal.style.display = "none";
 		}
 	});
 	
-	//$('.vaults').html(createVaultDiv());
-	currentVaultNumber = 1;
-	
-    //$('.levels').css('display','none');
-	//levelDiv = createLevelDiv(1);
-	//$('.levels').html(levelDiv);	
-	//$('.levels').css('display','block');
-    
-	$('.controls-lower').css('display','none');	
+	currentVaultNumber = 0;    
+	//$('.controls-lower').css('display','none');	
 
 	function pauseTimer() {
 		isPaused = true;
@@ -1054,15 +1113,14 @@ function onReady() {
 			if (duration < 0) {
 				// Time run out - need to change turns
 				duration = timerDuration;
-				console.log("Timeout");
 			}
 		}, 1000);
 	};
 	
-	/*$('body').on('click', '#tester', function(e) {
-		//alert('hello');
-		$('.slider').slick('slickGoTo', '3');
-	});*/
+	$('body').on('click', '#tutorial', function(e) {
+		
+		showModal('modal', firstTimeTitle, firstTimeTutorial, 'Okay', 'Skip', 'display-lesson','skipTutorial');
+	});
 
 	$('body').on('click', '.leaderboard', function(e) {
     //$('.leaderboard').on('click', function(e) {
@@ -1081,148 +1139,125 @@ function onReady() {
     });
     
     $('body').on('click', '#campaign', function(e) {
-    	$('#challenge').css('display', 'none');	
-    	$('#levelsDiv').html(createMainDiv());
-		$('#totalDiv').css('display','block');
-		$('#totalStars').html(totalStars);
-    	$('.heading').hide();
-    	$('#levelsDiv').show();
-    	
-    	$('.slider').slick({
-			centerMode: true,
-			centerPadding: '10px',
-			focusOnSelect: true,
-			slidesToShow: 3,
-			slidesToScroll: 3,
-			asNavFor: '.levelsTest',
-			index: 2,
-			dots: true,
-			infinite: false
-			//focusOnSelect: true,
-		});
-	
-		$('.levelsTest').slick({
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			arrows: false,
-			fade: true,
-			asNavFor: '.slider'
-		});
+	    if(tutorialComplete == 0) {
+	    	currentLevel = 'level0'
+	    	showModal('modal', firstTimeTitle, firstTimeTutorial, 'Okay', 'Skip', 'display-lesson','skipTutorial');
+	    	welcomed = true;
+	    } else if (tutorialComplete == 1) {
+	    	showVaults();
+		}
     });
     
     $('body').on('click', '#sound', function(e) {
 		if(soundFx == "true") {
 			soundFx = "false";
-			$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound off");
+			$('#sound').html("<img id=\"\" class=\"pause-img\" src=\"./img/speaker.svg\">Sound Off");
 			storage.setItem('soundFx', soundFx);
 		} else if (soundFx == "false") {
 			soundFx = "true";
-			$('#sound').html("<img class=\"pause-img\" src=\"./img/icons/Speaker.svg\">Sound on");
+			$('#sound').html("<img id=\"\" class=\"pause-img\" src=\"./img/speaker.svg\">Sound On");
 			storage.setItem('soundFx', soundFx);
 		}
     });
     
-    $('body').on('click', '.hamburger', function(e) {
+    /*$('body').on('click', '.hamburger', function(e) {
 	    //pauseTimer();
     	pauseModal.style.display = "block";
-    	$('#levelTitle').html(currentLevel.substr(5));
-	}); 
+    	$('#levelTitle').html(Math.abs(currentLevel.substr(5)));
+	}); */
     
-    $('body').on('click', '.pause', function(e) {
+   /* $('body').on('click', '.pause', function(e) {
 	    pauseTimer();
     	pauseModal.style.display = "block";
     	$('#levelTitle').html(currentLevel.substr(5));
-	}); 
+	}); */
 	
-	$('body').on('click', '.dismiss', function(e) {
-		$(".info-box").css('display', 'none');
-	}); 
-	
-	$('body').on('click', '.Tutorialdismiss', function(e) {
-		$(".tutorial").css('display', 'none');
-		if(!welcomed) {
-			welcomed = true;
-			addBoard();
+	$('body').on('click', '.Okay', function(e) {
+		//close_window(this);
+		$(".modal").css('display', 'none');
+		if(end) {
+			//$('#restart').css('width','40px');
+			$('#restart').addClass('restart');
+			//$('#restart').removeClass('restart');
 		}
-	}); 
-	
-	$('body').on('click', '.incorrectDismiss', function(e) {
-		$(".tutorial").css('display', 'none');
 	}); 
 	
 	$('body').on('click', '.next-lesson', function(e) {
-		//$(".congrats-box").css('display', 'none');
-		tutorialOverModal.style.display = "none";
-		//alert("next lesson");
-		if (getCurrentLevelNumber() === -4 ) {
-			//alert("end tutorial");
-			$('.control-container').css('display','none');	
-			$('.game-container').css('display','none');	
-			$('.controls-lower').css('display','none');	
-			$('.super-container').css('display','none');
-			$('.moves-legend-container').css('display','none');	
-			$('.level-number').css('display','none');
-			$('#levelsDiv').css('display','block');
-			$('.title').show();
-			$('.slider').slick('slickGoTo', (currentVaultNumber));
-		} else {
-			currentLevel = decrementLevel();
-			remainingTiles = levels[currentLevel]['tiles'].length;
-			addBoard();	
-		}
+		$('.modal').css('display', 'none');
+		currentLevel = decrementLevel();
+		remainingTiles = levels[currentLevel]['tiles'].length;
+		addBoard();	
 	});
 	
-	$(".pauseClose").on('click', function(e) {
+	/*$(".pauseClose").on('click', function(e) {
 		isPaused = false;
 		pauseModal.style.display = "none";
-	});
+	});*/
 	
 	$(".tutorialClose").on('click', function(e) {
 		howToWinModal.style.display = "none";
 	});
 	
-	$(".vaultOpenClose").on('click', function(e) {
-		vaultOpenModal.style.display = "none";
+	$('body').on('click', '.vaultOpenClose', function(e) {
+		$('.modal').css('display', 'none');
 		$('.slider').slick('slickGoTo', (highestVault-1));
 	});
 	
-	$(".gameCompleteClose").on('click', function(e) {
-		gameCompleteModal.style.display = "none";
+	 $('body').on('click', '.gameCompleteClose', function(e) {
+		$(".modal").css('display', 'none');
 	});
 	
-    $(".GameOverClose").on('click', function(e) {
+    $('body').on('click', '.GameOverClose', function(e) {
+    	$(".modal").css('display', 'none');
+    	$(".gameOverModal").css('display', 'none');	
+		if (movesSlider.html() != "") {
+			movesSlider[0].noUiSlider.destroy();	
+		}	
     	
-		gameOverModal.style.display = "none";
-		
-		if (getCurrentLevelNumber() === 30 ) {
-			if(totalStars === 90) {
-				$('#gameCompleteHeader').html("AMAZING YOU'RE A NUMBER LOCKS LEGEND!");
-				$('#gameCompleteText').html("<p>You've completed our pilot with 3 STARS on ALL levels</p>Now you've had a taste for Number Locks, look out for our new release with even harder levels and multi-player games");
-			}
-			gameCompleteModal.style.display = "block";
-		}
-    	if(continueFlag) {
-    		continueFlag = false;
-    		//alert('need to open new vault');	
-			//e.preventDefault();
-			//$('.levels').hide();
+    	if (getCurrentLevelNumber() === -4 ) {    	
+			tutorialComplete = 1;
+			backToVaultFlag = true;
+			storage.setItem('tutorialComplete', tutorialComplete);
 			$('.control-container').css('display','none');	
 			$('.game-container').css('display','none');	
 			$('.controls-lower').css('display','none');	
+			$('#starCounter').css('display','none');
 			$('.super-container').css('display','none');
 			$('.moves-legend-container').css('display','none');	
 			$('.level-number').css('display','none');
-			//$('.vaults').css('display','block');
+			showVaults();
+			$('.title').show();
+			$('.slider').slick('slickGoTo', (currentVaultNumber));
+		}
+		
+		if (getCurrentLevelNumber() === 30 ) {
+			if(totalStars === 90) {
+				gameCompleteHeader = "AMAZING YOU'RE A NUMBER LOCKS LEGEND!";
+				gameCompleteText = "<p>You've collected ALL the keys!</p><p>Now you've had a taste for Number Locks, look out for our new release with even harder levels and multi-player games</p>";
+			}
+			showModal('modal', gameCompleteHeader, gameCompleteText, 'Okay', null, 'gameCompleteClose', null);
+		}
+    	if(continueFlag) {
+    		continueFlag = false;
+			$('.control-container').css('display','none');	
+			$('.game-container').css('display','none');	
+			$('.controls-lower').css('display','none');	
+			$('#starCounter').css('display','none');
+			$('.super-container').css('display','none');
+			$('.moves-legend-container').css('display','none');	
+			$('.level-number').css('display','none');
+			$('#hamburger-div').css('display', 'none');	
 			$('#levelsDiv').css('display','block');
 			$('.title').show();
-			vaultOpenModal.style.display = "block";
+			showModal('modal', "New Vault Open!", "GREAT JOB!<br />You've collected enough keys to open the next vault", 'Okay', null, 'vaultOpenClose', null);
 			//$('.slider').slick('slickGoTo', (highestVault-1));
     	} else if (backToVaultFlag == true) {
     		backToVaultFlag = false;
     		//currentLevel = incrementLevel();
 			$('.control-container').css('display','none');	
 			$('.game-container').css('display','none');	
-			$('.controls-lower').css('display','none');	
+			$('.controls-lower').css('display','none');
+			$('#starCounter').css('display','none');	
 			$('.super-container').css('display','none');
 			$('.moves-legend-container').css('display','none');	
 			$('.level-number').css('display','none');
@@ -1252,14 +1287,14 @@ function onReady() {
 			showInterstitial();*/
 			remainingTiles = levels[currentLevel]['tiles'].length;
 			addBoard();	
-			//addSwipeTo('.tile');
 		}
 	});
     
-    $('body').on('click', '#levelSelect', function(e) {
-    //$("#levelSelect").on('click', function(e) {
+    /*$('body').on('click', '#levelSelect', function(e) {
     	e.preventDefault();
-		pauseModal.style.display = "none";
+		//pauseModal.style.display = "none";
+		$('#checkbox').prop('checked', false);
+		checkOne = 0;
 		$('.control-container').css('display','none');	
 		$('.game-container').css('display','none');	
 		$('.controls-lower').css('display','none');	
@@ -1268,34 +1303,47 @@ function onReady() {
 		$('.level-number').css('display','none');
 		$('.levels').css('display','block');
 		$('.title').show();
-    });
+    });*/
     
     $('body').on('click', '#home', function(e) {
     	e.preventDefault();
-		pauseModal.style.display = "none";
+		//pauseModal.style.display = "none";
+		if (movesSlider.html() != "") {
+			movesSlider[0].noUiSlider.destroy();
+		}
+		$('#hamburger-div').css('display', 'none');	
+		$('#checkbox').prop('checked', false);
+		//checkOne = 0;
 		$('.control-container').css('display','none');	
 		$('.game-container').css('display','none');	
 		$('.controls-lower').css('display','none');	
+		$('#starCounter').css('display','none');
 		$('.super-container').css('display','none');
 		$('.moves-legend-container').css('display','none');	
 		$('#totalDiv').css('display','none');
 		$('.level-number').css('display','none');
 		$('#challenge').css('display','block');	
+		$('.heading').css('display','block');	
+		$('.title').css('display','block');	
     });
     
     $('body').on('click', '#vaultSelect', function(e) {
     	e.preventDefault();
-		pauseModal.style.display = "none";
-		//$('.levels').hide();
+		//pauseModal.style.display = "none";
+		if (movesSlider.html() != "") {
+			movesSlider[0].noUiSlider.destroy();
+		}
+		$('#checkbox').prop('checked', false);
+		//checkOne = 0;
 		$('.control-container').css('display','none');	
 		$('.game-container').css('display','none');	
 		$('.controls-lower').css('display','none');	
+		$('#starCounter').css('display','none');
 		$('.super-container').css('display','none');
 		$('.moves-legend-container').css('display','none');	
 		$('.level-number').css('display','none');
-		//$('.vaults').css('display','block');
-		$('#levelsDiv').css('display','block');
-		$('.title').show();
+    	showVaults();
+		$('.slider').slick('slickGoTo', (currentVaultNumber), true);
 	});
 	
 	$('body').on('click', '#resetGame', function(e) {
@@ -1305,7 +1353,6 @@ function onReady() {
     
     $('body').on('click', '#unlockAll', function(e) {
     	//window.localStorage.clear();
-    	//alert('hello');
     	testingLevels = true;
     	onReady();
     	//location.reload();
@@ -1320,23 +1367,23 @@ function onReady() {
 		var levelNumber = getCurrentLevelNumber();
 		switch(true) {
 			case levelNumber < 1:
+				currentVaultNumber = 0;
+				break;
+			case levelNumber > 1 && levelNumber <= 10:
+				currentVaultNumber = 0;
+				break;
+			case levelNumber > 10 && levelNumber <= 20 :
 				currentVaultNumber = 1;
-				break;
-			case levelNumber > 1 && levelNumber < 11:
-				currentVaultNumber = 2;
-				break;
-			case levelNumber > 11 && levelNumber < 21 :
-				currentVaultNumber = 3;
 				break;
 			case levelNumber > 21 :
-				currentVaultNumber = 4;
+				currentVaultNumber = 2;
 				break;
 			default:
-				currentVaultNumber = 1;
+				currentVaultNumber = 0;
 				break;
 		}
 		if (getCurrentLevelNumber() <= highestLevel) {
-			$('.current-level').html("Level:"+parseInt(currentLevel.substr(5),10));
+			//$('.current-level').html("LEVEL:"+parseInt(currentLevel.substr(5),10));
 			remainingTiles = levels[currentLevel]['tiles'].length;
 			if (getCurrentLevelNumber() > 0 ) {
 				addBoard();	
@@ -1344,39 +1391,38 @@ function onReady() {
 			} else {
 				addBoard();
 				$('.title').hide();
-				//alert ("First Tutorial");	
 			}
 		} else {
 			if(soundFx == "true") {
 				lockSound.play();
 			}
 		}
-		//addSwipeTo('.tile');
 	});
 	
 	$('body').on('click', '#vault1, #vault2, #vault3, #vault4, #vault5, #vault6', function(e) {
-	//$("#vault1, #vault2, #vault3, #vault4, #vault5, #vault6").on('click', function(e) {
 		currentVault = $(this).attr('id');
 		currentVaultNumber = parseInt(currentVault.substr(5),10);
-		/*if (currentVaultNumber <= highestVault) {
-			$('.vaults').hide();
-			levelDiv = createLevelDiv(currentVaultNumber);
-			$('.levels').html(levelDiv);	
-			$('.levels').css('display','block');
-		}*/
 	});
 	
-	$('body').on('click', '#return', function(e) {
+	/*$('body').on('click', '#return', function(e) {
 		e.preventDefault();
 		isPaused = false;
 		pauseModal.style.display = "none";
-	});
+	});*/
 	
-	$('body').on('click', '#restart', function(e) {
-	//$('#restart').on('click', function(e) {
+	$('body').on('click', '#restart, #retry', function(e) {
+		$('#gameOverModal').css('display','none');
+		if (movesSlider.html() != "") {
+			movesSlider[0].noUiSlider.destroy();	
+			$('#starCounter').css('display','block');
+			noUiSlider.create(movesSlider[0], sliderOptions);
+			movesSlider[0].setAttribute('disabled', true);
+		}	
+		$('#restart').removeClass('restart');
+		//$('#pauseModal').css('display','none');
+		$('#checkbox').prop('checked', false);
+		//checkOne = 0;
 		e.preventDefault();
-		pauseModal.style.display = "none";
-		gameOverModal.style.display = "none";
 		var size;
 		if(levels[currentLevel]['tiles'].length<4) {
 			size = levels[currentLevel]['tiles'].length;
@@ -1389,27 +1435,26 @@ function onReady() {
 		//addSwipeTo('.tile');
 		movesUp=0;
 		moves = levels[currentLevel]['tiles'].length-1;
-		$('#move-num').html(movesUp);		
+		//$('#move-num').html(movesUp);		
 		if(getCurrentLevelNumber() > 0) {
 			var tempStarsCounter = "";
 			for (z=0; z<3; z++ ) {
-				tempStarsCounter += "<img class=\"star\" src=\"./img/icons/Key.svg\">";
+				tempStarsCounter += "<img class=\"star\" src=\"./img/key.svg\">";
 			}
 			$('#starCounter').html(tempStarsCounter);
 		} else {
 			$('#starCounter').html("");
 		}
 		//Check if there are any adjacent numbers
-		for(a=1; a<=size; a++) {
+		/*for(a=1; a<=size; a++) {
 			for (b=1; b<=size; b++) {
 				checkSurrounds(a,b);
 			}
-		}
+		}*/
 		isPaused = false;
 		//startTimer();
 	});     
 	
-		//var remainingTiles = levels[currentLevel]['tiles'].length;
       //Enable swiping...
 		var hammertime = $('.tile-container').hammer({prevent_default: true, domEvents:true});
 		$('.tile-container').data("hammer").get('swipe').set({ direction: Hammer.DIRECTION_ALL, threshold: 0, velocity: 0.1 });
@@ -1440,8 +1485,7 @@ function onReady() {
 		var x = parseInt(classIndex.slice(-3, -2), 10);
 		var y = classIndex.slice(-1);
 		var move = false;
-		console.log("x: "+x + " y:" + y);
-        
+		//console.log("x: "+x + " y:" + y);
           switch (direction) { 
 			case 'swipeleft':
 				if(x>1) {
@@ -1505,12 +1549,15 @@ function onReady() {
 					}
 					moves--;
 					movesUp++;
+					if (getCurrentLevelNumber() > 0 || getCurrentLevelNumber() === -4){
+						movesSlider[0].noUiSlider.set(movesUp);
+					}
 					starsUpdate = calculateStars(movesUp);
 					if(starsUpdate < 3 && starsUpdate > 1) {
-						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/Key.svg\"><img class=\"star\" src=\"./img/icons/Key.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\">");
+						$('#starCounter').html("<img class=\"star\" src=\"./img/key.svg\"><img class=\"star\" src=\"./img/key.svg\"><img class=\"star\" src=\"./img/keyoff.svg\">");
 						//$('#starCounter').html('2 STARS');
 					} else if (starsUpdate < 2) {
-						$('#starCounter').html("<img class=\"star\" src=\"./img/icons/Key.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\"><img class=\"star\" src=\"./img/icons/KeyOff.svg\">");
+						$('#starCounter').html("<img class=\"star\" src=\"./img/key.svg\"><img class=\"star\" src=\"./img/keyoff.svg\"><img class=\"star\" src=\"./img/keyoff.svg\">");
 						//$('#starCounter').html('1 STAR');
 					}
 					newValue = Math.abs((parseInt($(this).text(),10) - parseInt($('.'+newClassIndex).text(),10)));
@@ -1560,47 +1607,25 @@ function onReady() {
 						pairTutorial = false;
 					}
 					if(pairTutorial && getCurrentLevelNumber() == -2 && !pairTutorialShown) {
-						console.log("pair tutorial");
-						$('#tutorialText').html(level2bTutorial);
-						$('#tutorialTitle').html("<u>Lesson 2b: Green Tiles</u>");
-						$('.tutorial-modal').css('height', '144px');
-						howToWinModal.style.display = "block";
+						showModal('modal', "LESSON 2.2: <span style=\"color:#03dbd6\">GREEN TILES</span>", "Hint: <span style=\"color:#03dbd6\">green tiles</span>, clear both tiles with 1 move. <p><br />Careful: It's not <i>always</i> the right move</p>", 'Okay', null, 'Okay', null);
 						pairTutorialShown = true;
 						pairTutorial = false;
 					}
-					//console.log(end);
-					//add interstitial for incorrect move	
+					//Incorrect Move
 					if(end) {
-						$('#incorrectText').html(incorrectTutorial);
-						$('#incorrectTitle').html("<u>Incorrect Move</u>");
-						$('#incorrectDismiss').html("<div class=\"incorrectDismiss\" style=\"padding-top:10px;\"><img class=\"tick-img\" src=\"./img/icons/Tick2.svg\"><span> Got it</span></div>");
-						incorrectModal.style.display = "block";
+						showModal('modal', '<p><span style=\"color:#cc324b\">INCORRECT MOVE</span>', 'Looks like you have blocked a tile and can\'t complete the level.</p><p>Hit the retry <img class=\"pause-img\" src=\"./img/restart.svg\"/> button</p>', 'Okay', null, 'Okay', null);
 					}
-					$('#move-num').html(movesUp);
+					//$('#move-num').html(movesUp);
 				}
 				if(remainingTiles === 0) {
-					//calculateTotal();
-					//$('#complete').html(completeBonus);
-					//$('#remainder').html(remainderBonus);
-					//$('#moves').html(((levels[currentLevel]['tiles'].length-1)-moves) * 75);
-					//$('#total').html(total);
-					
-
-					/*$('.count').each(function () {
-					  var $this = $(this);
-					  jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
-						duration: 2000,
-						easing: 'swing',
-						step: function () {
-						  $this.text(Math.ceil(this.Counter));
-						}
-					  });
-					});*/
-					
-					//$('#moves').html(((levels[currentLevel]['tiles'].length-1)-movesUp));
-					//var currentLevel = getCurrentLevelNumber();
 					$('#moves').html(movesUp);
-					$('#levelNum').html(getCurrentLevelNumber());
+					if (getCurrentLevelNumber() === -4) {
+						$('#levelNum').html('4');
+						$('#levelName').html('LESSON');
+					} else {
+						$('#levelNum').html(getCurrentLevelNumber());
+						$('#levelName').html('LEVEL');
+					}
 					var stars = storage.getItem(currentLevel);
 					starsUpdate = calculateStars(movesUp);
 					if (starsUpdate > stars && getCurrentLevelNumber() > 0) {
@@ -1614,13 +1639,13 @@ function onReady() {
 					var displayStars = "";
 					for (i=0; i<3; i++) {
 						if(starsUpdate > i) {
-							displayStars += "<img class = \"star on\" src=\"./img/icons/Key.svg\" />";
+							displayStars += "<img class = \"star on\" src=\"./img/key.svg\" />";
 						} else {
-							displayStars += "<img class = \"star\" src=\"./img/icons/KeyOff.svg\" />";
+							displayStars += "<img class = \"star\" src=\"./img/keyoff.svg\" />";
 						}
 					}
-					if(getCurrentLevelNumber() > 0) {
-						$('#starsCollected').html("Stars Collected: &nbsp;" + displayStars);
+					if(getCurrentLevelNumber() > 0 || getCurrentLevelNumber() === -4) {
+						$('#starsCollected').html("Keys Collected: &nbsp;" + displayStars);
 					} else {
 						$('#starsCollected').html("");
 					}
@@ -1632,90 +1657,66 @@ function onReady() {
 						highestLevel++;
 						storage.setItem('highestLevel', highestLevel);
 						//var levToUpdate = currentLevel+1;
-						$('#level' + highestLevel).attr("src", "./img/icons/PadlockOpenTickNoShadow.svg");
-						$('#' + highestLevel + 'stars').children().attr("src", "./img/icons/KeyOff.svg");
-						$('#levelHeader' + highestLevel).css("color", "black");
+						$('#level' + highestLevel).attr("src", "./img/padlocknewopen.svg");
+						$('#' + highestLevel + 'stars').children().attr("src", "./img/keyoff.svg");
+						$('#levelHeader' + highestLevel).css("color", "inherit");
 						var currentHighestLevel = highestLevel;
 						
-						/*if(totalStars>=3 && highestVault < 2) {	
-							highestVault = 2;
+						/*if(totalStars>=3 && highestVault < 1) {	
+							highestVault = 1;
 							storage.setItem('highestVault', highestVault);
 							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
 							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
 							$('#vault' + highestVault).find('.status').html('Unlocked: 3');
-							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
+							$('#vault' + highestVault).find('.status').css('inherit');
 							$('#vault' + highestVault).find('.star').attr('src', './img/icons/Key.svg');
 							currentVaultNumber++;
 							if (currentHighestLevel <= 4) {
-								//alert('Opening Subtract vault');
 								continueFlag = true;
 								unlockPreviousLevels(currentHighestLevel, 4);
 							}
 						}*/ 
-						if(totalStars>=21 && highestVault < 3) {	
-							highestVault = 3;
+						if(totalStars>=21 && highestVault < 2) {	
+							highestVault = 2;
 							storage.setItem('highestVault', highestVault);
-							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
-							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
+							$('#vault' + highestVault + 'img').attr("src", "./img/safelargeopen.svg");
+							$('#vault' + highestVault + 'overlay').attr("src", "./img/"+highestVault+"Open.svg");
 							$('#vault' + highestVault).find('.status').html('Unlocked: 21');
-							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
+							$('#vault' + highestVault).find('.status').css('color', 'inherit');
 							//$('#vault' + highestVault).find('.status');
 							currentVaultNumber++;
 							if (currentHighestLevel < 11) {
-								//alert('Opening Diagonal vault');
 								continueFlag = true;
 								unlockPreviousLevels(currentHighestLevel, 11);
 							}
 						}
-						if(totalStars>=44 && highestVault < 4) {	
-							highestVault = 4;
+						if(totalStars>=44 && highestVault < 3) {	
+							highestVault = 3;
 							storage.setItem('highestVault', highestVault);
-							$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
-							$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
+							$('#vault' + highestVault + 'img').attr("src", "./img/safelargeopen.svg");
+							$('#vault' + highestVault + 'overlay').attr("src", "./img/"+highestVault+"Open.svg");
 							$('#vault' + highestVault).find('.status').html('Unlocked: 50');
-							$('#vault' + highestVault).find('.status').css('color', '#27aae0 !important');
+							$('#vault' + highestVault).find('.status').css('color', 'inherit');
 							currentVaultNumber++;
 							if (currentHighestLevel < 21) {
-								//alert('Opening 4x4 vault');
 								continueFlag = true;
 								unlockPreviousLevels(currentHighestLevel, 21);
 							}
-						} 
-						
-						/*switch(highestLevel) {
-							case 3:
-								highestVault = 2;
-								storage.setItem('highestVault', highestVault);
-								$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
-								$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-								currentVaultNumber++;
-								break;
-							case 13:
-								highestVault = 3;
-								storage.setItem('highestVault', highestVault);
-								$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
-								$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-								currentVaultNumber++;
-								break;
-							case 23:
-								highestVault = 4;
-								storage.setItem('highestVault', highestVault);
-								$('#vault' + highestVault + 'img').attr("src", "./img/icons/SafeLargeOpen.svg");
-								$('#vault' + highestVault + 'overlay').attr("src", "./img/icons/"+highestVault+"Open.svg");
-								currentVaultNumber++;
-								break;
-							default:
-								break;
-						} */
+						}
 					} else if(getCurrentLevelNumber() === 10 || getCurrentLevelNumber() === 20 || getCurrentLevelNumber() === 30) {
 							backToVaultFlag = true;
 					}
-					//currentLevel = incrementLevel();
 					abc = getCurrentLevelNumber();
 					if(getCurrentLevelNumber()>0) {
 						gameOverModal.style.display = "block";
+						//showModal('modal', 'Level '+getCurrentLevelNumber()+' complete', 'stuff', 'Okay', 'Retry', 'GameOverClose', 'restart');
+					} else if (getCurrentLevelNumber() == -4) {
+						gameOverModal.style.display = "block";
+						//showModal('modal', 'TUTORIAL COMPLETE', 'Ready to play?', 'Okay', null, 'display-lesson', null);	
 					} else {
-						tutorialOverModal.style.display = "block";
+						//Modal to move onto next tutorial
+						showModal('modal', congratsTitle, congratsText, 'Okay', 'Skip', 'display-lesson', 'skiptutorial');
+						//tutorialOverModal.style.display = "block";
 					}
 					(function() {
 						var elements = document.querySelectorAll("#starsCollected img");

@@ -2,71 +2,56 @@
 <html>
     <head>
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=1, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">        
         		
-		<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=WGaeemNEoy">
-		<link rel="icon" type="image/png" href="./favicon-32x32.png?v=WGaeemNEoy" sizes="32x32">
-		<link rel="icon" type="image/png" href="./favicon-16x16.png?v=WGaeemNEoy" sizes="16x16">
-		<link rel="manifest" href="./manifest.json?v=WGaeemNEoy">
-		<link rel="mask-icon" href="./safari-pinned-tab.svg?v=WGaeemNEoy" color="#5bbad5">
-		<link rel="shortcut icon" href="./favicon.ico?v=WGaeemNEoy">
-		<meta name="apple-mobile-web-app-title" content="Number Locks">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+		<link rel="manifest" href="/manifest.json">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="application-name" content="Number Locks">
 		<meta name="theme-color" content="#ffffff">
 		
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-        
 		<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+		<link rel="stylesheet" type="text/css" href="css/nouislider.css" >
         <title>Number Locks</title>
     </head>
     <body>
 		<div class="container">
-			<div class="heading">
-				<h1 class="title"><img class="logo" src="img/icons/PadlockOpenTickNoShadow.svg" />NUM<div class="title-tile">6</div>ER L<div class="title-tile">0</div>CKS</h1>
+			<div>
+				<h1 class="title">NUM<span>6</span>ER L<img class="logo" src="img/padlocknew.svg" />CKS</h1>
 			</div>
 			<div id="challenge">
-				<h3>Choose a challenge!</h3>
-				<table><tbody>
-					<tr id="challengeIcons">
-						<td colspan="3" id="campaign"><img src="img/icons/Campaign.svg"/></td>
-					</tr>
-					<tr id="challengeNames">
-						<td colspan="3" >One Player Campaign</td>
-					</tr>
-					<tr><td colspan="3" ><hr/></td></tr>
-					<tr><td style="font-family: 'Helvetica Neue', Helvetica, Arial, Calibri, sans-serif; font-size: 16px; color:#BFBFBF" colspan="3" >Coming Soon</td></tr>					
-					<tr id="challengeIcons">
-						<!--<td id="vs"><svg width="60px" height="60px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
-							<image xlink:href="./img/icons/PlayerVsPlayer.svg" height="60px" width="60px"/>
-						</svg></td>-->
-						<td><img src="img/icons/PlayerVsPlayerGrey.svg"></img></td>
-						<td><img src="img/icons/TrophyGrey.svg"></img></td>
-						<td><img src="img/icons/TimeTrialGrey.svg"></img></td>
-					</tr>
-					<tr id="challengeNames" style="color:#BFBFBF">
-						<td>Two Player Match</td>
-						<td>Multi-Player Tournament</td>
-						<td>Solo Time Trial</td>
-					</tr>
-				</tbody></table>
+				<h3 class="heading">Choose a challenge:</h3>
+				<div class="icon">
+					<div id="campaign" class="square"><img class="centre" src="img/player.svg"/>
+						<span class="bottom">One Player</span>
+					</div>
+				</div>				
+				<div class="rectangle">
+					<div class="right smallheading">Coming Soon</div>
+					<div class="smallicon">					
+						<div id="twoplayer" class="smallsquare"><img class="centre" src="img/playervsplayer.svg"/><span class="bottom smalltext">Two Player</span></div>
+						<div id="multiplayer" class="smallsquare"><img class="centre" src="img/trophy.svg"/><span class="bottom smalltext">Multi Player</span></div>
+						<div id="timetrial" class="smallsquare"><img class="centre" src="img/timetrial.svg"/><span class="bottom smalltext">Time Trial</span></div>
+					</div>
+				</div>
 				<!--<div id="testingControls"><span style="text-decoration:underline; cursor:pointer; margin-top:20px" id="resetGame">Reset Game</span></div>-->
-				<div><span style="text-decoration:underline; cursor:pointer; margin-top:20px" id="unlockAll">Unlock All Levels</span></div>
+				<!--<div><span style="text-decoration:underline; cursor:pointer; margin-top:20px" id="unlockAll">Unlock All Levels</span></div>-->
 			</div>
-			<div id="totalDiv" style="text-align:right;"></div>
-			<div id="levelsDiv"></div>
-			<!--<div class="vaults"></div>-->			
+			<div id="totalDiv""></div>
+			<div id="levelsDiv"></div>			
 			<div class="levels"></div>
-			<div class="level-number"></div>
 			<div class="controls-lower"></div>
 			<div class="super-container">
 			<div id="pie-container"></div>
 			<div class="game-container">
-				<div class="moves-label control text"><div id="move-text" style="display:inline-block">Moves: </div>&nbsp;<div id="move-num" style="display:inline-block"> </div></div>
-				<div id="starCounter"></div>
+				<!--<div class="moves-label control text"><div id="move-text" style="display:inline-block">Moves: </div>&nbsp;<div id="move-num" style="display:inline-block"> </div></div>-->
 				<div class="grid-container"></div>
 				<div class="tile-container"></div>
 				<div class="lines-container"></div>
@@ -76,124 +61,45 @@
 				<div class="tutorial-container"></div>
 			</div>	
 			</div>			
-			<div class="moves-legend-container text"></div>
-		  	<!--<p class="game-explanation"></p>
-		  	<hr>
-		  	<p>Created by <a href="http://brandmaster-virtualteambuild.rhcloud.com/" target="_blank">Anup Parekh</a></p>-->
+			<!--<div class="moves-legend-container text"></div>-->
+			<div id="moves-slider"></div>
+			<div id="starCounter"></div>
 		</div>
 		
 		<!-- Game Over Modal -->
-		<div id="gameOverModal" class="transparent modal text">
+		<div id="gameOverModal" class="gameOverModal transparent text" style="display:none">
 			<!--Modal Content -->
 			<div id="gameOverContent" class="modal-content">
-				<!--<span class="close GameOverClose">x</span>-->
-				<p class="congrats">CONGRATULATIONS <br />LEVEL <span id="levelNum"></span> COMPLETE!</p>
+				<p class=""><span id="levelName">LEVEL</span> <span id="levelNum"></span> COMPLETE!</p>
 				<div class="score-container">
 					<div class="">Moves: <span class="" id="moves"></span></div><br />		
 						<div class="inline" id="starsCollected"></div><br /><br />
-					<div style="display:inline-block">
-						<img style="margin-left:10px; margin-right:10px" id="next" class="GameOverClose pause-img" src="./img/icons/Tick2.svg" />
-						<img id="restart" class="pause-img" src="./img/icons/Restart.svg" />
+
+					<div id="tutorial-buttons" style="top:150%">
+						<button id="okay" type="button" class="GameOverClose">Okay</button>
+						<button id="retry" type="button" class="">Retry</button>
 					</div>
-					<div style="display:inline-block">
-						<p><span style="margin-right:20px">Continue</span><span>Retry Level</span></p>
-					</div>
-					<!--<div class="pause-item" id="restart"><img class="pause-img" src="./img/icons/Restart.svg" />Restart level</div>-->
-					<!--<p>Complete Bonus: <span class="count" id="complete"></span></p>
-					<p>Remainder Bonus: <span class="count" id="remainder"></span></p>
-					<p>Total: <span class="count" id="total"></span></p>-->
 				</div>
 			</div>
 		</div>
 		
-		<!-- Tutorial Over Modal -->
-		<div id="tutorialOverModal" class="transparent modal-over text">
+		<!-- Generic Modal -->
+		<div id="genericModal" class="modal transparent">
 			<!--Modal Content -->
-			<div id="tutorialOverContent" class="congrats-box">
-				<!--<span class="close GameOverClose">x</span>-->
-				<p class=""><u>Congratulations You Did It!!</u> <br />
-				<div class="next-lesson" style="padding-top:10px;"><img class="tick-img" src="./img/icons/Tick2.svg"><span> Next Lesson</span></div>
+			<div id="" class="modal-content">
+				<div class="modal-title" id="modal-title"></div>
+					<div class="modal-text" id="modal-text"></div>
+					<div id="tutorial-buttons"><button id="affirm" type="button"></button><button id="deny" type="button"></button></div>
 			</div>
 		</div>
 		
-		<!-- How To Win Modal -->
-		<div id="howToWinModal" class="tutorial text">
-			<!--Modal Content -->
-			<div id="howToWinContent" class="tutorial-modal">
-				<span class="close tutorialClose">x</span>
-				<p id="tutorialTitle"><br /></p>
-				<div class="score-container">
-					<div id="tutorialText"></div>
-					<!--<p><div class="tutorialClose" id="continue"><img style="" id="" class="pause-img" src="./img/icons/Tick2.svg">Continue</div></p>-->
-				</div>
-				<div id="tutorialDismiss"></div>
-			</div>
-		</div>
+		<div id="hamburger-div"></div>
 		
-		<!-- How To Win Modal -->
-		<div id="incorrectModal" class="tutorial text">
-			<!--Modal Content -->
-			<div id="incorrectContent" class="incorrect-tutorial-modal">
-				<span class="close tutorialClose">x</span>
-				<p id="incorrectTitle"><br /></p>
-				<div id="incorrectText"></div>
-				<!--<p><div class="tutorialClose" id="continue"><img style="" id="" class="pause-img" src="./img/icons/Tick2.svg">Continue</div></p>-->
-				<div id="incorrectDismiss"></div>
-			</div>
-		</div>
-		
-		<!-- Vault Open Modal -->
-		<div id="vaultOpenModal" class="transparent tutorial text">
-			<!--Modal Content -->
-			<div id="vaultOpen" class="vault-open-modal">
-				<span class="close vaultOpenClose" style="color:#00b0f0">x</span>
-				<p id="newVaultTest" class="congrats">NEW VAULT OPEN!<br /></p>
-				<div class="score-container">
-					<div id="vaultOpenText"><p>GREAT JOB!<p><br />YOU'VE COLLECTED ENOUGH STARS TO OPEN THE NEXT VAULT</div>
-				</div>
-			</div>
-		</div>
-		
-		<!-- Game Complete Modal -->
-		<div id="gameCompleteModal" class="tutorial text">
-			<!--Modal Content -->
-			<div id="gameComplete" class="game-complete-modal">
-				<span class="close gameCompleteClose">x</span>
-				<p id="gameCompleteHeader" class="congrats">CONGRATULATIONS YOU'VE FINISHED EVERY LEVEL!<br /></p>
-				<div class="score-container">
-					<div id="gameCompleteText"><p>Now try for 3 stars on every level!<p>Also, look out for our new release with even harder levels and multi-player games</div>
-				</div>
-			</div>
-		</div>
-		
-		<!-- Pause Modal -->
-		<div id="pauseModal" class="modal">
-			<!--Modal Content -->
-			<div id="pauseContent" class="modal-content">
-				<span class="close pauseClose">x</span>
-				<p style="color:black; font-size:16px;"><u>LEVEL <span id="levelTitle"></span></u></p>
-				<div style="text-align:left">	
-					<!--<div class="pause-item" id="return"><img class="pause-img" src="./img/icons/Tick2.svg" />Return to game</div>-->
-					<!--<div class="pause-item" id="restart"><img class="pause-img" src="./img/icons/Restart.svg" />Restart level</div>-->
-					<!--<div class="pause-item" id="levelSelect"><img class="pause-img" src="./img/icons/Padlock.svg" />Change level</div>-->
-					<div class="pause-item" id="restart"><img id="" class="pause-img" src="./img/icons/Restart.svg">Retry Level</div>
-					<div class="pause-item" id="vaultSelect"><img class="pause-img" src="./img/icons/SafeSmall.svg">Change Level</div>
-					<div class="pause-item" id="home"><img class="pause-img" src="./img/icons/Home.svg">Home</div>
-					<div class="pause-item" id="sound"></div>
-					<div class="pause-item" id="resetGame"><img class="pause-img" src="./img/icons/ResetData.svg">Reset Data</div>
-					<!--<div class="pause-item leaderboard"><img class="pause-img" src="./img/icons/Leaderboard.svg" />Leaderboard</div>-->
-					<!--<div class="pause-item" id="vaultSelect">Retry Level<img class="pause-img" src="./img/icons/SafeSmall.svg" /></div>
-					<div class="pause-item leaderboard"><img class="pause-img" src="./img/icons/Trophy.svg" />Leaderboard</div>-->
-				</div>
-			</div>
-		</div>
-		
+        <script type="text/javascript" src="js/nouislider.min.js"></script>
         <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
-        <!--<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>-->
         <script type="text/javascript" src="js/hammer.min.js"></script>
         <script type="text/javascript" src="js/jquery.hammer.js"></script>
         <script type="text/javascript" src="js/levels.js"></script>
-        <!--<script type="text/javascript" src="js/PreventGhostClick.js"></script>-->
         <script type="text/javascript" src="slick/slick.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
