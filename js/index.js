@@ -153,6 +153,10 @@ $('body').on('click', '.skipTutorial', function(e) {
 	$('.level-number').css('display','none');
 	tutorialComplete = 1;
 	storage.setItem('tutorialComplete', tutorialComplete);
+	
+	if (movesSlider.html() != "") {
+		movesSlider[0].noUiSlider.destroy();	
+	}
 	showVaults();
 });
 
@@ -456,7 +460,7 @@ function onDeviceReady () {
 	//AndroidFullScreen.immersiveMode();
 	console.log(StatusBar);
 	StatusBar.hide();
-	
+	navigator.splashscreen.hide();
 	window.screen.orientation.lock('portrait').then(function success() {
     	//alert("Successfully locked the orientation");
 	}, function error(errMsg) {
@@ -699,7 +703,7 @@ function addBoard() {
 		$('.super-container').css('display','block');	
 		$('#restart-div').css('right','-115px');
 		if(currentLevel === "level-1" ) {	
-			$('#restart-div').css('right','-100px');
+			$('#restart-div').css('right','-110px');
 			$('.tutorial-container').html("<img class=\"object animate\" src=\"./img/hand.svg\"/>");
 			$('.object').css('left');
 			$('.object').addClass('horizTranslate');
