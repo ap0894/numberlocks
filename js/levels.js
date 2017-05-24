@@ -65,14 +65,14 @@ var levels = {
   "level6": 
   {
 	 "tiles": [6,3,5,2,8,5,9,4,2],
-	 "three": "6",
+	 "three": "7",
 	 "two": "7",
 	 "one": "8"
   },
   "level7": 
   {
 	 "tiles": [2,9,5,5,1,8,7,3,6],
-	 "three": "6",
+	 "three": "7",
 	 "two": "7",
 	 "one": "8"
   },
@@ -86,7 +86,7 @@ var levels = {
   "level9": 
   {
 	 "tiles": [17,4,2,3,15,8,6,20,5],
-	 "three": "6",
+	 "three": "7",
 	 "two": "7",
 	 "one": "8"
   },
@@ -135,7 +135,7 @@ var levels = {
   "level16": 
   {
 	 "tiles": [1,4,6,16,8,7,13,3,2],
-	 "three": "6",
+	 "three": "7",
 	 "two": "7",
 	 "one": "8"
   },
@@ -156,7 +156,7 @@ var levels = {
   "level19": 
   {
 	 "tiles": [19,6,17,20,12,1,9,4,6],
-	 "three": "6",
+	 "three": "7",
 	 "two": "7",
 	 "one": "8"
   },

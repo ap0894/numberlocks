@@ -183,7 +183,7 @@ $('body').on('click', '.display-lesson', function(e) {
 
 /*************OLD FUNCTIONS ***************/
 
-function setStarVaules(currentLevel) {
+function setStarValues(currentLevel) {
 	
 	//three = levels[currentLevel]['three'];
 	three = parseInt(levels[currentLevel]['three'], 10);
@@ -602,7 +602,13 @@ function addBoard() {
 	}
 	var movesLegend = "<table style=\"font-size: 12px;\"><tbody><tr><td>Moves</td><td>"+levels[currentLevel]['three']+"</td><td>"+levels[currentLevel]['two']+"</td><td>"+levels[currentLevel]['one']+"</td></tr><tr><td>Keys</td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /></td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /></td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /></td></tr></tbody></table>";
 	
-	
+	setStarValues(currentLevel);
+	var pipValues;
+	if (two!=three) {
+		pipValues = [0, two, one];
+	} else {
+		pipValues = [0, one];
+	}
 	sliderOptions = {
 		start: 0,
 		step: 1,
@@ -611,11 +617,12 @@ function addBoard() {
 		tooltips: true,
 		range: {
 		  'min': 0,
-		  'max': parseInt(levels[currentLevel]['one'])
+		  'max': one
 		},
 		pips: {
 			mode: 'values',
-			values: [0, parseInt(levels[currentLevel]['two']), parseInt(levels[currentLevel]['one'])],
+			//values: [0, two, one],
+			values: pipValues,
 			density: 100
 		},
 		format: {
@@ -762,7 +769,7 @@ function addBoard() {
 		$('#starCounter').html("");
 	}
 	//startTimer();
-	setStarVaules(currentLevel);
+	//setStarValues(currentLevel);
 	
 	//Check if there are any adjacent numbers
 	for(a=1; a<=size; a++) {
