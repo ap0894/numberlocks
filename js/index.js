@@ -235,7 +235,7 @@ function calculateStars(movesUp) {
 	else {
 		if (movesUp >= twoMin && movesUp <= twoMax) {
 			return 2;
-		} else if (movesUp > two && movesUp <= one) {
+		} else if (movesUp > twoMax) {
 			return 1;
 		} else {
 			return 3;
