@@ -1408,7 +1408,7 @@ function onReady() {
 			case levelNumber > 10 && levelNumber <= 20 :
 				currentVaultNumber = 1;
 				break;
-			case levelNumber > 21 :
+			case levelNumber > 20 :
 				currentVaultNumber = 2;
 				break;
 			default:
