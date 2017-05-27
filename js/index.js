@@ -63,7 +63,11 @@ var totalStars = 0;
 var continueFlag = false;
 var backToVaultFlag = false;
 var one;
+var oneMin;
+var oneMax;
 var two;
+var twoMin;
+var twoMax;
 var three;
 var starsUpdate;
 var AdMob = false;
@@ -198,29 +202,44 @@ function setStarValues(currentLevel) {
 	two = levels[currentLevel]['two'];
 	if(two.includes('-')) {
 		two = two.split('-'); 
-		two = parseInt(two[1],10);
+		twoMin = parseInt(two[0],10);
+		twoMax = parseInt(two[1],10);
 	} else {
 		two = parseInt(levels[currentLevel]['two'], 10);
+		twoMin = parseInt(levels[currentLevel]['two'], 10);
+		twoMax = parseInt(levels[currentLevel]['two'], 10);
 	}
 
 	one = levels[currentLevel]['one'];
 	if(one.includes('-')) {
 		one = one.split('-'); 
-		one = parseInt(one[1],10);
+		oneMin = parseInt(one[0],10);
+		oneMax = parseInt(one[1],10);
 	} else {
 		one = parseInt(levels[currentLevel]['one'], 10);
+		oneMin = parseInt(levels[currentLevel]['one'], 10);
+		oneMax = parseInt(levels[currentLevel]['one'], 10);
 	}
 }
 
 function calculateStars(movesUp) {	
-	if (movesUp <= three ) {
-		return 3;
-	} else if (movesUp > three && movesUp <= two) {
-		return 2;
-	} else if (movesUp > two && movesUp <= one) {
-		return 1;
-	} else {
-		return 0;
+
+	if(two===three) {
+		if (movesUp > twoMax && movesUp <= oneMin) {
+			return 1;
+		} else {
+			return 3;
+		}
+	}
+
+	else {
+		if (movesUp >= twoMin && movesUp <= twoMax) {
+			return 2;
+		} else if (movesUp > two && movesUp <= one) {
+			return 1;
+		} else {
+			return 3;
+		}
 	}
 }
 
@@ -604,10 +623,13 @@ function addBoard() {
 	
 	setStarValues(currentLevel);
 	var pipValues;
-	if (two!=three) {
-		pipValues = [0, two, one];
+	if (twoMin!=three) {
+		pipValues = [0, twoMin, oneMin];
 	} else {
 		pipValues = [0, one];
+	}
+	if (oneMin != oneMax) {
+		pipValues.push(oneMax);
 	}
 	sliderOptions = {
 		start: 0,
@@ -617,7 +639,7 @@ function addBoard() {
 		tooltips: true,
 		range: {
 		  'min': 0,
-		  'max': one
+		  'max': oneMax
 		},
 		pips: {
 			mode: 'values',
