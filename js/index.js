@@ -50,7 +50,7 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves;
 var movesUp;
-var testing = true;
+var testing = false;
 var testingLevels;
 var total = 0;
 var myTimer;
@@ -487,6 +487,29 @@ function onDeviceReady () {
 	});
 	//alert('hiding status bar');
 	//showBanner();
+	
+	/*AppRate.preferences = {
+		storeAppURL: {
+			ios: '1180420632'
+		}
+	};*/
+	
+	AppRate.preferences.storeAppURL.ios = '1180420632';
+	AppRate.preferences.usesUntilPrompt = 3;
+	AppRate.preferences.openStoreInApp = true;
+	AppRate.promptForRating(false);
+	window.ga.startTrackerWithId('UA-100425165-1');
+	window.ga.debugMode();
+	window.ga.enableUncaughtExceptionReporting(true);
+	console.log('GA Debug Mode On');
+	
+	/*AppRate.preferences = {
+		openStoreInApp: true,
+		usesUntilPrompt: 3
+	};*/
+	
+	
+	
 	onReady();
 }
 
@@ -622,6 +645,10 @@ function addBoard() {
 	var movesLegend = "<table style=\"font-size: 12px;\"><tbody><tr><td>Moves</td><td>"+levels[currentLevel]['three']+"</td><td>"+levels[currentLevel]['two']+"</td><td>"+levels[currentLevel]['one']+"</td></tr><tr><td>Keys</td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /></td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /></td><td><img class = \"star\" src=\"./img/key.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /><img class = \"star\" src=\"./img/keyoff.svg\" /></td></tr></tbody></table>";
 	
 	setStarValues(currentLevel);
+	
+	if (!testing) {
+		window.ga.trackView(currentLevel);
+	}
 	var pipValues;
 	if (twoMin!=three) {
 		pipValues = [0, twoMin, oneMin];
@@ -1686,7 +1713,76 @@ function onReady() {
 					highestVault = storage.getItem('highestVault');
 					if(getCurrentLevelNumber() >= highestLevel || highestLevel === null) {
 						highestLevel = getCurrentLevelNumber();	
-							
+						if(!testing) {
+							//window.ga.trackMetric(parseInt(highestLevel,10), 1); //This works!
+							switch(parseInt(highestLevel,10)) {
+								case 1:
+									window.ga.trackMetric(1,1);
+									break;
+								case 2:
+									window.ga.trackMetric(2,1);
+									break;
+								case 3:
+									window.ga.trackMetric(3,1);
+									break;
+								case 4:
+									window.ga.trackMetric(4,1);
+									break;
+								case 5:
+									window.ga.trackMetric(5,1);
+									break;
+								case 6:
+									window.ga.trackMetric(6,1);
+									break;
+								case 7:
+									window.ga.trackMetric(7,1);
+									break;
+								case 8:
+									window.ga.trackMetric(8,1);
+									break;
+								case 9:
+									window.ga.trackMetric(9,1);
+									break;
+								case 10:
+									window.ga.trackMetric(10,1);
+									break;
+								case 11:
+									window.ga.trackMetric(11,1);
+									break;
+								case 13:
+									window.ga.trackMetric(12,1);
+									break;
+								case 15:
+									window.ga.trackMetric(13,1);
+									break;
+								case 17:
+									window.ga.trackMetric(14,1);
+									break;
+								case 19:
+									window.ga.trackMetric(15,1);
+									break;
+								case 21:
+									window.ga.trackMetric(16,1);
+									break;
+								case 23:
+									window.ga.trackMetric(17,1);
+									break;
+								case 25:
+									window.ga.trackMetric(18,1);
+									break;
+								case 27:
+									window.ga.trackMetric(19,1);
+									break;
+								case 30:
+									window.ga.trackMetric(20,1);
+									break;
+								default:
+									break;
+							}
+							//window.ga.trackMetric(6, 1); //This works!
+							//window.ga.trackView(highestLevel);
+							console.log('tracking custom metric');
+						}
 						highestLevel++;
 						storage.setItem('highestLevel', highestLevel);
 						//var levToUpdate = currentLevel+1;
