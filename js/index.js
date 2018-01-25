@@ -50,7 +50,7 @@ var completeBonus = 500;
 var remainderBonus = 1000;
 var moves;
 var movesUp;
-var testing = false;
+var testing = true;
 var testingLevels;
 var total = 0;
 var myTimer;
